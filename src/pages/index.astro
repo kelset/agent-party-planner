@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Agent Party Planner">
+	<main class="max-w-4xl mx-auto py-12 px-4">
+		<header class="text-center mb-16">
+			<h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-amber-600 bg-clip-text text-transparent">
+				Agent Party Planner
+			</h1>
+			<p class="text-xl text-slate-400">
+				Assemble your elite orchestration party. 
+			</p>
+		</header>
+
+		<section class="grid md:grid-cols-2 gap-8">
+			<div class="p-6 border border-slate-800 rounded-2xl bg-slate-900/50 backdrop-blur-sm">
+				<h2 class="text-2xl font-semibold mb-4 text-orange-200">The War Room</h2>
+				<p class="text-slate-400 mb-6">Configure the meta-level orchestration and define the rules of the game.</p>
+				<button class="px-6 py-2 bg-orange-600 hover:bg-orange-500 rounded-lg font-medium transition-colors">
+					Enter War Room
+				</button>
+			</div>
+
+			<div class="p-6 border border-slate-800 rounded-2xl bg-slate-900/50 backdrop-blur-sm">
+				<h2 class="text-2xl font-semibold mb-4 text-orange-200">The Party</h2>
+				<p class="text-slate-400 mb-6">Recruit your agents and customize their specialized roles and classes.</p>
+				<button class="px-6 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg font-medium transition-colors border border-slate-700">
+					View Party
+				</button>
+			</div>
+		</section>
+
+		<footer class="mt-24 pt-8 border-t border-slate-900 text-center text-slate-500 text-sm">
+			Built with Bun + Astro + Tailwind CSS
+		</footer>
+	</main>
+</Layout>
