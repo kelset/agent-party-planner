@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+@theme {
+  --color-tavern-950: #0a0908;
+  --color-tavern-900: #1a1614;
+  --color-tavern-800: #2c2420;
+  --color-parchment: #f4e9d8;
+  --color-gold-400: #fbbf24;
+  --color-gold-600: #d97706;
+  --color-crimson: #991b1b;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-tavern-950);
+  background-image: 
+    radial-gradient(circle at 50% -20%, var(--color-tavern-800), transparent),
+    radial-gradient(circle at 0% 0%, rgba(153, 27, 27, 0.05), transparent);
+}
+
+.dnd-card {
+  @apply bg-tavern-900/80 border border-tavern-800 rounded-xl backdrop-blur-sm 
+         hover:border-gold-600/50 transition-all duration-300 shadow-xl;
+}
+
+.dnd-button-primary {
+  @apply px-8 py-3 bg-crimson hover:bg-red-700 text-white font-bold rounded-lg 
+         shadow-[0_0_15px_rgba(153,27,27,0.4)] transition-all hover:scale-105 
+         active:scale-95 border border-red-900/50;
+}
