@@ -4,10 +4,9 @@
 An interactive web-based tool to visually configure and export an "Agent Orchestration" system. The system follows a hierarchical structure inspired by a Dungeons & Dragons (D&D) session, where agents and sub-agents have dedicated roles and responsibilities.
 
 ## Hierarchical Levels
-1. **The Game Room (Meta-Level):**
+1. **The War Room (Meta-Level):**
    - The highest level of orchestration.
-   - Coordinates the "game" (the overall project or complex task).
-   - Manages the Game Master (GM) role and player classes.
+   - Users select their "Meta-Agents" or "War Room" members (e.g., the primary agent they are interacting with).
    - Responsible for the big picture and rule modifications.
 
 2. **The GM Session:**
@@ -22,12 +21,16 @@ An interactive web-based tool to visually configure and export an "Agent Orchest
 
 ## User Experience
 - **Visual Party Composition:** A fun, high-quality UI where users can see representations of different classes.
+- **Agent Targeting:** Before export, users specify their target AI platform (e.g., Gemini, Claude, Copilot) to ensure the orchestration is formatted correctly for that specific ecosystem.
 - **Customization:** Tweak class roles, characteristics, and orchestration rules through simple UI inputs (no manual prompting required).
 - **One-Click Export:** Generate and download a ZIP package containing the entire orchestration setup (prompts, configuration, and folder structure).
-- **Low Friction:** Only three manual prompts should be required for the user to start:
-  1. Start the Warroom (Game Room).
-  2. Start the GM Session.
-  3. Resume/Update the GM Session.
+
+## Target Agent Compatibility
+The tool aims to support various AI ecosystems, acknowledging that each has unique ways of handling sub-agents:
+- **Gemini:** Requires specific formatting for sub-agents (e.g., defined in the system instruction).
+- **Claude:** Supports sub-agents and "Agent Teams" with the ability to spawn agents at runtime via the `task` command.
+- **Others (Codex, Copilot, etc.):** Investigate and implement support for their specific orchestration patterns.
+- **Dynamic Guidance:** The exported package should include tailored setup instructions based on the selected target agent's capabilities (e.g., manual installation vs. runtime spawning).
 
 ## Long-Term Goal
 - **Agnostic Architecture:** While the initial launch is D&D themed, the underlying architecture should allow for easy "reskinning" (e.g., a Star Trek theme) by swapping out the UI/Theming layer without touching the core orchestration logic.
