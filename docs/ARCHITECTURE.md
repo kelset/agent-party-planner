@@ -1,11 +1,13 @@
 # Architecture: Agent Party Planner
 
 ## Design Principles
+
 - **Theme/Logic Separation:** Decouple the visual presentation (D&D, Sci-Fi, etc.) from the underlying agent template logic.
 - **Variable-Driven Templates:** Use a templating engine to inject user configurations (class roles, names, specific rules) into pre-defined agent prompts.
 - **Static First, Dynamic When Needed:** Leverage a fast modern stack (proposed: Bun + Astro) to deliver a polished, snappy UI with minimal overhead.
 
 ## Components
+
 1. **Frontend (The Tavern):**
    - Interactive UI for selecting and configuring the "Party".
    - State management to track the composition and customizations.
@@ -23,20 +25,26 @@
 ## Technical Considerations
 
 ### State Management
+
 - **Local-First:** Use browser `localStorage` or `IndexedDB` to persist party configurations between sessions without requiring a backend database.
 - **URL-Based State:** Consider encoding the party configuration in the URL (Base64 or compressed) to allow users to share their "Party Composition" easily.
 
 ### Logic Distribution
+
 - **Client-Side Heavy:** To keep Netlify costs at zero, the "Forge" and "Courier" will operate entirely in the browser using libraries like `jszip`.
 - **Static Site Generation (SSG):** Astro will pre-render all UI components, ensuring fast initial loads and low server overhead.
 
 ### Observability & Error Logging
+
 - **Low-Cost Analytics:** Use a privacy-focused, lightweight analytics tool (e.g., Umami or Plausible) or stick to Netlify's built-in analytics.
 - **Error Tracking:** Implement simple error boundaries and potentially use a free tier of a service like Sentry or LogRocket if complex client-side errors occur frequently.
 
 ### Theming System
+
 - **Tailwind v4 CSS Variables:** Leverage the new Tailwind version's CSS variable-first approach to allow "skins" to be applied by simply swapping a data-theme attribute on the root element.
+
 ## Folder Structure (Internal)
+
 ```text
 src/
 ├── themes/          # Visual styles, icons, and theme-specific copy
@@ -47,6 +55,7 @@ src/
 ```
 
 ## Proposed Stack
+
 - **Runtime:** Bun (for speed and modern DX).
 - **Framework:** Astro (excellent for content/template-focused sites with optional interactivity).
 - **Styling:** Tailwind CSS (for easy theme variables and rapid UI development).

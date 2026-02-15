@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-tavern-950: #0a0908;
@@ -17,7 +17,7 @@
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--color-tavern-950);
-  background-image: 
+  background-image:
     radial-gradient(circle at 50% -20%, var(--color-tavern-800), transparent),
     radial-gradient(circle at 0% 0%, rgba(153, 27, 27, 0.05), transparent);
 }
