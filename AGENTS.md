@@ -22,18 +22,39 @@ Always consult these resources for technical decisions and API usage:
 ## Project Structure
 
 - `/docs`: High-level planning (Vision, Architecture, Plan).
+
 - `/src`: Application source code.
+
   - `/layouts`: Shared page layouts.
+
   - `/pages`: Route definitions.
+
   - `/styles`: Global and component-specific styles.
+
   - `/components`: UI components.
+
   - `/templates`: (Pending) Orchestration prompt templates.
-  - `/core`: (Pending) Logic for template generation.
+
+  - `/core`: Logic for template generation and orchestration.
+
+
 
 ## Agent Instructions
 
-1. **Context First:** Before making significant changes, read `docs/VISION.md` and `docs/ARCHITECTURE.md`.
-2. **Standard Compliance:** Adhere to the latest Astro and Bun conventions as described in their `llms.txt` files.
-3. **Commit Style:** Use short, task-focused, present-tense summaries (e.g., `add party builder component`, `fix tailwind config`).
-4. **Testing:** Leverage `bun test` for unit testing logic in the `/core` and `/templates` directories.
-5. **Types:** Maintain strict TypeScript typing. Avoid `any`.
+1. **Context First:** Before making significant changes, read `docs/VISION.md`, `docs/ARCHITECTURE.md`, and `docs/INFRASTRUCTURE.md`.
+
+2. **Standard Compliance:** Adhere to the latest Astro and Bun conventions.
+
+3. **Commit Style:** Use short, task-focused, present-tense summaries.
+
+4. **Testing & Quality:**
+
+   - Leverage `bun test` for unit testing logic in the `/core` and `/templates` directories.
+
+   - Run `bun run lint` and `bun run format` before finalizing changes.
+
+5. **War Room Context:** Follow the hierarchy of War Room (Meta) -> GM Session -> Party (Sub-Agents).
+
+6. **Types:** Maintain strict TypeScript typing. Avoid `any`.
+
+

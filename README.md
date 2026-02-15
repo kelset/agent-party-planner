@@ -1,43 +1,56 @@
-# Astro Starter Kit: Minimal
+# 🎲 Agent Party Planner
 
-```sh
-bun create astro@latest -- --template minimal
+An interactive web-based tool to visually configure and export **Agent Orchestration** systems.
+
+Inspired by Dungeons & Dragons, this tool allows you to assemble a "Party" of specialized AI agents, customize their roles, and export a ready-to-use orchestration package for platforms like Gemini and Claude.
+
+## ✨ Features
+
+- **The Tavern (UI):** A D&D-themed interface for party composition.
+- **The Forge (Logic):** Platform-agnostic template engine that generates optimized prompts.
+- **The Courier (Export):** Client-side ZIP generation for immediate use.
+- **Multi-Platform Support:** Tailored exports for Gemini (SKILL.md) and Claude (Agent Teams).
+- **Privacy First:** Entirely client-side logic—no data leaves your browser.
+
+## 🛠️ Tech Stack
+
+- **Runtime:** [Bun](https://bun.sh)
+- **Framework:** [Astro v5](https://astro.build)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com)
+- **Language:** TypeScript (Strict)
+- **Linting:** ESLint 10 + Prettier
+
+## 🚀 Getting Started
+
+```bash
+# Install dependencies
+bun install
+
+# Start the development server
+bun dev
+
+# Run tests
+bun test
+
+# Lint & Format
+bun run lint
+bun run format
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 📂 Project Structure
 
-## 🚀 Project Structure
+- `src/core/`: Core orchestration logic and template merging.
+- `src/templates/`: Base prompts for the War Room, GM, and Classes.
+- `src/themes/`: Visual styling and theme-specific assets.
+- `docs/`: Product vision, architecture, and infrastructure plans.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📜 Documentation
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- [Vision](./docs/VISION.md)
+- [Architecture](./docs/ARCHITECTURE.md)
+- [Infrastructure](./docs/INFRASTRUCTURE.md)
+- [Development Plan](./docs/PLAN.md)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command               | Action                                           |
-| :-------------------- | :----------------------------------------------- |
-| `bun install`         | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Built with ❤️ by [Lorenzo Sciandra](https://github.com/kelset).
