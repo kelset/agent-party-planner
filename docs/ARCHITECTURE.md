@@ -20,6 +20,22 @@
    - Packages the generated files into a standardized folder structure.
    - Compresses the structure into a ZIP file for client-side download.
 
+## Technical Considerations
+
+### State Management
+- **Local-First:** Use browser `localStorage` or `IndexedDB` to persist party configurations between sessions without requiring a backend database.
+- **URL-Based State:** Consider encoding the party configuration in the URL (Base64 or compressed) to allow users to share their "Party Composition" easily.
+
+### Logic Distribution
+- **Client-Side Heavy:** To keep Netlify costs at zero, the "Forge" and "Courier" will operate entirely in the browser using libraries like `jszip`.
+- **Static Site Generation (SSG):** Astro will pre-render all UI components, ensuring fast initial loads and low server overhead.
+
+### Observability & Error Logging
+- **Low-Cost Analytics:** Use a privacy-focused, lightweight analytics tool (e.g., Umami or Plausible) or stick to Netlify's built-in analytics.
+- **Error Tracking:** Implement simple error boundaries and potentially use a free tier of a service like Sentry or LogRocket if complex client-side errors occur frequently.
+
+### Theming System
+- **Tailwind v4 CSS Variables:** Leverage the new Tailwind version's CSS variable-first approach to allow "skins" to be applied by simply swapping a data-theme attribute on the root element.
 ## Folder Structure (Internal)
 ```text
 src/
