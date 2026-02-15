@@ -40,3 +40,7 @@ The tool aims to support various AI ecosystems, acknowledging that each has uniq
 ## Long-Term Goal
 
 - **Agnostic Architecture:** While the initial launch is D&D themed, the underlying architecture should allow for easy "reskinning" (e.g., a Star Trek theme) by swapping out the UI/Theming layer without touching the core orchestration logic.
+
+- **Fully Open Source:** The project is intended to be a public resource. By open-sourcing the orchestration logic and the tool itself, we aim to foster community contribution and transparency.
+
+- **Community Support:** Once the tool is functional and polished, we will integrate a "Buy Me a Coffee" (or similar) button to allow users who find value in the tool to support its development and hosting.

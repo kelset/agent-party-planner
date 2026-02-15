@@ -38,5 +38,11 @@
 ## Phase 5: Polishing & Generalization
 
 - [ ] Refactor styles to use a robust theme-variable system.
+
 - [ ] Add transitions and "fun" D&D-themed animations.
+
+- [ ] **Support:** Integrate a "Buy Me a Coffee" or similar support button.
+
 - [ ] Final visual QA on mobile and desktop.
+
+- [ ] **Open Source:** Finalize LICENSE and contribution guidelines.
