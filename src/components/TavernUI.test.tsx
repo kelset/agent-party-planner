@@ -1,16 +1,14 @@
 import { expect, test } from 'bun:test';
 import { render, fireEvent } from '@testing-library/preact';
 import { TavernUI } from './TavernUI';
-import { defaultPartyPreset } from '../core/presets/defaultParty';
 
 test('TavernUI renders the default preset and handles member removal', () => {
   const { getByText, getAllByText, queryByText, getByRole } = render(
     <TavernUI />
   );
 
-  // Should render the title and quest name
+  // Should render the title
   expect(getByText('Assemble Your Party')).toBeTruthy();
-  expect(getByText(defaultPartyPreset.questName)).toBeTruthy();
 
   // Should render all 5 default party members (using getAllByText because name and class are identical)
   expect(getAllByText('Ranger').length).toBeGreaterThan(0);

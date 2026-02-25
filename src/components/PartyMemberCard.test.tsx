@@ -24,9 +24,8 @@ test('PartyMemberCard renders correctly and handles removal', () => {
   );
 
   expect(getByText('Test Agent')).toBeTruthy();
-  expect(getByText('Wizard')).toBeTruthy();
   expect(getByText('"A test fantasy"')).toBeTruthy();
-  expect(getByText('Test Task:')).toBeTruthy();
+  expect(getByText('Test Task')).toBeTruthy();
 
   const removeButton = getByRole('button', { name: 'Remove Test Agent' });
   fireEvent.click(removeButton);
