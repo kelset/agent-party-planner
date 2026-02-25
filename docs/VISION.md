@@ -6,6 +6,8 @@ An interactive web-based tool to visually configure and export an "Agent Orchest
 
 ## Hierarchical Levels
 
+*(For full details, see the [Orchestration Levels](./orchestration/ORCHESTRATION_LEVELS.md), [The War Room](./orchestration/WAR_ROOM.md), [Game Master Guide](./orchestration/GAME_MASTER_GUIDE.md), and [Party Roles](./orchestration/PARTY_ROLES.md) documents.)*
+
 1. **The War Room (Meta-Level):**
    - The highest level of orchestration.
    - Users select their "Meta-Agents" or "War Room" members (e.g., the primary agent they are interacting with).
@@ -21,12 +23,21 @@ An interactive web-based tool to visually configure and export an "Agent Orchest
    - Each class has a core role (e.g., the Ranger handles measurements and scouting).
    - Users can customize these roles and their characteristics.
 
-## User Experience
+## The CLI-Driven Workflow
+
+The orchestration is designed to be initiated and managed via a set of CLI commands, wrapping the agent sessions with necessary permissions (e.g., `--permissions read, write`).
+
+1. **Initialization:** A user facing a complex task runs a command (e.g., `app-cli start-war-room`) to spin up a War Room session. This injects the project context and connects the user with the Game Creator.
+2. **Brainstorming:** In the War Room, the user and the Game Creator define the task, party composition, and overarching goals. They generate a "quest folder" containing the base rules and parameters.
+3. **Quest Execution:** Once prep is complete, the user runs a second command (e.g., `app-cli start-quest [quest-name]`) to spin up a new, parallel session for the **GM**. The GM performs final local setup (e.g., git branching), gets a final thumbs-up from the user, and begins orchestrating the Party.
+4. **Autonomous Execution:** The GM manages the party autonomously. It should only ever interrupt the user if there is a massive blocker, if it needs critical clarification, or when the quest is fully completed.
+5. **Parallel Management & Mid-Flight Adjustments:** While the GM session is ongoing, the user can return to the War Room session. There, they can consult the Game Creator or the Master of Spies to critique progress or push "in-flight" rule modifications to the active GM session without hard-stopping the workflow.
+
+## User Experience Goals
 
 - **Visual Party Composition:** A fun, high-quality UI where users can see representations of different classes.
-- **Agent Targeting:** Before export, users specify their target AI platform (e.g., Gemini, Claude, Copilot) to ensure the orchestration is formatted correctly for that specific ecosystem.
-- **Customization:** Tweak class roles, characteristics, and orchestration rules through simple UI inputs (no manual prompting required).
-- **One-Click Export:** Generate and download a ZIP package containing the entire orchestration setup (prompts, configuration, and folder structure).
+- **Agent Targeting:** Before export, users specify their target AI platform (e.g., Gemini, Claude) to ensure the orchestration is formatted correctly for that specific ecosystem.
+- **One-Click Export:** Generate and download a ZIP package containing the CLI scripts and folder structure needed to run the workflow described above.
 
 ## Target Agent Compatibility
 

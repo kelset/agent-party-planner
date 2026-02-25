@@ -4,6 +4,7 @@
 
 - [x] Initialize project directory and Git.
 - [x] Document Vision and Architecture.
+- [x] Extract and document core orchestration models (War Room, GM, Party Roles).
 - [ ] Confirm technical stack (resolve Bun installation if needed).
 - [ ] Scaffold the base project (Astro + Tailwind).
 - [x] **Research:** Investigate sub-agent/orchestration documentation for:
