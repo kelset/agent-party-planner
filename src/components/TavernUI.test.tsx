@@ -9,7 +9,7 @@ test('TavernUI renders the default preset and handles member removal', () => {
   );
 
   // Should render the title and quest name
-  expect(getByText('The Party')).toBeTruthy();
+  expect(getByText('Assemble Your Party')).toBeTruthy();
   expect(getByText(defaultPartyPreset.questName)).toBeTruthy();
 
   // Should render all 5 default party members (using getAllByText because name and class are identical)

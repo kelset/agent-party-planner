@@ -48,9 +48,11 @@ To manage this complex responsibility, the War Room features three specialized m
 
 ## Operating the War Room
 
-The War Room is designed to be the first point of entry for a complex task. It should be launched via a CLI wrapper that ensures the agent has the necessary permissions to read the codebase and write the initial orchestration files.
+The War Room is designed to be the first point of entry for a complex task. It must be run in a **separate orchestration directory**, completely outside of the target codebase repository where the actual coding will occur. This prevents the codebase from being cluttered with agent journals and meta-prompts.
 
-**Example Command:** `app-cli start-war-room`
+It should be launched via a CLI wrapper that ensures the agent has the necessary permissions to read and write the initial orchestration files.
+
+**Example Command:** `app-cli start-war-room` (Run inside a dedicated `./agent-orchestration` folder)
 _(This command should invoke the underlying LLM CLI with elevated permissions, e.g., `claude --permissions read, write` or its equivalent, ensuring the Game Creator can instantly begin scaffolding the quest folder)._
 
 ### Mid-Flight Rule Changes

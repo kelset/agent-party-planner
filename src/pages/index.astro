@@ -12,8 +12,8 @@ import { TavernUI } from '../components/TavernUI';
     </div>
 
     <div class="max-w-6xl mx-auto px-6 py-20 relative">
-      <!-- Navigation Placeholder -->
-      <nav class="flex justify-between items-center mb-24">
+      <!-- Navigation -->
+      <nav class="flex justify-between items-center mb-12">
         <div class="flex items-center gap-2">
           <div
             class="w-8 h-8 bg-crimson rounded rotate-45 flex items-center justify-center border border-gold-600/30"
@@ -26,50 +26,14 @@ import { TavernUI } from '../components/TavernUI';
           >
         </div>
         <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-          <a href="#war-room" class="hover:text-gold-400 transition-colors"
-            >War Room</a
-          >
           <a href="#the-party" class="hover:text-gold-400 transition-colors"
             >The Party</a
           >
-          <a href="/docs" class="hover:text-gold-400 transition-colors"
-            >Compendium</a
+          <a href="/about" class="hover:text-gold-400 transition-colors"
+            >About</a
           >
         </div>
       </nav>
-
-      <!-- Hero Section -->
-      <header class="max-w-3xl mb-20">
-        <div
-          class="inline-block px-3 py-1 rounded-full border border-gold-600/20 bg-gold-600/5 text-gold-400 text-xs font-bold tracking-widest uppercase mb-6"
-        >
-          Level 1 Orchestration
-        </div>
-        <h1
-          class="text-6xl md:text-7xl font-extrabold mb-8 leading-tight text-parchment italic"
-        >
-          Your Quest Begins in the <span class="text-gold-400">War Room.</span>
-        </h1>
-        <p class="text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
-          Stop wrestling with raw prompts. Visually assemble a high-performance
-          party of specialized agents, define their roles, and export a complete
-          orchestration package in seconds.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a
-            href="#the-party"
-            class="dnd-button-primary uppercase tracking-widest text-sm text-center"
-          >
-            Assemble the Party
-          </a>
-          <button
-            class="px-8 py-3 bg-transparent hover:bg-white/5 text-parchment font-bold rounded-lg transition-all border border-tavern-800 uppercase tracking-widest text-sm"
-          >
-            Read the Rules
-          </button>
-        </div>
-      </header>
 
       <!-- Interactive Party Builder -->
       <TavernUI client:load />
