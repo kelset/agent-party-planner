@@ -84,25 +84,25 @@ export function PartyMemberCard({ member, onRemove }: Props) {
           </div>
 
           {/* Name Ribbon */}
-          <div class="relative flex justify-center -mt-4 z-20 drop-shadow-md">
+          <div class="relative flex justify-center -mt-[18px] z-20 drop-shadow-md">
             <div
-              class={`relative px-6 py-1.5 border-y-2 border-slate-900 text-center ${theme.ribbon} min-w-[70%]`}
+              class={`relative px-8 py-1.5 border-y-2 border-slate-900 text-center ${theme.ribbon} min-w-[80%]`}
             >
               {/* Ribbon Ends */}
               <div
-                class={`absolute top-0 -left-3 w-0 h-0 border-y-[16px] border-y-transparent border-r-[12px] border-r-slate-900`}
+                class={`absolute top-0 -left-[20px] w-0 h-0 border-y-[18px] border-y-transparent border-r-[20px] border-r-slate-900`}
               ></div>
               <div
-                class={`absolute top-0 -left-2.5 w-0 h-0 border-y-[16px] border-y-transparent border-r-[10px] ${theme.ribbonL}`}
+                class={`absolute top-0 -left-[18px] w-0 h-0 border-y-[18px] border-y-transparent border-r-[18px] ${theme.ribbonL}`}
               ></div>
               <div
-                class={`absolute top-0 -right-3 w-0 h-0 border-y-[16px] border-y-transparent border-l-[12px] border-l-slate-900`}
+                class={`absolute top-0 -right-[20px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[20px] border-l-slate-900`}
               ></div>
               <div
-                class={`absolute top-0 -right-2.5 w-0 h-0 border-y-[16px] border-y-transparent border-l-[10px] ${theme.ribbonR}`}
+                class={`absolute top-0 -right-[18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] ${theme.ribbonR}`}
               ></div>
 
-              <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest drop-shadow-sm relative z-10 truncate">
+              <h3 class="text-lg font-black text-slate-900 uppercase tracking-widest drop-shadow-sm relative z-10 truncate leading-none mt-0.5">
                 {member.name}
               </h3>
             </div>
