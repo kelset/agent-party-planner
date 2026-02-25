@@ -43,13 +43,6 @@ export function PartyMemberCard({ member, onRemove }: Props) {
 
   return (
     <div class="relative pt-3 pb-2 group transition-transform duration-300 hover:-translate-y-2 w-full max-w-[340px] mx-auto flex flex-col">
-      {/* Top Cost/Level Circle */}
-      <div
-        class={`absolute -top-1 -left-2 w-11 h-11 rounded-full border-[3px] border-slate-900 shadow-xl flex items-center justify-center font-black text-xl z-30 bg-slate-300 text-slate-900`}
-      >
-        {member.responsibilities.length}
-      </div>
-
       {/* Main Card Body (The Frame) */}
       <div class="p-[6px] rounded-xl shadow-2xl relative flex-1 flex flex-col bg-slate-800 border-2 border-slate-950">
         {/* Top Right Remove Button */}
