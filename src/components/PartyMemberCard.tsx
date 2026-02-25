@@ -43,12 +43,27 @@ export function PartyMemberCard({ member, onRemove }: Props) {
 
   return (
     <div class="relative pt-3 pb-2 group transition-transform duration-300 hover:-translate-y-2 w-full max-w-[340px] mx-auto flex flex-col">
-      {/* Top Cost/Level Circle */}
-      <div
-        class={`absolute -top-1 -left-2 w-11 h-11 rounded-full border-[3px] border-slate-900 shadow-xl flex items-center justify-center font-black text-xl z-30 bg-slate-300 text-slate-900`}
+      {/* Top Right Remove Button */}
+      <button
+        onClick={() => onRemove(member.id)}
+        class="absolute -top-3 -right-3 w-10 h-10 rounded-full border-[3px] border-slate-900 shadow-xl flex items-center justify-center font-black text-xl z-30 bg-slate-800 text-slate-400 hover:text-white hover:bg-crimson hover:border-crimson transition-all opacity-0 group-hover:opacity-100"
+        aria-label={`Remove ${member.name}`}
       >
-        {member.responsibilities.length}
-      </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="3"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
 
       {/* Main Card Body (The Frame) */}
       <div class="p-[6px] rounded-xl shadow-2xl relative flex-1 flex flex-col bg-slate-700 border-2 border-slate-900">
@@ -61,26 +76,13 @@ export function PartyMemberCard({ member, onRemove }: Props) {
               Portrait
             </span>
 
-            <button
-              onClick={() => onRemove(member.id)}
-              class="absolute top-2 right-2 text-white/50 hover:text-white hover:bg-crimson transition-colors bg-black/40 rounded p-1.5 z-20 backdrop-blur-sm opacity-0 group-hover:opacity-100"
-              aria-label={`Remove ${member.name}`}
+            {/* Responsibilities Count (Internal) */}
+            <div
+              class="absolute top-2 left-2 w-9 h-9 rounded-full border-2 border-slate-900 shadow-lg flex items-center justify-center font-black text-base z-20 bg-slate-300 text-slate-900 backdrop-blur-sm opacity-90 hover:opacity-100 transition-opacity cursor-default"
+              title={`${member.responsibilities.length} Responsibilities`}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="3"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+              {member.responsibilities.length}
+            </div>
           </div>
 
           {/* Name Ribbon */}
