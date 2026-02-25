@@ -6,7 +6,7 @@ An interactive web-based tool to visually configure and export an "Agent Orchest
 
 ## Hierarchical Levels
 
-*(For full details, see the [Orchestration Levels](./orchestration/ORCHESTRATION_LEVELS.md), [The War Room](./orchestration/WAR_ROOM.md), [Game Master Guide](./orchestration/GAME_MASTER_GUIDE.md), and [Party Roles](./orchestration/PARTY_ROLES.md) documents.)*
+_(For full details, see the [Orchestration Levels](./orchestration/ORCHESTRATION_LEVELS.md), [The War Room](./orchestration/WAR_ROOM.md), [Game Master Guide](./orchestration/GAME_MASTER_GUIDE.md), and [Party Roles](./orchestration/PARTY_ROLES.md) documents.)_
 
 1. **The War Room (Meta-Level):**
    - The highest level of orchestration.

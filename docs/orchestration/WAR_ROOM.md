@@ -50,12 +50,12 @@ To manage this complex responsibility, the War Room features three specialized m
 
 The War Room is designed to be the first point of entry for a complex task. It should be launched via a CLI wrapper that ensures the agent has the necessary permissions to read the codebase and write the initial orchestration files.
 
-**Example Command:** `app-cli start-war-room` 
-*(This command should invoke the underlying LLM CLI with elevated permissions, e.g., `claude --permissions read, write` or its equivalent, ensuring the Game Creator can instantly begin scaffolding the quest folder).*
+**Example Command:** `app-cli start-war-room`
+_(This command should invoke the underlying LLM CLI with elevated permissions, e.g., `claude --permissions read, write` or its equivalent, ensuring the Game Creator can instantly begin scaffolding the quest folder)._
 
 ### Mid-Flight Rule Changes
 
-Because the War Room session and the GM Session can run in parallel, the user can use the War Room to alter a quest while it is actively being executed by the GM. 
+Because the War Room session and the GM Session can run in parallel, the user can use the War Room to alter a quest while it is actively being executed by the GM.
 
 To achieve "graceful interruption," when the **Master of Spies** or the Game Creator proposes a rule change, they do not interrupt the GM's terminal process directly. Instead, they write the new constraints to a shared file within the quest folder (e.g., `active-rules.md` or `war-room-directives.md`). The GM is instructed to read this file before every action it takes. By doing so, the GM naturally absorbs the new instructions on its next loop iteration without breaking the current workflow.
 

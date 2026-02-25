@@ -24,7 +24,6 @@ Always consult these resources for technical decisions and API usage:
 - `/docs`: High-level planning (Vision, Architecture, Plan).
 
 - `/src`: Application source code.
-
   - `/layouts`: Shared page layouts.
 
   - `/pages`: Route definitions.
@@ -37,8 +36,6 @@ Always consult these resources for technical decisions and API usage:
 
   - `/core`: Logic for template generation and orchestration.
 
-
-
 ## Agent Instructions
 
 1. **Context First:** Before making significant changes, read `docs/VISION.md`, `docs/ARCHITECTURE.md`, and `docs/INFRASTRUCTURE.md`.
@@ -48,7 +45,6 @@ Always consult these resources for technical decisions and API usage:
 3. **Commit Style:** Use short, task-focused, present-tense summaries.
 
 4. **Testing & Quality:**
-
    - Leverage `bun test` for unit testing logic in the `/core` and `/templates` directories.
 
    - Run `bun run lint` and `bun run format` before finalizing changes.
@@ -56,5 +52,3 @@ Always consult these resources for technical decisions and API usage:
 5. **War Room Context:** Follow the hierarchy of War Room (Meta) -> GM Session -> Party (Sub-Agents).
 
 6. **Types:** Maintain strict TypeScript typing. Avoid `any`.
-
-

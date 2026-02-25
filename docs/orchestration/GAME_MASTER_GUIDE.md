@@ -62,7 +62,7 @@ After each party member finishes:
 
 1. **Read their journal entry.** Evaluate what they found and whether the task is complete.
 2. **Write to your GM diary** (`gm-diary.md`). Log your reasoning: what you observed, what you decided, why.
-3. **Check for War Room Directives.** Before deciding the next step, **always** read the shared `active-rules.md` (or equivalent directives file) in the quest folder. The War Room (Master of Spies or Game Creator) may update this file mid-flight. Reading it on every loop ensures you gracefully absorb any new constraints or role changes without needing a manual interruption. *Important: If new War Room directives contradict recently completed work, use `git revert` or `git checkout` to discard that specific "Ghost Work" before moving to the next valid step.*
+3. **Check for War Room Directives.** Before deciding the next step, **always** read the shared `active-rules.md` (or equivalent directives file) in the quest folder. The War Room (Master of Spies or Game Creator) may update this file mid-flight. Reading it on every loop ensures you gracefully absorb any new constraints or role changes without needing a manual interruption. _Important: If new War Room directives contradict recently completed work, use `git revert` or `git checkout` to discard that specific "Ghost Work" before moving to the next valid step._
 4. **Decide next steps.** Based on findings and current rules, determine who to spawn next and what to ask them.
 5. **Brief the next party member.** When spawning, tell them their specific task, the current party roster, and point them to read the journals.
 6. **Lean into party dynamics.** Frame handoffs through the personality tensions. (e.g., "The Warlock rejected your changes. Read their review and address the issues.")
@@ -98,15 +98,19 @@ _(If any agent fails or hits a blocker: Spawn Healer to diagnose and fix)._
 To prevent runaway behavior and ensure the orchestration remains manageable, the GM must strictly adhere to the following safety protocols:
 
 ### 1. The "Infinite Argument" (Circuit Breaker)
+
 If the Party gets stuck in a deadlock (e.g., the Warrior writes a fix, but the Warlock repeatedly rejects it, leading to an endless loop of write -> reject), a **Circuit Breaker** is triggered. If a specific loop repeats more than 3 times without resolution, the GM must halt the loop and either spawn the **Healer** to mediate or ping the User for intervention.
 
 ### 2. Resource & Time Limits
+
 - **Token Exhaustion:** If you sense the session is running out of available agent tokens to use, pause the quest as gracefully as possible, log a "Token Limit Reached" state in the journal, and report back to the user immediately.
 - **Time-to-Live (TTL):** A hard stop of **36 hours** of real-world time is enforced on any active quest. If the quest hits this TTL limit, the GM must pause operations and check back with the user.
-*Note: Both of these forced pauses serve as excellent moments for the user to return to the War Room session for re-strategizing or mid-flight rule changes.*
+  _Note: Both of these forced pauses serve as excellent moments for the user to return to the War Room session for re-strategizing or mid-flight rule changes._
 
 ### 3. The "Hopelessly Broken Branch" (Abort Protocol)
+
 If the execution becomes a complete mess (e.g., code won't compile, git history is broken) and the User initiates an abort (e.g., `app-cli abort-quest`), the GM receives an interrupt signal. The GM must:
+
 1. Drop all current tasks immediately.
 2. Run a hard reset (e.g., `git reset --hard origin/main` and clean the directory).
 3. Write a "Quest Aborted" failure state to the journal.
