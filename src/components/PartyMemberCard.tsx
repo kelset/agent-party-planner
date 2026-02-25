@@ -70,11 +70,19 @@ export function PartyMemberCard({ member, onRemove }: Props) {
         {/* Inner Dark Background */}
         <div class="flex-1 rounded-lg flex flex-col relative border border-slate-900 bg-slate-950">
           {/* Image Area */}
-          <div class="h-44 bg-slate-900 relative flex items-center justify-center border-b-2 border-slate-900 shadow-[inset_0_-10px_20px_rgba(0,0,0,0.5)] rounded-t-lg">
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent mix-blend-overlay rounded-t-lg"></div>
-            <span class="text-slate-700 font-black uppercase tracking-widest text-lg z-10 opacity-50">
+          <div class="h-44 bg-slate-900 relative flex items-center justify-center border-b-2 border-slate-900 shadow-[inset_0_-10px_20px_rgba(0,0,0,0.5)] rounded-t-lg overflow-hidden group/image">
+            <span class="text-slate-700 font-black uppercase tracking-widest text-lg z-0 opacity-50 absolute">
               Portrait
             </span>
+            <img
+              src={`/images/roles/${member.agentClass.toLowerCase()}.png`}
+              alt={member.agentClass}
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+              class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover/image:opacity-100 transition-opacity duration-500 z-10"
+            />
+            <div class="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-slate-950 pointer-events-none z-20 rounded-t-lg"></div>
 
             {/* Responsibilities Count (Internal) */}
             <div
