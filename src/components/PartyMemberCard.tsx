@@ -102,13 +102,13 @@ export function PartyMemberCard({ member, onRemove }: Props) {
                 class={`absolute -top-[2px] -left-[20px] w-0 h-0 border-y-[20px] border-y-transparent border-r-[20px] border-r-slate-900`}
               ></div>
               <div
-                class={`absolute -top-[2px] -left-[18px] w-0 h-0 border-y-[20px] border-y-transparent border-r-[18px] ${theme.ribbonL}`}
+                class={`absolute top-[0px] -left-[18px] w-0 h-0 border-y-[18px] border-y-transparent border-r-[18px] ${theme.ribbonL}`}
               ></div>
               <div
                 class={`absolute -top-[2px] -right-[20px] w-0 h-0 border-y-[20px] border-y-transparent border-l-[20px] border-l-slate-900`}
               ></div>
               <div
-                class={`absolute -top-[2px] -right-[18px] w-0 h-0 border-y-[20px] border-y-transparent border-l-[18px] ${theme.ribbonR}`}
+                class={`absolute top-[0px] -right-[18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] ${theme.ribbonR}`}
               ></div>
 
               <h3 class="text-lg font-black text-slate-900 uppercase tracking-widest drop-shadow-sm relative z-10 truncate leading-none mt-0.5">
