@@ -141,7 +141,12 @@ export const defaultPartyPreset: OrchestrationConfig = {
         'The ambitious strategist. Sees the big picture, goes for high-impact plays. When proven wrong by data, adjusts without ego. Intellectually curious. Breaks complex problems into small concrete steps.',
       responsibilities: [
         {
-          name: 'Strategist & Party Leader',
+          name: 'Party Leader',
+          description:
+            "The primary contact point for the Game Master. Translates the GM's overarching quest goals into a concrete action plan.",
+        },
+        {
+          name: 'Strategist',
           description:
             'Analyze recon data, research solutions, and create structured attack plans with prioritized targets.',
         },
