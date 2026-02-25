@@ -131,23 +131,42 @@ export function PartyMemberCard({ member, onRemove }: Props) {
 
             {/* Responsibilities (Pills) */}
             <div class="flex flex-wrap justify-center gap-2 mt-auto pb-2">
-              {member.responsibilities.map((r, i) => (
-                <div
-                  key={i}
-                  class="relative bg-slate-900 border border-slate-700 rounded-md shadow-inner px-3 py-1.5 flex items-center justify-center group/pill cursor-help hover:border-slate-500 transition-colors"
-                  title={r.description}
-                >
-                  <span class="text-[10px] font-extrabold tracking-widest uppercase text-slate-300 text-center leading-none mt-0.5">
-                    {r.name}
-                  </span>
-                  <button
-                    class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-800 border border-slate-600 text-slate-400 hover:text-white hover:bg-crimson hover:border-crimson flex items-center justify-center opacity-0 group-hover/pill:opacity-100 transition-all text-xs z-10 shadow-lg"
-                    aria-label={`Remove ${r.name}`}
+              {member.responsibilities.map((r, i) => {
+                const isLeader = r.name === 'Party Leader';
+                return (
+                  <div
+                    key={i}
+                    class={`relative border rounded-md shadow-inner px-3 py-1.5 flex items-center justify-center group/pill cursor-help transition-colors ${
+                      isLeader
+                        ? 'bg-amber-900/30 border-amber-600/50 hover:border-amber-400'
+                        : 'bg-slate-900 border-slate-700 hover:border-slate-500'
+                    }`}
+                    title={r.description}
                   >
-                    <span class="-mt-0.5 leading-none">×</span>
-                  </button>
-                </div>
-              ))}
+                    {isLeader && (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-3 w-3 text-amber-500 mr-1.5 -ml-1 mt-0.5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    )}
+                    <span
+                      class={`text-[10px] font-extrabold tracking-widest uppercase text-center leading-none mt-0.5 ${isLeader ? 'text-amber-400' : 'text-slate-300'}`}
+                    >
+                      {r.name}
+                    </span>
+                    <button
+                      class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-800 border border-slate-600 text-slate-400 hover:text-white hover:bg-crimson hover:border-crimson flex items-center justify-center opacity-0 group-hover/pill:opacity-100 transition-all text-xs z-10 shadow-lg"
+                      aria-label={`Remove ${r.name}`}
+                    >
+                      <span class="-mt-0.5 leading-none">×</span>
+                    </button>
+                  </div>
+                );
+              })}
               <button class="bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors border border-dashed border-slate-600 rounded-md px-3 py-1.5 text-[10px] font-extrabold tracking-widest uppercase flex items-center justify-center gap-1.5">
                 <span class="text-xs leading-none -mt-0.5">+</span>{' '}
                 <span class="leading-none mt-0.5">Add</span>
