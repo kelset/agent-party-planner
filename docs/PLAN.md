@@ -22,12 +22,13 @@
 
 ## Phase 3: Visual Party Builder
 
-- [ ] Design and implement the "War Room" selection UI.
-- [ ] Build the "Party Composition" screen (Class cards, add/remove logic).
+- [ ] Design and implement the "War Room" selection UI (including the Game Creator, Bard, and Master of Spies).
+- [ ] Build the "Party Composition" screen with the default starting roster and add/remove logic.
+- [ ] Implement constraints logic (e.g., minimum 2 party members).
+- [ ] Create customization forms for individual agent roles (editing personality, responsibilities, and adding custom classes).
+- [ ] Implement the "Relationship Mapping" feature to define dynamics and tension between specific agents.
 - [ ] **State & Share:** Implement URL-based state sharing and local persistence.
-- [ ] Create customization forms for individual agent roles.
-- [ ] **Theming:** Set up the CSS variable-based skinning system.
-- [ ] Apply the "D&D" theme (visuals, copy, icons).
+- [ ] **Theming:** Set up the CSS variable-based skinning system and apply the quirky D&D theme.
 
 ## Phase 4: Export Engine
 

@@ -9,7 +9,8 @@
 ## Components
 
 1. **Frontend (The Tavern):**
-   - Interactive UI for selecting and configuring the "Party".
+   - Interactive, quirky D&D-themed UI for selecting, configuring, and modifying the "Party".
+   - Logic to handle party constraints (e.g., minimum 2 members), deep role customization, and inter-agent relationship mapping.
    - State management to track the composition and customizations.
    - Theme provider/layer to allow for future visual swaps.
 

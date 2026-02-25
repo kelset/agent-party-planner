@@ -35,9 +35,14 @@ The orchestration is designed to be initiated and managed via a set of CLI comma
 
 ## User Experience Goals
 
-- **Visual Party Composition:** A fun, high-quality UI where users can see representations of different classes.
+- **Visual Party Composition:** A quirky, D&D-themed UI where users can see and interact with their starting party. The tool provides a powerful default setup out-of-the-box based on proven orchestration models.
+- **Deep Customization:** Users can visually reconfigure the party to fit their specific needs:
+  - **Add/Remove Members:** Remove existing roles (e.g., remove the Warlock if no code review is needed) or add custom, brand new roles we haven't even thought of.
+  - **Tweak Personalities & Responsibilities:** Edit the traits, instructions, and focus areas for any class.
+  - **Define Relationships:** Map out how agents interact (e.g., "The Warrior and Healer work cohesively together," or "The Warlock is highly skeptical of the Wizard").
+  - **Rule Enforcement:** The UI enforces basic ground rules (e.g., a minimum of 2 party members) while allowing high flexibility.
 - **Agent Targeting:** Before export, users specify their target AI platform (e.g., Gemini, Claude) to ensure the orchestration is formatted correctly for that specific ecosystem.
-- **One-Click Export:** Generate and download a ZIP package containing the CLI scripts and folder structure needed to run the workflow described above.
+- **One-Click Export:** A "Generate My Party" button that generates and downloads a ZIP package containing the tailored orchestration files (rules, roles, GM guide) and the CLI wrapper needed to run the workflow locally.
 
 ## Target Agent Compatibility
 
