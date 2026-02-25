@@ -5,8 +5,8 @@
 - [x] Initialize project directory and Git.
 - [x] Document Vision and Architecture.
 - [x] Extract and document core orchestration models (War Room, GM, Party Roles).
-- [ ] Confirm technical stack (resolve Bun installation if needed).
-- [ ] Scaffold the base project (Astro + Tailwind).
+- [x] Confirm technical stack (resolve Bun installation if needed).
+- [x] Scaffold the base project (Astro + Tailwind + Preact).
 - [x] **Research:** Investigate sub-agent/orchestration documentation for:
   - [x] Claude (Agent Teams vs. sub-agents, runtime spawning).
   - [x] Gemini (Formatting requirements, sub-agent definitions).
@@ -15,20 +15,21 @@
 
 ## Phase 2: Template Foundation
 
-- [ ] Extract base templates from existing agent orchestration examples.
-- [ ] Define the schema for "Class" characteristics and "Role" variables.
+- [x] Extract base templates from existing agent orchestration examples.
+- [x] Define the schema for "Class" characteristics and "Role" variables (`src/core/types.ts`).
+- [x] Scaffold the default proven party preset (`src/core/presets/defaultParty.ts`).
 - [ ] Implement the core logic for merging variables into templates.
 - [ ] **Adapter Logic:** Create a system to apply platform-specific formatting rules (e.g., Gemini `SKILL.md` vs. Claude `task`).
 
 ## Phase 3: Visual Party Builder
 
 - [ ] Design and implement the "War Room" selection UI (including the Game Creator, Bard, and Master of Spies).
-- [ ] Build the "Party Composition" screen with the default starting roster and add/remove logic.
-- [ ] Implement constraints logic (e.g., minimum 2 party members).
+- [x] Build the "Party Composition" screen with the default starting roster and add/remove logic.
+- [x] Implement constraints logic (e.g., minimum 2 party members).
 - [ ] Create customization forms for individual agent roles (editing personality, responsibilities, and adding custom classes).
 - [ ] Implement the "Relationship Mapping" feature to define dynamics and tension between specific agents.
 - [ ] **State & Share:** Implement URL-based state sharing and local persistence.
-- [ ] **Theming:** Set up the CSS variable-based skinning system and apply the quirky D&D theme.
+- [x] **Theming:** Set up the CSS variable-based skinning system and apply the quirky D&D theme (Slay the Spire style).
 
 ## Phase 4: Export Engine
 
