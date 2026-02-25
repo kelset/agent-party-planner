@@ -43,32 +43,39 @@ export function PartyMemberCard({ member, onRemove }: Props) {
 
   return (
     <div class="relative pt-3 pb-2 group transition-transform duration-300 hover:-translate-y-2 w-full max-w-[340px] mx-auto flex flex-col">
-      {/* Top Right Remove Button */}
-      <button
-        onClick={() => onRemove(member.id)}
-        class="absolute -top-3 -right-3 w-10 h-10 rounded-full border-[3px] border-slate-900 shadow-xl flex items-center justify-center font-black text-xl z-30 bg-slate-800 text-slate-400 hover:text-white hover:bg-crimson hover:border-crimson transition-all opacity-0 group-hover:opacity-100"
-        aria-label={`Remove ${member.name}`}
+      {/* Top Cost/Level Circle */}
+      <div
+        class={`absolute -top-1 -left-2 w-11 h-11 rounded-full border-[3px] border-slate-900 shadow-xl flex items-center justify-center font-black text-xl z-30 bg-slate-300 text-slate-900`}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="3"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
+        {member.responsibilities.length}
+      </div>
 
       {/* Main Card Body (The Frame) */}
-      <div class="p-[6px] rounded-xl shadow-2xl relative flex-1 flex flex-col bg-slate-700 border-2 border-slate-900">
+      <div class="p-[6px] rounded-xl shadow-2xl relative flex-1 flex flex-col bg-slate-800 border-2 border-slate-950">
+        {/* Top Right Remove Button */}
+        <button
+          onClick={() => onRemove(member.id)}
+          class="absolute -top-5 -right-5 w-10 h-10 rounded-full border-[3px] border-slate-900 shadow-xl flex items-center justify-center font-black text-xl z-40 bg-slate-800 text-slate-400 hover:text-white hover:bg-crimson hover:border-crimson transition-all opacity-0 group-hover:opacity-100"
+          aria-label={`Remove ${member.name}`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="3"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
         {/* Inner Dark Background */}
-        <div class="flex-1 rounded-lg flex flex-col relative border border-slate-900 bg-slate-950/95">
+        <div class="flex-1 rounded-lg flex flex-col relative border border-slate-900 bg-slate-950">
           {/* Image Area */}
           <div class="h-44 bg-slate-900 relative flex items-center justify-center border-b-2 border-slate-900 shadow-[inset_0_-10px_20px_rgba(0,0,0,0.5)] rounded-t-lg">
             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent mix-blend-overlay rounded-t-lg"></div>
@@ -86,22 +93,22 @@ export function PartyMemberCard({ member, onRemove }: Props) {
           </div>
 
           {/* Name Ribbon */}
-          <div class="relative flex justify-center -mt-[18px] z-20 drop-shadow-md">
+          <div class="relative flex justify-center -mt-5 mb-2 z-20 drop-shadow-md">
             <div
-              class={`relative px-8 py-1.5 border-y-2 border-slate-900 text-center ${theme.ribbon} min-w-[80%]`}
+              class={`relative flex items-center justify-center h-10 px-8 border-y-2 border-slate-900 text-center ${theme.ribbon} min-w-[80%]`}
             >
               {/* Ribbon Ends */}
               <div
-                class={`absolute top-0 -left-[20px] w-0 h-0 border-y-[18px] border-y-transparent border-r-[20px] border-r-slate-900`}
+                class={`absolute -top-[2px] -left-[20px] w-0 h-0 border-y-[20px] border-y-transparent border-r-[20px] border-r-slate-900`}
               ></div>
               <div
-                class={`absolute top-0 -left-[18px] w-0 h-0 border-y-[18px] border-y-transparent border-r-[18px] ${theme.ribbonL}`}
+                class={`absolute -top-[2px] -left-[18px] w-0 h-0 border-y-[20px] border-y-transparent border-r-[18px] ${theme.ribbonL}`}
               ></div>
               <div
-                class={`absolute top-0 -right-[20px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[20px] border-l-slate-900`}
+                class={`absolute -top-[2px] -right-[20px] w-0 h-0 border-y-[20px] border-y-transparent border-l-[20px] border-l-slate-900`}
               ></div>
               <div
-                class={`absolute top-0 -right-[18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] ${theme.ribbonR}`}
+                class={`absolute -top-[2px] -right-[18px] w-0 h-0 border-y-[20px] border-y-transparent border-l-[18px] ${theme.ribbonR}`}
               ></div>
 
               <h3 class="text-lg font-black text-slate-900 uppercase tracking-widest drop-shadow-sm relative z-10 truncate leading-none mt-0.5">
