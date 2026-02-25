@@ -124,24 +124,23 @@ export function PartyMemberCard({ member, onRemove }: Props) {
               {member.responsibilities.map((r, i) => (
                 <div
                   key={i}
-                  class="bg-slate-900 border border-slate-700/50 rounded shadow-sm px-2.5 py-1.5 flex items-center gap-1 group/pill cursor-help"
+                  class="relative bg-slate-900 border border-slate-700 rounded-md shadow-inner px-3 py-1.5 flex items-center justify-center group/pill cursor-help hover:border-slate-500 transition-colors"
                   title={r.description}
                 >
-                  <span
-                    class={`text-[10px] font-bold tracking-wide uppercase text-slate-400`}
-                  >
+                  <span class="text-[10px] font-extrabold tracking-widest uppercase text-slate-300 text-center leading-none mt-0.5">
                     {r.name}
                   </span>
                   <button
-                    class="opacity-0 group-hover/pill:opacity-100 text-slate-500 hover:text-crimson transition-opacity ml-1"
+                    class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-800 border border-slate-600 text-slate-400 hover:text-white hover:bg-crimson hover:border-crimson flex items-center justify-center opacity-0 group-hover/pill:opacity-100 transition-all text-xs z-10 shadow-lg"
                     aria-label={`Remove ${r.name}`}
                   >
-                    ×
+                    <span class="-mt-0.5 leading-none">×</span>
                   </button>
                 </div>
               ))}
-              <button class="bg-slate-900/50 hover:bg-slate-800 text-slate-500 hover:text-white transition-colors border border-dashed border-slate-700 rounded px-2 py-1 text-[10px] font-bold tracking-wide flex items-center gap-1 uppercase">
-                <span>+</span> Add
+              <button class="bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors border border-dashed border-slate-600 rounded-md px-3 py-1.5 text-[10px] font-extrabold tracking-widest uppercase flex items-center justify-center gap-1.5">
+                <span class="text-xs leading-none -mt-0.5">+</span>{' '}
+                <span class="leading-none mt-0.5">Add</span>
               </button>
             </div>
           </div>
