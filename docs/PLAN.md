@@ -33,10 +33,10 @@
 
 ## Phase 4: Export Engine
 
-- [ ] Implement client-side ZIP generation.
-- [ ] **Platform Selection:** Add a final step to select the target AI platform.
-- [ ] **Customized Export:** Generate platform-specific folder structures and setup instructions.
-- [ ] Add the "Download Your Party" functionality.
+- [x] Implement client-side ZIP generation.
+- [x] **Platform Selection:** Add a final step to select the target AI platform (Gemini, Claude, OpenAI, Other).
+- [x] **Customized Export:** Generate platform-specific folder structures, setup instructions, and CLI helper scripts.
+- [x] Add the "Download Your Party" functionality.
 
 ## Phase 5: Polishing & Generalization
 

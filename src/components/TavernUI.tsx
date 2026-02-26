@@ -2,16 +2,38 @@ import { useState, useMemo } from 'preact/hooks';
 import type { OrchestrationConfig, Responsibility } from '../core/types';
 import { defaultPartyPreset } from '../core/presets/defaultParty';
 import { PartyMemberCard } from './PartyMemberCard';
+import { OrchestrationForge } from '../core/forge';
+import { OrchestrationCourier } from '../core/courier';
+import type { Platform } from '../core/adapters';
 
 export function TavernUI() {
   const [config, setConfig] = useState<OrchestrationConfig>(defaultPartyPreset);
   const [isCompendiumOpen, setIsCompendiumOpen] = useState(false);
+  const [platform, setPlatform] = useState<Platform>('claude');
+  const [isExporting, setIsExporting] = useState(false);
 
   const handleRemoveMember = (id: string) => {
     setConfig((prev) => ({
       ...prev,
       party: prev.party.filter((m) => m.id !== id),
     }));
+  };
+
+  const handleExport = async () => {
+    try {
+      setIsExporting(true);
+      const files = OrchestrationForge.forgePackage(config, platform);
+      const blob = await OrchestrationCourier.generateZip(files);
+      OrchestrationCourier.downloadBlob(
+        blob,
+        `agent-party-${config.questName.toLowerCase().replace(/\s+/g, '-')}.zip`
+      );
+    } catch (error) {
+      console.error('Failed to export party:', error);
+      alert('Failed to generate the party package. Please try again.');
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   // Derive unique responsibilities available across the default setup
@@ -143,10 +165,18 @@ export function TavernUI() {
       {/* Export Action Bar */}
       <div class="pt-8 border-t border-tavern-800 flex flex-col sm:flex-row items-center justify-end gap-4">
         <div class="relative w-full sm:w-64">
-          <select class="appearance-none w-full bg-slate-900 border-2 border-tavern-800 text-slate-200 py-4 pl-4 pr-10 rounded-lg focus:outline-none focus:border-gold-600/50 cursor-pointer text-sm font-bold tracking-wide h-[56px] shadow-inner">
+          <select
+            value={platform}
+            onInput={(e) =>
+              setPlatform((e.target as HTMLSelectElement).value as Platform)
+            }
+            class="appearance-none w-full bg-slate-900 border-2 border-tavern-800 text-slate-200 py-4 pl-4 pr-10 rounded-lg focus:outline-none focus:border-gold-600/50 cursor-pointer text-sm font-bold tracking-wide h-[56px] shadow-inner"
+          >
             <option value="claude">Claude (Anthropic)</option>
             <option value="gemini">Gemini (Google)</option>
             <option value="openai">ChatGPT (OpenAI)</option>
+            <option value="other">Other Agents</option>
+            <option value="markdown">Raw Markdown</option>
           </select>
           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
             <svg
@@ -164,8 +194,12 @@ export function TavernUI() {
             </svg>
           </div>
         </div>
-        <button class="dnd-button-primary uppercase tracking-widest text-sm w-full sm:w-auto px-10 h-[56px] shadow-lg shadow-gold-600/20">
-          Generate My Party
+        <button
+          onClick={handleExport}
+          disabled={isExporting}
+          class="dnd-button-primary uppercase tracking-widest text-sm w-full sm:w-auto px-10 h-[56px] shadow-lg shadow-gold-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isExporting ? 'Generating...' : 'Generate My Party'}
         </button>
       </div>
     </section>
