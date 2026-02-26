@@ -22,6 +22,10 @@ Inspired by Dungeons & Dragons, this tool allows you to assemble a "Party" of sp
 - **Language:** TypeScript (Strict)
 - **Linting:** ESLint 10 + Prettier
 
+## 🤖 Agent Integration
+
+This project is built to be easily navigated and developed by AI agents. We strongly encourage using the [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp/) to allow the agent to visually verify and validate its work in the browser during development.
+
 ## 🚀 Getting Started
 
 ```bash

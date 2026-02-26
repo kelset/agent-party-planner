@@ -52,3 +52,5 @@ Always consult these resources for technical decisions and API usage:
 5. **War Room Context:** Follow the hierarchy of War Room (Meta) -> GM Session -> Party (Sub-Agents).
 
 6. **Types:** Maintain strict TypeScript typing. Avoid `any`.
+
+7. **Visual Validation:** Leverage the [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp/) to view the locally running site (e.g., via `bun dev`). Use it to verify UI changes, validate layouts, and ensure your code modifications behave correctly in the browser.
