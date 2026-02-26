@@ -18,8 +18,8 @@
 - [x] Extract base templates from existing agent orchestration examples.
 - [x] Define the schema for "Class" characteristics and "Role" variables (`src/core/types.ts`).
 - [x] Scaffold the default proven party preset (`src/core/presets/defaultParty.ts`).
-- [ ] Implement the core logic for merging variables into templates.
-- [ ] **Adapter Logic:** Create a system to apply platform-specific formatting rules (e.g., Gemini `SKILL.md` vs. Claude `task`).
+- [x] Implement the core logic for merging variables into templates.
+- [x] **Adapter Logic:** Create a system to apply platform-specific formatting rules (e.g., Gemini `SKILL.md` vs. Claude `task`).
 
 ## Phase 3: Visual Party Builder
 
