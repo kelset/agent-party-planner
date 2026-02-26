@@ -32,3 +32,53 @@ body {
          shadow-[0_0_15px_rgba(153,27,27,0.4)] transition-all hover:scale-105 
          active:scale-95 border border-red-900/50;
 }
+
+@keyframes card-flip-expand {
+  0% {
+    transform: scale(0.5) rotateY(-180deg) translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotateY(0deg) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes card-flip-shrink {
+  0% {
+    transform: scale(1) rotateY(0deg) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5) rotateY(180deg) translateY(100px);
+    opacity: 0;
+  }
+}
+
+@keyframes backdrop-fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes backdrop-fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.animate-card-flip {
+  animation: card-flip-expand 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  perspective: 1000px;
+}
+
+.animate-card-flip-reverse {
+  animation: card-flip-shrink 0.5s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+  perspective: 1000px;
+}
+
+.animate-backdrop-fade {
+  animation: backdrop-fade 0.4s ease-out forwards;
+}
+
+.animate-backdrop-fade-reverse {
+  animation: backdrop-fade-out 0.4s ease-in forwards;
+}

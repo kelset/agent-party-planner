@@ -15,6 +15,7 @@ export function TavernUI() {
   const [config, setConfig] = useState<OrchestrationConfig>(defaultPartyPreset);
   const [isCompendiumOpen, setIsCompendiumOpen] = useState(false);
   const [editingMemberId, setEditingMemberId] = useState<string | null>(null);
+  const [pendingMember, setPendingMember] = useState<PartyMember | null>(null);
   const [platform, setPlatform] = useState<Platform>('claude');
   const [isExporting, setIsExporting] = useState(false);
 
@@ -24,16 +25,25 @@ export function TavernUI() {
       party: prev.party.filter((m) => m.id !== id),
     }));
     setEditingMemberId(null);
+    setPendingMember(null);
   };
 
   const handleSaveMember = (updatedMember: PartyMember) => {
-    setConfig((prev) => ({
-      ...prev,
-      party: prev.party.map((m) =>
-        m.id === updatedMember.id ? updatedMember : m
-      ),
-    }));
-    setEditingMemberId(null);
+    if (pendingMember) {
+      setConfig((prev) => ({
+        ...prev,
+        party: [...prev.party, updatedMember],
+      }));
+      setPendingMember(null);
+    } else {
+      setConfig((prev) => ({
+        ...prev,
+        party: prev.party.map((m) =>
+          m.id === updatedMember.id ? updatedMember : m
+        ),
+      }));
+      setEditingMemberId(null);
+    }
   };
 
   const handleRecruitMember = () => {
@@ -63,12 +73,7 @@ export function TavernUI() {
       relationships: [],
     };
 
-    setConfig((prev) => ({
-      ...prev,
-      party: [...prev.party, newMember],
-    }));
-
-    setEditingMemberId(newId);
+    setPendingMember(newMember);
   };
 
   const handleExport = async () => {
@@ -106,28 +111,32 @@ export function TavernUI() {
     return Array.from(map.values());
   }, [config.party]);
 
-  const editingMember = useMemo(
+    const editingMember = useMemo(
     () => config.party.find((m) => m.id === editingMemberId),
     [config.party, editingMemberId]
   );
 
-  return (
-    <section id="the-party" class="py-12 flex flex-col gap-12">
-      {/* Member Editor Modal */}
-      {
-        editingMember && (
+  const activeMember = editingMember || pendingMember;
+  
+    return (
+      <section id="the-party" class="py-12 flex flex-col gap-12">
+        {/* Member Editor Modal */}
+        {activeMember && (
           <MemberEditor
-            member={editingMember}
+            member={activeMember}
+            isNew={!!pendingMember}
             allResponsibilities={allResponsibilities}
             otherMembers={config.party
-              .filter((m) => m.id !== editingMemberId)
+              .filter((m) => m.id !== activeMember.id)
               .map((m) => ({ id: m.id, name: m.name }))}
             onSave={handleSaveMember}
             onRemove={handleRemoveMember}
-            onClose={() => setEditingMemberId(null)}
+            onClose={() => {
+              setEditingMemberId(null);
+              setPendingMember(null);
+            }}
           />
-        ) /* End Member Editor Modal */
-      }
+        ) /* End Member Editor Modal */}
 
       {/* Header */}
       <div class="border-b border-tavern-800 pb-8">

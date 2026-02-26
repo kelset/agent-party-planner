@@ -3,6 +3,7 @@ import type { PartyMember, Responsibility } from '../core/types';
 
 interface Props {
   member: PartyMember;
+  isNew?: boolean;
   allResponsibilities: Responsibility[];
   otherMembers: { id: string; name: string }[];
   onSave: (member: PartyMember) => void;
@@ -12,6 +13,7 @@ interface Props {
 
 export function MemberEditor({
   member,
+  isNew,
   allResponsibilities,
   otherMembers,
   onSave,
@@ -19,15 +21,36 @@ export function MemberEditor({
   onClose,
 }: Props) {
   const [editedMember, setEditedMember] = useState<PartyMember>({ ...member });
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(onClose, 500); // Match animation duration
+  };
+
+  const handleSave = () => {
+    setIsClosing(true);
+    setTimeout(() => onSave(editedMember), 500);
+  };
+
+  const handleRemove = () => {
+    setIsClosing(true);
+    setTimeout(() => onRemove(member.id), 500);
+  };
+
+  const handleDiscard = () => {
+    setIsClosing(true);
+    setTimeout(onClose, 500);
+  };
 
   // Handle closing on Escape key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') handleClose();
     };
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
+  }, []);
 
   const toggleResponsibility = (r: Responsibility) => {
     const hasIt = editedMember.responsibilities.some(
@@ -72,12 +95,16 @@ export function MemberEditor({
 
   return (
     <div
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 animate-in fade-in duration-300"
-      onClick={(e) => e.target === e.currentTarget && onClose()}
+      class={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-slate-950/80 backdrop-blur-md ${
+        isClosing ? 'animate-backdrop-fade-reverse' : 'animate-backdrop-fade'
+      }`}
+      onClick={(e) => e.target === e.currentTarget && handleClose()}
     >
-      <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-md"></div>
-
-      <div class="relative bg-slate-900 border-2 border-tavern-800 rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row animate-in zoom-in-95 duration-300">
+      <div
+        class={`relative bg-slate-900 border-2 border-tavern-800 rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row ${
+          isClosing ? 'animate-card-flip-reverse' : 'animate-card-flip'
+        }`}
+      >
         {/* Left Side: Identity & Personality */}
         <div class="w-full md:w-1/3 p-6 md:p-8 border-b md:border-b-0 md:border-r border-tavern-800 overflow-y-auto bg-slate-900">
           <div class="mb-8 flex flex-col items-center gap-4 text-center">
@@ -239,20 +266,20 @@ export function MemberEditor({
 
           <div class="flex flex-col gap-3 mt-6">
             <button
-              onClick={() => onSave(editedMember)}
+              onClick={handleSave}
               class="w-full py-4 bg-gold-600 hover:bg-gold-500 text-slate-950 font-black uppercase tracking-[0.2em] text-sm rounded-xl shadow-lg shadow-gold-900/20 transition-all transform active:scale-[0.98]"
             >
-              Apply Changes
+              {isNew ? 'Confirm Recruitment' : 'Apply Changes'}
             </button>
             <div class="flex gap-3">
               <button
-                onClick={() => onRemove(member.id)}
+                onClick={isNew ? handleDiscard : handleRemove}
                 class="flex-1 py-3 bg-crimson/10 hover:bg-crimson/20 text-crimson border-2 border-crimson/30 hover:border-crimson/50 font-bold uppercase tracking-widest text-xs rounded-xl transition-all"
               >
-                Dismiss Agent
+                {isNew ? 'Discard Draft' : 'Dismiss Agent'}
               </button>
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 class="flex-1 py-3 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border-2 border-slate-700 hover:border-slate-600 font-bold uppercase tracking-widest text-xs rounded-xl transition-all"
               >
                 Cancel
@@ -263,7 +290,7 @@ export function MemberEditor({
 
         {/* Close Button */}
         <button
-          onClick={onClose}
+          onClick={handleClose}
           class="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:text-white hover:bg-slate-800 transition-all z-50"
         >
           <svg
