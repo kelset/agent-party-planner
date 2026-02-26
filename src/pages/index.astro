@@ -14,23 +14,23 @@ import { TavernUI } from '../components/TavernUI';
     <div class="max-w-6xl mx-auto px-6 py-20 relative">
       <!-- Navigation -->
       <nav class="flex justify-between items-center mb-12">
-        <div class="flex items-center gap-2">
+        <a href="/" class="flex items-center gap-2 group">
           <div
-            class="w-8 h-8 bg-crimson rounded rotate-45 flex items-center justify-center border border-gold-600/30"
+            class="w-8 h-8 bg-crimson rounded rotate-45 flex items-center justify-center border border-gold-600/30 group-hover:bg-red-800 transition-colors"
           >
             <span class="text-white font-bold -rotate-45">A</span>
           </div>
           <span
-            class="font-bold tracking-wider text-parchment uppercase text-sm"
+            class="font-bold tracking-wider text-parchment uppercase text-sm group-hover:text-gold-400 transition-colors"
             >Agent Party Planner</span
           >
-        </div>
+        </a>
         <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
           <a href="#the-party" class="hover:text-gold-400 transition-colors"
             >The Party</a
           >
-          <a href="/about" class="hover:text-gold-400 transition-colors"
-            >About</a
+          <a href="/compendium" class="hover:text-gold-400 transition-colors"
+            >Compendium</a
           >
         </div>
       </nav>

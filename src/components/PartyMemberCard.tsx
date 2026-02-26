@@ -5,7 +5,10 @@ interface Props {
   onRemove: (id: string) => void;
 }
 
-const colorMap: Record<string, any> = {
+const colorMap: Record<
+  string,
+  { ribbon: string; ribbonL: string; ribbonR: string }
+> = {
   Ranger: {
     ribbon: 'bg-emerald-500',
     ribbonL: 'border-r-emerald-500',

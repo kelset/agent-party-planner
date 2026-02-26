@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Agent Party Planner | The Compendium">
+  <main class="relative min-h-screen overflow-hidden">
+    <!-- Decorative Background Element -->
+    <div
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl aspect-square bg-gold-600/5 blur-[120px] rounded-full -z-10"
+    >
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 py-20 relative">
+      <!-- Navigation -->
+      <nav class="flex justify-between items-center mb-16">
+        <a href="/" class="flex items-center gap-2 group">
+          <div
+            class="w-8 h-8 bg-crimson rounded rotate-45 flex items-center justify-center border border-gold-600/30 group-hover:bg-red-800 transition-colors"
+          >
+            <span class="text-white font-bold -rotate-45">A</span>
+          </div>
+          <span
+            class="font-bold tracking-wider text-parchment uppercase text-sm group-hover:text-gold-400 transition-colors"
+            >Agent Party Planner</span
+          >
+        </a>
+        <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
+          <a href="/#the-party" class="hover:text-gold-400 transition-colors"
+            >The Party</a
+          >
+          <a href="/compendium" class="text-gold-400 transition-colors"
+            >Compendium</a
+          >
+        </div>
+      </nav>
+
+      <!-- Content -->
+      <article class="prose prose-invert prose-gold max-w-none">
+        <h1
+          class="text-4xl md:text-5xl font-bold text-parchment mb-8 tracking-wide uppercase"
+        >
+          The Compendium
+        </h1>
+
+        <p class="text-xl text-slate-300 mb-12 leading-relaxed">
+          The <strong>Agent Party Planner</strong> is an interactive web tool that
+          lets you visually configure and export <em>Agent Orchestration</em> packages.
+          Using a Dungeons &amp; Dragons theme, you can assemble a "Party" of specialized
+          AI agents, customize their personalities, and download a ready-to-use orchestration
+          setup tailored for platforms like Gemini or Claude. All entirely in your
+          browser.
+        </p>
+
+        <h2
+          class="text-2xl font-bold text-gold-500 mb-6 uppercase tracking-wider border-b border-tavern-800 pb-2"
+        >
+          The Multi-Tier Architecture
+        </h2>
+        <p class="text-slate-300 mb-6">
+          The exported packages follow a strict 3-tier hierarchy that separates
+          meta-planning from actual coding. This ensures privacy, reduces
+          clutter in your target codebase, and maintains clear roles.
+        </p>
+
+        <div class="space-y-8 mb-16">
+          <section
+            class="bg-tavern-900/50 p-6 rounded-lg border border-tavern-800"
+          >
+            <h3
+              class="text-xl font-bold text-parchment mb-3 flex items-center gap-3"
+            >
+              <span class="text-gold-500">I.</span> The War Room <span
+                class="text-sm font-normal text-slate-400 tracking-widest uppercase"
+                >(Meta-Level)</span
+              >
+            </h3>
+            <p class="text-slate-300">
+              The strategic layer where you interact with meta-agents to define
+              the quest, set constraints, and adjust rules mid-flight. It runs
+              in an isolated directory to keep your main codebase clean.
+            </p>
+            <ul class="list-disc list-inside text-slate-400 mt-4 space-y-2">
+              <li>
+                <strong class="text-slate-300">The Game Creator:</strong> The architect
+                and your primary brainstorming partner.
+              </li>
+              <li>
+                <strong class="text-slate-300">The Master of Spies:</strong> The real-time
+                analyst, critiquing orchestration inefficiencies.
+              </li>
+              <li>
+                <strong class="text-slate-300">The Bard:</strong> The chronicler who
+                translates technical achievements into an engaging narrative recap.
+              </li>
+            </ul>
+          </section>
+
+          <section
+            class="bg-tavern-900/50 p-6 rounded-lg border border-tavern-800"
+          >
+            <h3
+              class="text-xl font-bold text-parchment mb-3 flex items-center gap-3"
+            >
+              <span class="text-gold-500">II.</span> The GM Session <span
+                class="text-sm font-normal text-slate-400 tracking-widest uppercase"
+                >(Coordinator)</span
+              >
+            </h3>
+            <p class="text-slate-300">
+              The Game Master (GM) runs inside the actual codebase. It acts as
+              the project manager&mdash;reading journals, evaluating results,
+              and spawning the correct Party Members to do the work. The GM
+              coordinates but <em>never</em> writes code or runs tests itself.
+            </p>
+          </section>
+
+          <section
+            class="bg-tavern-900/50 p-6 rounded-lg border border-tavern-800"
+          >
+            <h3
+              class="text-xl font-bold text-parchment mb-3 flex items-center gap-3"
+            >
+              <span class="text-gold-500">III.</span> The Party <span
+                class="text-sm font-normal text-slate-400 tracking-widest uppercase"
+                >(Sub-Agents)</span
+              >
+            </h3>
+            <p class="text-slate-300 mb-4">
+              The specialized workers executing the tasks. The magic lies in
+              their <strong>constructive tension</strong>: they are not yes-men,
+              but experts who push back on bad plans and scrutinize each other's
+              work.
+            </p>
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+              <div
+                class="bg-slate-900/50 p-4 rounded border border-slate-800/50"
+              >
+                <strong class="text-emerald-400 block mb-1"
+                  >🏹 Ranger (Telemetry)</strong
+                >
+                <span class="text-slate-400"
+                  >Data gatherer. No ego, just numbers.</span
+                >
+              </div>
+              <div
+                class="bg-slate-900/50 p-4 rounded border border-slate-800/50"
+              >
+                <strong class="text-purple-400 block mb-1"
+                  >🧙‍♂️ Wizard (Strategist)</strong
+                >
+                <span class="text-slate-400"
+                  >Creates ambitious attack plans.</span
+                >
+              </div>
+              <div
+                class="bg-slate-900/50 p-4 rounded border border-slate-800/50"
+              >
+                <strong class="text-red-400 block mb-1"
+                  >⚔️ Warrior (Implementation)</strong
+                >
+                <span class="text-slate-400"
+                  >Pragmatic shipper. Writes the code.</span
+                >
+              </div>
+              <div
+                class="bg-slate-900/50 p-4 rounded border border-slate-800/50"
+              >
+                <strong class="text-indigo-400 block mb-1"
+                  >🧛‍♂️ Warlock (Code Review)</strong
+                >
+                <span class="text-slate-400"
+                  >Adversarial critic. Blocks bad code.</span
+                >
+              </div>
+              <div
+                class="bg-slate-900/50 p-4 rounded border border-slate-800/50 md:col-span-2"
+              >
+                <strong class="text-cyan-400 block mb-1"
+                  >🧑‍⚕️ Healer (Diagnostics)</strong
+                >
+                <span class="text-slate-400"
+                  >Systematic fixer and environment recovery.</span
+                >
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <div class="mt-16 text-center">
+        <a
+          href="/"
+          class="inline-block px-8 py-3 bg-gold-600 hover:bg-gold-500 text-slate-950 font-bold rounded shadow-lg shadow-gold-900/20 transition-all uppercase tracking-wider text-sm"
+        >
+          Assemble Your Party
+        </a>
+      </div>
+    </div>
+
+    <footer
+      class="max-w-4xl mx-auto px-6 py-12 border-t border-tavern-800 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500 text-xs uppercase tracking-widest"
+    >
+      <span>© 2026 Agent Party Planner</span>
+      <div class="flex gap-8">
+        <span>Powered by Bun & Astro</span>
+        <a
+          href="https://github.com/kelset/agent-party-planner"
+          class="hover:text-gold-400">GitHub</a
+        >
+      </div>
+    </footer>
+  </main>
+</Layout>
