@@ -2,7 +2,8 @@ import type { PartyMember } from '../core/types';
 
 interface Props {
   member: PartyMember;
-  onRemove: (id: string) => void;
+  onEdit: (id: string) => void;
+  hasAvailableResponsibilities: boolean;
 }
 
 const colorMap: Record<
@@ -41,32 +42,30 @@ const colorMap: Record<
   },
 };
 
-export function PartyMemberCard({ member, onRemove }: Props) {
+export function PartyMemberCard({
+  member,
+  onEdit,
+  hasAvailableResponsibilities,
+}: Props) {
   const theme = colorMap[member.agentClass] || colorMap.default;
 
   return (
     <div class="relative pt-3 pb-2 group transition-transform duration-300 hover:-translate-y-2 w-full max-w-[340px] mx-auto flex flex-col">
       {/* Main Card Body (The Frame) */}
       <div class="p-[6px] rounded-xl shadow-2xl relative flex-1 flex flex-col bg-slate-800 border-2 border-slate-950">
-        {/* Top Right Remove Button */}
+        {/* Top Right Edit Button (The Triple Dot) */}
         <button
-          onClick={() => onRemove(member.id)}
-          class="absolute -top-5 -right-5 w-10 h-10 rounded-full border-[3px] border-slate-900 shadow-xl flex items-center justify-center font-black text-xl z-40 bg-slate-800 text-slate-400 hover:text-white hover:bg-crimson hover:border-crimson transition-all opacity-0 group-hover:opacity-100"
-          aria-label={`Remove ${member.name}`}
+          onClick={() => onEdit(member.id)}
+          class="absolute -top-5 -right-5 w-10 h-10 rounded-full border-[3px] border-slate-900 shadow-xl flex items-center justify-center font-black text-xl z-40 bg-slate-800 text-slate-400 hover:text-white hover:bg-tavern-700 hover:border-gold-600 transition-all opacity-0 group-hover:opacity-100"
+          aria-label={`Edit ${member.name}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            fill="none"
+            class="h-6 w-6"
+            fill="currentColor"
             viewBox="0 0 24 24"
-            stroke="currentColor"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
-              d="M6 18L18 6M6 6l12 12"
-            />
+            <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
           </svg>
         </button>
 
@@ -170,7 +169,20 @@ export function PartyMemberCard({ member, onRemove }: Props) {
                   </div>
                 );
               })}
-              <button class="bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors border border-dashed border-slate-600 rounded-md px-3 py-1.5 text-[10px] font-extrabold tracking-widest uppercase flex items-center justify-center gap-1.5">
+              <button
+                onClick={() => onEdit(member.id)}
+                disabled={!hasAvailableResponsibilities}
+                class={`transition-colors border border-dashed rounded-md px-3 py-1.5 text-[10px] font-extrabold tracking-widest uppercase flex items-center justify-center gap-1.5 ${
+                  hasAvailableResponsibilities
+                    ? 'bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white border-slate-600 cursor-pointer'
+                    : 'bg-slate-900 text-slate-600 border-slate-800 cursor-not-allowed'
+                }`}
+                title={
+                  hasAvailableResponsibilities
+                    ? 'Add more responsibilities'
+                    : 'All responsibilities are assigned'
+                }
+              >
                 <span class="text-xs leading-none -mt-0.5">+</span>{' '}
                 <span class="leading-none mt-0.5">Add</span>
               </button>

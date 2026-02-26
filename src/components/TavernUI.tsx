@@ -1,7 +1,12 @@
 import { useState, useMemo } from 'preact/hooks';
-import type { OrchestrationConfig, Responsibility } from '../core/types';
+import type {
+  OrchestrationConfig,
+  Responsibility,
+  PartyMember,
+} from '../core/types';
 import { defaultPartyPreset } from '../core/presets/defaultParty';
 import { PartyMemberCard } from './PartyMemberCard';
+import { MemberEditor } from './MemberEditor';
 import { OrchestrationForge } from '../core/forge';
 import { OrchestrationCourier } from '../core/courier';
 import type { Platform } from '../core/adapters';
@@ -9,6 +14,7 @@ import type { Platform } from '../core/adapters';
 export function TavernUI() {
   const [config, setConfig] = useState<OrchestrationConfig>(defaultPartyPreset);
   const [isCompendiumOpen, setIsCompendiumOpen] = useState(false);
+  const [editingMemberId, setEditingMemberId] = useState<string | null>(null);
   const [platform, setPlatform] = useState<Platform>('claude');
   const [isExporting, setIsExporting] = useState(false);
 
@@ -17,6 +23,52 @@ export function TavernUI() {
       ...prev,
       party: prev.party.filter((m) => m.id !== id),
     }));
+    setEditingMemberId(null);
+  };
+
+  const handleSaveMember = (updatedMember: PartyMember) => {
+    setConfig((prev) => ({
+      ...prev,
+      party: prev.party.map((m) =>
+        m.id === updatedMember.id ? updatedMember : m
+      ),
+    }));
+    setEditingMemberId(null);
+  };
+
+  const handleRecruitMember = () => {
+    const classes = [
+      'Ranger',
+      'Wizard',
+      'Warrior',
+      'Warlock',
+      'Healer',
+      'Bard',
+      'Paladin',
+      'Rogue',
+    ];
+    const randomClass = classes[Math.floor(Math.random() * classes.length)];
+    const newId = `${randomClass.toLowerCase()}-${Date.now()}`;
+
+    const newMember: PartyMember = {
+      id: newId,
+      name: `New ${randomClass}`,
+      agentClass: randomClass,
+      classFantasy: 'A mysterious newcomer to the party.',
+      personality: 'Eager to prove their worth and complete the quest.',
+      responsibilities: [],
+      restrictions: [],
+      spawnTriggers: [],
+      tools: [],
+      relationships: [],
+    };
+
+    setConfig((prev) => ({
+      ...prev,
+      party: [...prev.party, newMember],
+    }));
+
+    setEditingMemberId(newId);
   };
 
   const handleExport = async () => {
@@ -36,10 +88,17 @@ export function TavernUI() {
     }
   };
 
-  // Derive unique responsibilities available across the default setup
+  // Derive unique responsibilities available across the current party AND the default setup
   const allResponsibilities = useMemo(() => {
     const map = new Map<string, Responsibility>();
+    // Look in the current config
     config.party.forEach((member) => {
+      member.responsibilities.forEach((r) => {
+        if (!map.has(r.name)) map.set(r.name, r);
+      });
+    });
+    // ALSO look in the default preset to ensure we don't lose core ones
+    defaultPartyPreset.party.forEach((member) => {
       member.responsibilities.forEach((r) => {
         if (!map.has(r.name)) map.set(r.name, r);
       });
@@ -47,8 +106,29 @@ export function TavernUI() {
     return Array.from(map.values());
   }, [config.party]);
 
+  const editingMember = useMemo(
+    () => config.party.find((m) => m.id === editingMemberId),
+    [config.party, editingMemberId]
+  );
+
   return (
     <section id="the-party" class="py-12 flex flex-col gap-12">
+      {/* Member Editor Modal */}
+      {
+        editingMember && (
+          <MemberEditor
+            member={editingMember}
+            allResponsibilities={allResponsibilities}
+            otherMembers={config.party
+              .filter((m) => m.id !== editingMemberId)
+              .map((m) => ({ id: m.id, name: m.name }))}
+            onSave={handleSaveMember}
+            onRemove={handleRemoveMember}
+            onClose={() => setEditingMemberId(null)}
+          />
+        ) /* End Member Editor Modal */
+      }
+
       {/* Header */}
       <div class="border-b border-tavern-800 pb-8">
         <h1 class="text-4xl md:text-5xl font-extrabold text-parchment italic mb-4">
@@ -71,16 +151,25 @@ export function TavernUI() {
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
-          {config.party.map((member) => (
-            <PartyMemberCard
-              key={member.id}
-              member={member}
-              onRemove={handleRemoveMember}
-            />
-          ))}
+          {config.party.map((member) => {
+            const hasAvailableResponsibilities = allResponsibilities.some(
+              (r) => !member.responsibilities.some((res) => res.name === r.name)
+            );
+            return (
+              <PartyMemberCard
+                key={member.id}
+                member={member}
+                onEdit={setEditingMemberId}
+                hasAvailableResponsibilities={hasAvailableResponsibilities}
+              />
+            );
+          })}
 
           {/* Add Member Placeholder */}
-          <div class="border-2 border-dashed border-slate-800 rounded-xl bg-slate-900/50 hover:bg-slate-800/50 transition-colors flex flex-col items-center justify-center min-h-[480px] cursor-pointer group">
+          <button
+            onClick={handleRecruitMember}
+            class="border-2 border-dashed border-slate-800 rounded-xl bg-slate-900/50 hover:bg-slate-800/50 transition-colors flex flex-col items-center justify-center min-h-[480px] cursor-pointer group"
+          >
             <div class="w-16 h-16 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center group-hover:bg-gold-600/20 group-hover:border-gold-600/50 transition-colors mb-4 shadow-inner">
               <span class="text-3xl text-slate-600 group-hover:text-gold-400 transition-colors">
                 +
@@ -89,7 +178,7 @@ export function TavernUI() {
             <span class="text-slate-500 font-bold uppercase tracking-widest text-sm group-hover:text-gold-400 transition-colors">
               Recruit Member
             </span>
-          </div>
+          </button>
         </div>
 
         {config.party.length < config.constraints.minPartyMembers && (
