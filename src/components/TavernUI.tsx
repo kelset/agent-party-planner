@@ -13,11 +13,21 @@ import type { Platform } from '../core/adapters';
 
 export function TavernUI() {
   const [config, setConfig] = useState<OrchestrationConfig>(defaultPartyPreset);
-  const [isCompendiumOpen, setIsCompendiumOpen] = useState(false);
+  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
   const [editingMemberId, setEditingMemberId] = useState<string | null>(null);
   const [pendingMember, setPendingMember] = useState<PartyMember | null>(null);
+  const [customResponsibilities, setCustomResponsibilities] = useState<
+    Responsibility[]
+  >([]);
+  const [newDuty, setNewDuty] = useState({ name: '', description: '' });
   const [platform, setPlatform] = useState<Platform>('claude');
   const [isExporting, setIsExporting] = useState(false);
+
+  const handleAddDuty = () => {
+    if (!newDuty.name || !newDuty.description) return;
+    setCustomResponsibilities((prev) => [...prev, { ...newDuty }]);
+    setNewDuty({ name: '', description: '' });
+  };
 
   const handleRemoveMember = (id: string) => {
     setConfig((prev) => ({
@@ -108,20 +118,25 @@ export function TavernUI() {
         if (!map.has(r.name)) map.set(r.name, r);
       });
     });
+    // Add custom created ones
+    customResponsibilities.forEach((r) => {
+      if (!map.has(r.name)) map.set(r.name, r);
+    });
     return Array.from(map.values());
-  }, [config.party]);
+  }, [config.party, customResponsibilities]);
 
-    const editingMember = useMemo(
+  const editingMember = useMemo(
     () => config.party.find((m) => m.id === editingMemberId),
     [config.party, editingMemberId]
   );
 
   const activeMember = editingMember || pendingMember;
-  
-    return (
-      <section id="the-party" class="py-12 flex flex-col gap-12">
-        {/* Member Editor Modal */}
-        {activeMember && (
+
+  return (
+    <section id="the-party" class="py-12 flex flex-col gap-12">
+      {/* Member Editor Modal */}
+      {
+        activeMember && (
           <MemberEditor
             member={activeMember}
             isNew={!!pendingMember}
@@ -136,7 +151,8 @@ export function TavernUI() {
               setPendingMember(null);
             }}
           />
-        ) /* End Member Editor Modal */}
+        ) /* End Member Editor Modal */
+      }
 
       {/* Header */}
       <div class="border-b border-tavern-800 pb-8">
@@ -211,21 +227,21 @@ export function TavernUI() {
         )}
       </div>
 
-      {/* Responsibilities Compendium */}
+      {/* Responsibilities Catalog */}
       <div class="bg-slate-900 border border-tavern-800 rounded-xl overflow-hidden shadow-lg">
         <button
-          onClick={() => setIsCompendiumOpen(!isCompendiumOpen)}
+          onClick={() => setIsCatalogOpen(!isCatalogOpen)}
           class="w-full px-6 py-4 flex justify-between items-center bg-tavern-800/30 hover:bg-tavern-800/50 transition-colors cursor-pointer"
         >
           <div class="flex items-center gap-3">
             <span class="text-gold-400 text-xl">📜</span>
             <h3 class="text-lg font-bold text-parchment tracking-wide">
-              Responsibilities Compendium
+              Responsibilities Catalog
             </h3>
           </div>
           <span
             class="text-slate-500 transform transition-transform duration-200"
-            style={{ transform: isCompendiumOpen ? 'rotate(180deg)' : 'none' }}
+            style={{ transform: isCatalogOpen ? 'rotate(180deg)' : 'none' }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -241,21 +257,74 @@ export function TavernUI() {
             </svg>
           </span>
         </button>
-        {isCompendiumOpen && (
-          <div class="p-6 border-t border-tavern-800 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-slate-900/50">
-            {allResponsibilities.map((r) => (
-              <div
-                key={r.name}
-                class="bg-slate-800 p-4 rounded-lg border border-slate-700 shadow-inner"
-              >
-                <h4 class="text-sm font-bold text-gold-400 mb-2 tracking-wide">
-                  {r.name}
-                </h4>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                  {r.description}
-                </p>
+        {isCatalogOpen && (
+          <div class="p-6 border-t border-tavern-800 bg-slate-900/50 space-y-8">
+            {/* Create New Duty Form */}
+            <div class="bg-slate-950/50 p-6 rounded-xl border border-dashed border-tavern-800">
+              <h4 class="text-[10px] font-black uppercase tracking-widest text-gold-500 mb-4">
+                Define a New Duty
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                <div class="md:col-span-1">
+                  <label class="block text-[10px] text-slate-500 mb-1 ml-1">
+                    Duty Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Code Archeology"
+                    value={newDuty.name}
+                    onInput={(e) =>
+                      setNewDuty({
+                        ...newDuty,
+                        name: (e.target as HTMLInputElement).value,
+                      })
+                    }
+                    class="w-full bg-slate-900 border-2 border-tavern-800 rounded-lg px-4 py-2 text-parchment text-sm focus:outline-none focus:border-gold-600/50 transition-colors"
+                  />
+                </div>
+                <div class="md:col-span-1">
+                  <label class="block text-[10px] text-slate-500 mb-1 ml-1">
+                    Description
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Scans legacy logs for patterns..."
+                    value={newDuty.description}
+                    onInput={(e) =>
+                      setNewDuty({
+                        ...newDuty,
+                        description: (e.target as HTMLInputElement).value,
+                      })
+                    }
+                    class="w-full bg-slate-900 border-2 border-tavern-800 rounded-lg px-4 py-2 text-parchment text-sm focus:outline-none focus:border-gold-600/50 transition-colors"
+                  />
+                </div>
+                <button
+                  onClick={handleAddDuty}
+                  disabled={!newDuty.name || !newDuty.description}
+                  class="h-[42px] bg-gold-600 hover:bg-gold-500 disabled:opacity-30 disabled:grayscale text-slate-950 font-black uppercase tracking-widest text-[10px] rounded-lg shadow-lg shadow-gold-900/20 transition-all active:scale-95"
+                >
+                  Add to Catalog
+                </button>
               </div>
-            ))}
+            </div>
+
+            {/* List of Duties */}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {allResponsibilities.map((r) => (
+                <div
+                  key={r.name}
+                  class="bg-slate-800 p-4 rounded-lg border border-slate-700 shadow-inner"
+                >
+                  <h4 class="text-sm font-bold text-gold-400 mb-2 tracking-wide">
+                    {r.name}
+                  </h4>
+                  <p class="text-xs text-slate-400 leading-relaxed">
+                    {r.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
