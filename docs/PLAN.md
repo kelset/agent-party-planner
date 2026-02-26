@@ -1,51 +1,42 @@
 # Development Plan: Agent Party Planner
 
-## Phase 1: Setup & Research
+## Phase 1: Setup & Research ✅
 
 - [x] Initialize project directory and Git.
 - [x] Document Vision and Architecture.
 - [x] Extract and document core orchestration models (War Room, GM, Party Roles).
-- [x] Confirm technical stack (resolve Bun installation if needed).
-- [x] Scaffold the base project (Astro + Tailwind + Preact).
-- [x] **Research:** Investigate sub-agent/orchestration documentation for:
-  - [x] Claude (Agent Teams vs. sub-agents, runtime spawning).
-  - [x] Gemini (Formatting requirements, sub-agent definitions).
-  - [x] Copilot / Codex (Limited public info, monitor updates).
-  - [x] OpenAI Swarm / Agents SDK (Handoffs and Routines).
+- [x] Scaffold the base project (Astro 5 + Tailwind 4 + Preact).
+- [x] **Research:** Investigate orchestration patterns for Gemini, Claude, and OpenAI.
 
-## Phase 2: Template Foundation
+## Phase 2: Template Foundation ✅
 
-- [x] Extract base templates from existing agent orchestration examples.
 - [x] Define the schema for "Class" characteristics and "Role" variables (`src/core/types.ts`).
 - [x] Scaffold the default proven party preset (`src/core/presets/defaultParty.ts`).
-- [x] Implement the core logic for merging variables into templates.
-- [x] **Adapter Logic:** Create a system to apply platform-specific formatting rules (e.g., Gemini `SKILL.md` vs. Claude `task`).
+- [x] **The Forge:** Implement core logic for merging variables into high-detail templates.
+- [x] **Platform Adapters:** Create formatting rules for Gemini (`SKILL.md`), Claude (`task`), and OpenAI.
+- [x] **Rich Prompts:** Enhance templates with seniority levels, communication protocols, and safety triggers.
 
-## Phase 3: Visual Party Builder
+## Phase 3: Visual Party Builder (The Tavern) 🏗️
 
-- [ ] Design and implement the "War Room" selection UI (including the Game Creator, Bard, and Master of Spies).
-- [x] Build the "Party Composition" screen with the default starting roster and add/remove logic.
-- [x] Implement constraints logic (e.g., minimum 2 party members).
-- [ ] Create customization forms for individual agent roles (editing personality, responsibilities, and adding custom classes).
-- [ ] Implement the "Relationship Mapping" feature to define dynamics and tension between specific agents.
-- [ ] **State & Share:** Implement URL-based state sharing and local persistence.
-- [x] **Theming:** Set up the CSS variable-based skinning system and apply the quirky D&D theme (Slay the Spire style).
+- [ ] **War Room Configuration:** Design and implement the UI to toggle and configure Meta-Roles (Game Creator, etc.).
+- [x] **The Roster:** Build the party composition screen with add/remove/recruit logic.
+- [x] **Member Editor:** Implement the 3D "flip" modal for deep role customization.
+- [x] **Relationship Mapping:** Implement the bond/tension editor within the character sheets.
+- [x] **Responsibilities Catalog:** Add functionality to define and assign custom duties.
+- [ ] **Persistence:** Implement `localStorage` syncing so configurations survive page refreshes.
+- [ ] **Sharing:** Implement URL-based state (Base64/LZ-string) for one-click party sharing.
+- [x] **Theming:** Set up the CSS variable-based system and apply the D&D "Slay the Spire" aesthetic.
 
-## Phase 4: Export Engine
+## Phase 4: Export Engine (The Courier) ✅
 
-- [x] Implement client-side ZIP generation.
-- [x] **Platform Selection:** Add a final step to select the target AI platform (Gemini, Claude, OpenAI, Other).
-- [x] **Customized Export:** Generate platform-specific folder structures, setup instructions, and CLI helper scripts.
-- [x] Add the "Download Your Party" functionality.
+- [x] Implement client-side ZIP generation using `jszip`.
+- [x] **Platform Selection:** Connect the platform selector to the adapter logic.
+- [x] **CLI Wrappers:** Generate `start-war-room.sh` and `start-quest.sh` with platform-specific commands.
+- [x] **Instructional README:** Generate a rich "Getting Started" guide inside the exported package.
 
-## Phase 5: Polishing & Generalization
+## Phase 5: Polishing & Generalization ⏳
 
-- [ ] Refactor styles to use a robust theme-variable system.
-
-- [ ] Add transitions and "fun" D&D-themed animations.
-
-- [ ] **Support:** Integrate a "Buy Me a Coffee" or similar support button.
-
-- [ ] Final visual QA on mobile and desktop.
-
-- [ ] **Open Source:** Finalize LICENSE and contribution guidelines.
+- [ ] **Visual Polish:** Add card-entry animations and refine the "Forge" generation feedback.
+- [ ] **Responsive QA:** Ensure the Member Editor and Roster Grid are flawless on mobile.
+- [ ] **Agnosticism:** Verify that the core logic is fully decoupled from the D&D theme for future skins.
+- [ ] **Community:** Integrate a "Buy Me a Coffee" button and finalize Open Source documentation.
