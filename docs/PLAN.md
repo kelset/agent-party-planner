@@ -16,16 +16,16 @@
 - [x] **Platform Adapters:** Create formatting rules for Gemini (`SKILL.md`), Claude (`task`), and OpenAI.
 - [x] **Rich Prompts:** Enhance templates with seniority levels, communication protocols, and safety triggers.
 
-## Phase 3: Visual Party Builder (The Tavern) 🏗️
+## Phase 3: Visual Party Builder (The Tavern) ✅
 
-- [ ] **War Room Configuration:** Design and implement the UI to toggle and configure Meta-Roles (Game Creator, etc.).
+- [x] **War Room Configuration:** Implementation of an opinionated, fixed meta-orchestration callout.
 - [x] **The Roster:** Build the party composition screen with add/remove/recruit logic.
 - [x] **Member Editor:** Implement the 3D "flip" modal for deep role customization.
 - [x] **Relationship Mapping:** Implement the bond/tension editor within the character sheets.
 - [x] **Responsibilities Catalog:** Add functionality to define and assign custom duties.
-- [ ] **Persistence:** Implement `localStorage` syncing so configurations survive page refreshes.
-- [ ] **Sharing:** Implement URL-based state (Base64/LZ-string) for one-click party sharing.
-- [x] **Theming:** Set up the CSS variable-based system and apply the D&D "Slay the Spire" aesthetic.
+- [x] **Persistence:** Implement `localStorage` syncing so configurations survive page refreshes.
+- [x] **Sharing:** Implement URL-based state (LZ-string) for one-click party sharing.
+- [x] **Theming:** Set up the CSS variable-based system and apply the Retro-Brutalist 16-bit RPG aesthetic.
 
 ## Phase 4: Export Engine (The Courier) ✅
 
@@ -34,8 +34,9 @@
 - [x] **CLI Wrappers:** Generate `start-war-room.sh` and `start-quest.sh` with platform-specific commands.
 - [x] **Instructional README:** Generate a rich "Getting Started" guide inside the exported package.
 
-## Phase 5: Polishing & Generalization ⏳
+## Phase 5: Polishing & Generalization 🏗️
 
+- [x] **Visual Identity:** Standardize the "Retro-Brutalist" style across all components and pages.
 - [ ] **Visual Polish:** Add card-entry animations and refine the "Forge" generation feedback.
 - [ ] **Responsive QA:** Ensure the Member Editor and Roster Grid are flawless on mobile.
 - [ ] **Agnosticism:** Verify that the core logic is fully decoupled from the D&D theme for future skins.

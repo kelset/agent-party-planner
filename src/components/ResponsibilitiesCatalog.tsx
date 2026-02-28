@@ -19,24 +19,25 @@ export function ResponsibilitiesCatalog({
   allResponsibilities
 }: ResponsibilitiesCatalogProps) {
   return (
-    <div class="bg-tavern-900 border-2 border-ink-deep rounded shadow-lg">
+    <div class="bg-parchment-base border-[3px] border-ink-deep rounded-sm shadow-[6px_6px_0_var(--color-ink-deep)] relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
       <button
         onClick={() => setIsCatalogOpen(!isCatalogOpen)}
-        class="w-full px-6 py-4 flex justify-between items-center bg-tavern-800/30 hover:bg-tavern-800/50 transition-colors cursor-pointer"
+        class="w-full px-6 py-5 flex justify-between items-center bg-transparent hover:bg-parchment-dark/10 transition-colors cursor-pointer relative z-10"
       >
-        <div class="flex items-center gap-3">
-          <span class="text-gold-400 text-xl">📜</span>
-          <h3 class="text-lg font-bold text-parchment tracking-wide">
+        <div class="flex items-center gap-4">
+          <span class="text-3xl drop-shadow-sm">📜</span>
+          <h3 class="text-lg font-black text-ink-deep tracking-widest uppercase font-mono drop-shadow-[1px_1px_0_var(--color-parchment-light)]">
             Responsibilities Catalog
           </h3>
         </div>
         <span
-          class="text-parchment-dark transform transition-transform duration-200"
+          class="text-ink-deep transform transition-transform duration-200"
           style={{ transform: isCatalogOpen ? 'rotate(180deg)' : 'none' }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
+            class="h-6 w-6 stroke-[3px]"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -49,15 +50,15 @@ export function ResponsibilitiesCatalog({
         </span>
       </button>
       {isCatalogOpen && (
-        <div class="p-6 border-t-2 border-ink-deep bg-tavern-900/50 space-y-8">
+        <div class="p-6 border-t-[3px] border-ink-deep bg-parchment relative z-10 space-y-8">
           {/* Create New Duty Form */}
-          <div class="bg-tavern-950/50 p-6 rounded border-2 border-dashed border-ink-deep">
-            <h4 class="text-[10px] font-black uppercase tracking-widest text-gold-500 mb-4">
+          <div class="bg-parchment-light p-6 rounded-sm border-[3px] border-dashed border-ink-deep/30 shadow-[inset_0_0_10px_rgba(44,30,22,0.05)]">
+            <h4 class="text-xs font-black uppercase tracking-widest text-ink-deep mb-4 font-mono">
               Define a New Duty
             </h4>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
               <div class="md:col-span-1">
-                <label class="block text-[10px] text-parchment-dark mb-1 ml-1 font-bold">
+                <label class="block text-[10px] font-black uppercase tracking-widest text-ink-faded mb-2">
                   Duty Name
                 </label>
                 <input
@@ -70,11 +71,11 @@ export function ResponsibilitiesCatalog({
                       name: (e.target as HTMLInputElement).value,
                     })
                   }
-                  class="w-full bg-tavern-900 border-2 border-ink-deep rounded px-4 py-2 text-parchment text-sm focus:outline-none focus:border-gold-600/50 transition-colors shadow-inner"
+                  class="w-full bg-white border-[3px] border-ink-deep rounded-sm px-4 py-3 text-ink-deep font-bold text-sm focus:outline-none shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)] transition-colors"
                 />
               </div>
               <div class="md:col-span-1">
-                <label class="block text-[10px] text-parchment-dark mb-1 ml-1 font-bold">
+                <label class="block text-[10px] font-black uppercase tracking-widest text-ink-faded mb-2">
                   Description
                 </label>
                 <input
@@ -87,13 +88,13 @@ export function ResponsibilitiesCatalog({
                       description: (e.target as HTMLInputElement).value,
                     })
                   }
-                  class="w-full bg-tavern-900 border-2 border-ink-deep rounded px-4 py-2 text-parchment text-sm focus:outline-none focus:border-gold-600/50 transition-colors shadow-inner"
+                  class="w-full bg-white border-[3px] border-ink-deep rounded-sm px-4 py-3 text-ink-deep font-bold text-sm focus:outline-none shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)] transition-colors"
                 />
               </div>
               <button
                 onClick={handleAddDuty}
                 disabled={!newDuty.name || !newDuty.description}
-                class="h-[42px] bg-gold-600 hover:bg-gold-400 disabled:opacity-30 disabled:grayscale text-ink-deep font-black uppercase tracking-widest text-[10px] rounded shadow-[2px_2px_0_var(--color-ink-deep)] transition-all active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)] border-2 border-ink-deep"
+                class="h-[48px] bg-gold-400 hover:bg-gold-500 disabled:opacity-50 disabled:grayscale text-ink-deep font-black uppercase tracking-widest text-[11px] rounded-sm shadow-[4px_4px_0_var(--color-ink-deep)] transition-all active:translate-y-[4px] active:translate-x-[4px] active:shadow-[0_0_0_var(--color-ink-deep)] border-[3px] border-ink-deep font-mono"
               >
                 Add to Catalog
               </button>
@@ -101,16 +102,16 @@ export function ResponsibilitiesCatalog({
           </div>
 
           {/* List of Duties */}
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {allResponsibilities.map((r) => (
               <div
                 key={r.name}
-                class="bg-tavern-800 p-4 rounded border-2 border-ink-deep shadow-[2px_2px_0_rgba(0,0,0,0.3)]"
+                class="bg-parchment-base p-5 rounded-sm border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] transition-transform hover:-translate-y-1"
               >
-                <h4 class="text-sm font-bold text-gold-400 mb-2 tracking-wide">
+                <h4 class="text-sm font-black text-ink-deep mb-2 tracking-widest uppercase font-mono">
                   {r.name}
                 </h4>
-                <p class="text-xs text-parchment-dark leading-relaxed">
+                <p class="text-xs text-ink-faded font-bold leading-relaxed">
                   {r.description}
                 </p>
               </div>

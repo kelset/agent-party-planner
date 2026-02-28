@@ -11,14 +11,20 @@ export function LorenzoComment({ children, class: className = '' }: LorenzoComme
       <p class="text-ink-deep font-medium italic text-sm md:text-base leading-relaxed bg-parchment/50 p-4 border-2 border-dashed border-ink-deep/30 rounded-sm w-full text-center m-0">
         {children}
       </p>
-      <div class="absolute -bottom-6 -right-6 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center pointer-events-none drop-shadow-sm transition-transform hover:scale-110">
+      <a 
+        href="https://kelset.dev" 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="absolute -bottom-4 -right-4 w-11 h-11 md:w-14 md:h-14 flex items-center justify-center drop-shadow-sm transition-transform hover:scale-110 hover:-translate-y-1 z-10"
+        title="Say hi to Lorenzo!"
+      >
         <img
           src="/images/lorenzo-avatar.png"
           alt="Lorenzo"
           class="w-full h-full object-contain mix-blend-multiply opacity-90"
           style={{ imageRendering: 'pixelated' }}
         />
-      </div>
+      </a>
     </div>
   );
 }
