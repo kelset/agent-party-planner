@@ -83,13 +83,13 @@ export function TavernUI() {
 
   const handleAddDuty = () => {
     if (!newDuty.name || !newDuty.description) return;
-    setCustomResponsibilities((prev) => [prev, { newDuty }]);
+    setCustomResponsibilities((prev) => [...prev, { ...newDuty }]);
     setNewDuty({ name: '', description: '' });
   };
 
   const handleRemoveMember = (id: string) => {
     setConfig((prev) => ({
-      prev,
+      ...prev,
       party: prev.party.filter((m) => m.id !== id),
     }));
     setEditingMemberId(null);
@@ -99,13 +99,13 @@ export function TavernUI() {
   const handleSaveMember = (updatedMember: PartyMember) => {
     if (pendingMember) {
       setConfig((prev) => ({
-        prev,
-        party: [prev.party, updatedMember],
+        ...prev,
+        party: [...prev.party, updatedMember],
       }));
       setPendingMember(null);
     } else {
       setConfig((prev) => ({
-        prev,
+        ...prev,
         party: prev.party.map((m) =>
           m.id === updatedMember.id ? updatedMember : m
         ),
