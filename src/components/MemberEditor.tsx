@@ -95,28 +95,30 @@ export function MemberEditor({
 
   return (
     <div
-      class={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-slate-950/80 backdrop-blur-md ${
+      class={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-tavern-950/80 backdrop-blur-sm ${
         isClosing ? 'animate-backdrop-fade-reverse' : 'animate-backdrop-fade'
       }`}
       onClick={(e) => e.target === e.currentTarget && handleClose()}
     >
       <div
-        class={`relative bg-slate-900 border-2 border-tavern-800 rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row ${
+        class={`relative bg-parchment-base border-[3px] border-ink-deep rounded-sm shadow-[8px_8px_0_var(--color-ink-deep)] w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row ${
           isClosing ? 'animate-card-flip-reverse' : 'animate-card-flip'
         }`}
       >
         {/* Left Side: Identity & Personality */}
-        <div class="w-full md:w-1/3 p-6 md:p-8 border-b md:border-b-0 md:border-r border-tavern-800 overflow-y-auto bg-slate-900">
+        <div class="w-full md:w-1/3 p-6 md:p-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink-deep overflow-y-auto bg-parchment">
           <div class="mb-8 flex flex-col items-center gap-4 text-center">
-            <div class="w-32 h-32 rounded-2xl bg-slate-800 border-2 border-slate-950 overflow-hidden shadow-lg relative group">
+            <div class="w-32 h-32 bg-parchment-dark border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] relative group overflow-hidden"
+                 style={{ backgroundImage: `linear-gradient(to right, rgba(44, 30, 22, 0.1) 2px, transparent 2px), linear-gradient(to bottom, rgba(44, 30, 22, 0.1) 2px, transparent 2px)`, backgroundSize: '16px 16px' }}>
               <img
                 src={`/images/roles/${editedMember.agentClass.toLowerCase()}.png`}
                 alt={editedMember.agentClass}
                 class="w-full h-full object-cover"
+                style={{ imageRendering: 'pixelated' }}
               />
             </div>
-            <div class="w-full">
-              <label class="block text-[10px] font-black uppercase tracking-widest text-gold-500 mb-1">
+            <div class="w-full mt-2">
+              <label class="block text-xs font-black uppercase tracking-widest text-ink-deep mb-2 font-mono drop-shadow-[1px_1px_0_var(--color-parchment-aged)]">
                 Agent Name
               </label>
               <input
@@ -128,14 +130,14 @@ export function MemberEditor({
                     name: (e.target as HTMLInputElement).value,
                   })
                 }
-                class="w-full bg-slate-950 border-2 border-tavern-800 rounded-lg px-4 py-2 text-parchment font-bold focus:outline-none focus:border-gold-600/50 transition-colors text-center"
+                class="w-full bg-parchment-light border-[3px] border-ink-deep rounded-sm px-4 py-2 text-ink-deep font-black focus:outline-none focus:bg-white transition-colors text-center shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)]"
               />
             </div>
           </div>
 
           <div class="space-y-6">
             <div>
-              <label class="block text-[10px] font-black uppercase tracking-widest text-gold-500 mb-2">
+              <label class="block text-xs font-black uppercase tracking-widest text-ink-deep mb-2 font-mono">
                 Class Fantasy
               </label>
               <textarea
@@ -147,12 +149,12 @@ export function MemberEditor({
                   })
                 }
                 rows={2}
-                class="w-full bg-slate-950 border-2 border-tavern-800 rounded-lg px-4 py-2 text-slate-300 text-sm focus:outline-none focus:border-gold-600/50 transition-colors resize-none"
+                class="w-full bg-parchment-light border-[3px] border-ink-deep rounded-sm px-4 py-2 text-ink-faded font-bold text-sm focus:outline-none focus:bg-white transition-colors resize-none shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)]"
               />
             </div>
 
             <div>
-              <label class="block text-[10px] font-black uppercase tracking-widest text-gold-500 mb-2">
+              <label class="block text-xs font-black uppercase tracking-widest text-ink-deep mb-2 font-mono">
                 Personality Traits
               </label>
               <textarea
@@ -164,18 +166,19 @@ export function MemberEditor({
                   })
                 }
                 rows={4}
-                class="w-full bg-slate-950 border-2 border-tavern-800 rounded-lg px-4 py-2 text-slate-300 text-sm focus:outline-none focus:border-gold-600/50 transition-colors resize-none leading-relaxed"
+                class="w-full bg-parchment-light border-[3px] border-ink-deep rounded-sm px-4 py-2 text-ink-faded font-bold text-sm focus:outline-none focus:bg-white transition-colors resize-none leading-relaxed shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)]"
               />
             </div>
           </div>
         </div>
 
         {/* Middle: Responsibilities */}
-        <div class="w-full md:w-1/3 p-6 md:p-8 border-b md:border-b-0 md:border-r border-tavern-800 flex flex-col overflow-hidden bg-slate-900/50">
-          <h3 class="text-[10px] font-black uppercase tracking-widest text-gold-500 mb-4">
+        <div class="w-full md:w-1/3 p-6 md:p-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink-deep flex flex-col overflow-hidden bg-parchment-aged relative">
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
+          <h3 class="text-xs font-black uppercase tracking-widest text-ink-deep mb-4 font-mono z-10 drop-shadow-[1px_1px_0_var(--color-parchment-dark)]">
             Responsibilities
           </h3>
-          <div class="flex-1 overflow-y-auto pr-2 space-y-2">
+          <div class="flex-1 overflow-y-auto pr-2 space-y-3 z-10">
             {allResponsibilities.map((r) => {
               const isAssigned = editedMember.responsibilities.some(
                 (res) => res.name === r.name
@@ -184,19 +187,19 @@ export function MemberEditor({
                 <button
                   key={r.name}
                   onClick={() => toggleResponsibility(r)}
-                  class={`p-3 rounded-lg border-2 text-left transition-all w-full group ${
+                  class={`p-3 rounded-sm border-[3px] border-ink-deep text-left transition-transform hover:-translate-y-1 w-full group ${
                     isAssigned
-                      ? 'bg-gold-600/10 border-gold-600/50 text-parchment'
-                      : 'bg-slate-950/50 border-tavern-800 text-slate-500 hover:border-slate-700'
+                      ? 'bg-gold-400 text-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)]'
+                      : 'bg-parchment-base text-ink-faded shadow-[2px_2px_0_rgba(44,30,22,0.3)] hover:shadow-[2px_2px_0_var(--color-ink-deep)] hover:text-ink-deep'
                   }`}
                 >
                   <div class="flex justify-between items-center mb-1">
-                    <span class="font-bold text-xs uppercase tracking-wider">
+                    <span class="font-black text-xs uppercase tracking-wider font-mono">
                       {r.name}
                     </span>
-                    {isAssigned && <span class="text-gold-400 text-xs">✓</span>}
+                    {isAssigned && <span class="text-ink-deep text-lg leading-none font-black">✓</span>}
                   </div>
-                  <p class="text-[10px] leading-tight opacity-70">
+                  <p class={`text-[10px] leading-tight font-bold ${isAssigned ? 'opacity-90' : 'opacity-70'}`}>
                     {r.description}
                   </p>
                 </button>
@@ -206,13 +209,13 @@ export function MemberEditor({
         </div>
 
         {/* Right Side: Relationships & Actions */}
-        <div class="w-full md:w-1/3 p-6 md:p-8 flex flex-col overflow-hidden bg-slate-900">
-          <h3 class="text-[10px] font-black uppercase tracking-widest text-gold-500 mb-4">
+        <div class="w-full md:w-1/3 p-6 md:p-8 flex flex-col overflow-hidden bg-parchment-dark">
+          <h3 class="text-xs font-black uppercase tracking-widest text-ink-deep mb-4 font-mono drop-shadow-[1px_1px_0_var(--color-parchment-aged)]">
             Relationships
           </h3>
           <div class="flex-1 overflow-y-auto pr-2 space-y-4">
             {otherMembers.length === 0 && (
-              <p class="text-xs text-slate-500 italic">
+              <p class="text-xs text-ink-deep font-bold italic bg-parchment/30 p-3 border-2 border-dashed border-ink-deep/30">
                 No other party members to relate to.
               </p>
             )}
@@ -223,10 +226,10 @@ export function MemberEditor({
               return (
                 <div
                   key={other.id}
-                  class="p-3 rounded-lg bg-slate-950/50 border border-tavern-800"
+                  class="p-3 rounded-sm bg-parchment border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)]"
                 >
-                  <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                  <div class="flex flex-col xl:flex-row justify-between xl:items-center mb-2 gap-2">
+                    <span class="text-xs font-black text-ink-deep uppercase tracking-wider font-mono">
                       {other.name}
                     </span>
                     <select
@@ -238,7 +241,7 @@ export function MemberEditor({
                           rel?.description || ''
                         )
                       }
-                      class="bg-slate-900 border border-tavern-800 rounded text-[10px] px-1 py-0.5 text-gold-400 focus:outline-none"
+                      class="bg-parchment-light border-2 border-ink-deep rounded-sm text-[10px] px-1 py-1 text-ink-deep font-bold focus:outline-none shadow-[inset_1px_1px_0_rgba(44,30,22,0.1)] uppercase cursor-pointer"
                     >
                       <option value="">No Bond</option>
                       <option value="cohesion">Cohesion</option>
@@ -257,30 +260,30 @@ export function MemberEditor({
                       )
                     }
                     rows={2}
-                    class="w-full bg-slate-950 border border-tavern-800 rounded px-2 py-1 text-[10px] text-slate-400 focus:outline-none focus:border-gold-600/30 resize-none"
+                    class="w-full bg-parchment-light border-2 border-ink-deep rounded-sm px-2 py-1 text-[10px] text-ink-faded font-bold focus:outline-none focus:bg-white resize-none shadow-[inset_1px_1px_0_rgba(44,30,22,0.1)]"
                   />
                 </div>
               );
             })}
           </div>
 
-          <div class="flex flex-col gap-3 mt-6">
+          <div class="flex flex-col gap-3 mt-6 pt-4 border-t-[3px] border-ink-deep/20">
             <button
               onClick={handleSave}
-              class="w-full py-4 bg-gold-600 hover:bg-gold-500 text-slate-950 font-black uppercase tracking-[0.2em] text-sm rounded-xl shadow-lg shadow-gold-900/20 transition-all transform active:scale-[0.98]"
+              class="w-full py-4 bg-crimson hover:bg-crimson-hover text-white font-black uppercase tracking-widest text-sm rounded-sm shadow-[4px_4px_0_var(--color-ink-deep)] transition-all active:translate-y-[4px] active:translate-x-[4px] active:shadow-[0_0_0_var(--color-ink-deep)] border-[3px] border-ink-deep"
             >
               {isNew ? 'Confirm Recruitment' : 'Apply Changes'}
             </button>
             <div class="flex gap-3">
               <button
                 onClick={isNew ? handleDiscard : handleRemove}
-                class="flex-1 py-3 bg-crimson/10 hover:bg-crimson/20 text-crimson border-2 border-crimson/30 hover:border-crimson/50 font-bold uppercase tracking-widest text-xs rounded-xl transition-all"
+                class="flex-1 py-3 bg-parchment hover:bg-parchment-light text-crimson border-[3px] border-ink-deep font-black uppercase tracking-widest text-xs rounded-sm shadow-[2px_2px_0_var(--color-ink-deep)] transition-all active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)]"
               >
                 {isNew ? 'Discard Draft' : 'Dismiss Agent'}
               </button>
               <button
                 onClick={handleClose}
-                class="flex-1 py-3 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border-2 border-slate-700 hover:border-slate-600 font-bold uppercase tracking-widest text-xs rounded-xl transition-all"
+                class="flex-1 py-3 bg-parchment-aged hover:bg-parchment text-ink-deep border-[3px] border-ink-deep font-black uppercase tracking-widest text-xs rounded-sm shadow-[2px_2px_0_var(--color-ink-deep)] transition-all active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)]"
               >
                 Cancel
               </button>
@@ -291,19 +294,18 @@ export function MemberEditor({
         {/* Close Button */}
         <button
           onClick={handleClose}
-          class="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:text-white hover:bg-slate-800 transition-all z-50"
+          class="absolute top-4 right-4 w-10 h-10 bg-parchment-base border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] rounded-sm flex items-center justify-center text-ink-deep hover:bg-parchment-light active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)] transition-all z-50 group"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
+            class="h-6 w-6 stroke-[3px] group-hover:scale-110 transition-transform"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
