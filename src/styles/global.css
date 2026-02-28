@@ -2,9 +2,9 @@
 
 @theme {
   /* The Tavern */
-  --color-tavern-950: #0a0908;
-  --color-tavern-900: #1a1614;
-  --color-tavern-800: #2c2420;
+  --color-tavern-950: #889489;
+  --color-tavern-900: #727e73;
+  --color-tavern-800: #5c685d;
 
   /* The Scroll / Parchment */
   --color-parchment-light: #fffcf5;
@@ -33,9 +33,11 @@
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--color-tavern-950);
-  background-image:
-    radial-gradient(circle at 50% -20%, var(--color-tavern-800), transparent),
-    radial-gradient(circle at 0% 0%, rgba(153, 27, 27, 0.05), transparent);
+  background-image: 
+    linear-gradient(45deg, var(--color-tavern-900) 25%, transparent 25%, transparent 75%, var(--color-tavern-900) 75%, var(--color-tavern-900)),
+    linear-gradient(45deg, var(--color-tavern-900) 25%, transparent 25%, transparent 75%, var(--color-tavern-900) 75%, var(--color-tavern-900));
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
 }
 
 .dnd-card {

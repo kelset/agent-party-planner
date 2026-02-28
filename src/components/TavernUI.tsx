@@ -216,29 +216,28 @@ export function TavernUI() {
       }
 
       {/* Header */}
-      <div class="border-b-[3px] border-ink-deep/30 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+      <div class="border-b-[3px] border-ink-deep/30 pb-12 mb-8 flex flex-col items-center text-center gap-6">
         <div>
-          <h1 class="text-4xl md:text-6xl font-black uppercase tracking-widest text-parchment-light mb-4 drop-shadow-[4px_4px_0_var(--color-ink-deep)] font-mono">
+          <h1 class="text-5xl md:text-7xl font-black uppercase tracking-widest text-parchment-light mb-6 drop-shadow-[4px_4px_0_var(--color-ink-deep)] font-mono">
             Assemble Your Party
           </h1>
-          <p class="text-parchment-dark font-bold max-w-2xl text-lg">
-            Configure your active roster by editing roles, defining relationships,
-            and removing agents you don't need.
+          <p class="text-ink-deep font-bold max-w-3xl text-lg leading-relaxed bg-parchment/50 p-4 border-2 border-dashed border-ink-deep/30 rounded-sm">
+            I had an idea for an Agent Orchestrator. I could have just made a GitHub Gist, but instead I built a whole website for it. Play with it, assemble your roster, and have fun!
           </p>
         </div>
       </div>
 
       {/* War Room Callout */}
-      <div class="p-6 bg-parchment-aged border-[3px] border-ink-deep shadow-[6px_6px_0_var(--color-ink-deep)] rounded-sm flex flex-col sm:flex-row gap-6 items-start relative overflow-hidden">
+      <div class="p-6 bg-parchment-base border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm flex flex-col sm:flex-row gap-6 items-start relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
-        <div class="w-16 h-16 rounded-sm bg-parchment-base border-[3px] border-ink-deep flex items-center justify-center shrink-0 shadow-[2px_2px_0_var(--color-ink-deep)] z-10">
+        <div class="w-16 h-16 rounded-sm bg-parchment border-[3px] border-ink-deep flex items-center justify-center shrink-0 shadow-[2px_2px_0_var(--color-ink-deep)] z-10">
           <span class="text-3xl drop-shadow-sm">🏰</span>
         </div>
         <div class="z-10">
           <h3 class="text-base font-black text-ink-deep uppercase tracking-widest mb-2 font-mono">
             The War Room is Ready
           </h3>
-          <p class="text-sm font-medium text-ink-deep leading-relaxed">
+          <p class="text-sm font-bold text-ink-faded leading-relaxed">
             Your overarching meta-orchestration is overseen by a fixed, highly-opinionated <strong>War Room</strong> consisting of the <strong class="text-crimson">Game Creator</strong>, the <strong class="text-crimson">Master of Spies</strong>, and the <strong class="text-crimson">Bard</strong>. This meta-layer provides strategic planning, performance evaluation, and engaging recaps, leaving you to focus entirely on customizing the execution Party below.
           </p>
         </div>
@@ -246,9 +245,9 @@ export function TavernUI() {
 
       {/* Roster Grid */}
       <div>
-        <div class="mb-8 flex justify-between items-end border-b-[3px] border-ink-deep/20 pb-4">
+        <div class="mb-8 flex justify-between items-end border-b-[3px] border-ink-deep/20 pb-4 mt-8">
           <h2 class="text-2xl font-black text-parchment-light uppercase tracking-widest drop-shadow-[2px_2px_0_var(--color-ink-deep)] font-mono">The Roster</h2>
-          <div class="text-sm font-bold text-ink-faded bg-parchment-aged px-3 py-1 border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm">
+          <div class="text-sm font-bold text-ink-faded bg-parchment-base px-3 py-1 border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm">
             Members: <span class="text-ink-deep font-black">{config.party.length}</span> / min {config.constraints.minPartyMembers}
           </div>
         </div>
