@@ -1,13 +1,29 @@
 @import 'tailwindcss';
 
 @theme {
+  /* The Tavern */
   --color-tavern-950: #0a0908;
   --color-tavern-900: #1a1614;
   --color-tavern-800: #2c2420;
+
+  /* The Scroll / Parchment */
+  --color-parchment-light: #fffcf5;
   --color-parchment: #f4e9d8;
+  --color-parchment-base: #e8dcb8;
+  --color-parchment-aged: #c8a98a;
+  --color-parchment-dark: #af8d6b;
+
+  /* The Ink / Structure */
+  --color-ink-deep: #2c1e16;
+  --color-ink-faded: #4a3424;
+  --color-ink-light: #5c4033;
+
+  /* Accent Colors */
   --color-gold-400: #fbbf24;
   --color-gold-600: #d97706;
-  --color-crimson: #991b1b;
+  --color-crimson: #b93838;
+  --color-crimson-hover: #a12e2e;
+  --color-crimson-active: #8c2a2a;
 }
 
 :root {

@@ -16,29 +16,29 @@ const colorMap: Record<
     ribbonR: 'border-l-emerald-500',
   },
   Wizard: {
-    ribbon: 'bg-blue-500',
-    ribbonL: 'border-r-blue-500',
-    ribbonR: 'border-l-blue-500',
+    ribbon: 'bg-[#8b5cf6]', // Purple
+    ribbonL: 'border-r-[#8b5cf6]',
+    ribbonR: 'border-l-[#8b5cf6]',
   },
   Warrior: {
-    ribbon: 'bg-red-500',
-    ribbonL: 'border-r-red-500',
-    ribbonR: 'border-l-red-500',
+    ribbon: 'bg-crimson',
+    ribbonL: 'border-r-crimson',
+    ribbonR: 'border-l-crimson',
   },
   Warlock: {
-    ribbon: 'bg-purple-500',
-    ribbonL: 'border-r-purple-500',
-    ribbonR: 'border-l-purple-500',
+    ribbon: 'bg-[#6b21a8]', // Darker purple
+    ribbonL: 'border-r-[#6b21a8]',
+    ribbonR: 'border-l-[#6b21a8]',
   },
   Healer: {
-    ribbon: 'bg-amber-500',
-    ribbonL: 'border-r-amber-500',
-    ribbonR: 'border-l-amber-500',
+    ribbon: 'bg-[#38bdf8]', // Cyan/Cleric blue
+    ribbonL: 'border-r-[#38bdf8]',
+    ribbonR: 'border-l-[#38bdf8]',
   },
   default: {
-    ribbon: 'bg-slate-500',
-    ribbonL: 'border-r-slate-500',
-    ribbonR: 'border-l-slate-500',
+    ribbon: 'bg-parchment-aged',
+    ribbonL: 'border-r-parchment-aged',
+    ribbonR: 'border-l-parchment-aged',
   },
 };
 
@@ -52,11 +52,11 @@ export function PartyMemberCard({
   return (
     <div class="relative pt-3 pb-2 group transition-transform duration-300 hover:-translate-y-2 w-full max-w-[340px] mx-auto flex flex-col">
       {/* Main Card Body (The Frame) */}
-      <div class="p-[6px] rounded-xl shadow-2xl relative flex-1 flex flex-col bg-slate-800 border-2 border-slate-950">
+      <div class="rounded-sm shadow-[6px_6px_0_var(--color-ink-deep)] relative flex-1 flex flex-col bg-parchment border-[3px] border-ink-deep overflow-visible">
         {/* Top Right Edit Button (The Triple Dot) */}
         <button
           onClick={() => onEdit(member.id)}
-          class="absolute -top-5 -right-5 w-10 h-10 rounded-full border-[3px] border-slate-900 shadow-xl flex items-center justify-center font-black text-xl z-40 bg-slate-800 text-slate-400 hover:text-white hover:bg-tavern-700 hover:border-gold-600 transition-all opacity-0 group-hover:opacity-100"
+          class="absolute -top-4 -right-4 w-10 h-10 rounded-full border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center font-black text-xl z-40 bg-parchment-base text-ink-deep hover:bg-parchment-light hover:scale-110 active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)] transition-all opacity-0 group-hover:opacity-100"
           aria-label={`Edit ${member.name}`}
         >
           <svg
@@ -69,11 +69,16 @@ export function PartyMemberCard({
           </svg>
         </button>
 
-        {/* Inner Dark Background */}
-        <div class="flex-1 rounded-lg flex flex-col relative border border-slate-900 bg-slate-950">
+        {/* Inner Content Wrapper */}
+        <div class="flex-1 flex flex-col relative border-2 border-ink-deep/10 m-1">
           {/* Image Area */}
-          <div class="h-44 bg-slate-900 relative flex items-center justify-center border-b-2 border-slate-900 shadow-[inset_0_-10px_20px_rgba(0,0,0,0.5)] rounded-t-lg overflow-hidden group/image">
-            <span class="text-slate-700 font-black uppercase tracking-widest text-lg z-0 opacity-50 absolute">
+          <div class="h-44 bg-parchment-dark relative flex items-center justify-center border-b-[3px] border-ink-deep shadow-[inset_0_-10px_20px_rgba(0,0,0,0.3)] overflow-hidden group/image"
+               style={{
+                 backgroundImage: `linear-gradient(to right, rgba(44, 30, 22, 0.1) 2px, transparent 2px), linear-gradient(to bottom, rgba(44, 30, 22, 0.1) 2px, transparent 2px)`,
+                 backgroundSize: '20px 20px'
+               }}
+          >
+            <span class="text-ink-deep font-black uppercase tracking-widest text-lg z-0 opacity-30 absolute font-mono">
               Portrait
             </span>
             <img
@@ -82,13 +87,14 @@ export function PartyMemberCard({
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
-              class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover/image:opacity-100 transition-opacity duration-500 z-10"
+              class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover/image:opacity-100 group-hover/image:scale-105 transition-all duration-500 z-10 rendering-pixelated"
+              style={{ imageRendering: 'pixelated' }}
             />
-            <div class="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-slate-950 pointer-events-none z-20 rounded-t-lg"></div>
+            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-ink-deep pointer-events-none z-20"></div>
 
             {/* Responsibilities Count (Internal) */}
             <div
-              class="absolute top-2 left-2 w-9 h-9 rounded-full border-2 border-slate-900 shadow-lg flex items-center justify-center font-black text-base z-20 bg-slate-300 text-slate-900 backdrop-blur-sm opacity-90 hover:opacity-100 transition-opacity cursor-default"
+              class="absolute top-2 left-2 w-8 h-8 rounded-sm border-[3px] border-ink-deep shadow-[2px_2px_0_rgba(0,0,0,0.5)] flex items-center justify-center font-black text-sm z-20 bg-parchment-light text-ink-deep opacity-90 hover:opacity-100 transition-opacity cursor-default"
               title={`${member.responsibilities.length} Responsibilities`}
             >
               {member.responsibilities.length}
@@ -96,59 +102,59 @@ export function PartyMemberCard({
           </div>
 
           {/* Name Ribbon */}
-          <div class="relative flex justify-center -mt-5 mb-2 z-20 drop-shadow-md">
+          <div class="relative flex justify-center -mt-5 mb-2 z-20 drop-shadow-[0_4px_0_rgba(44,30,22,0.8)]">
             <div
-              class={`relative flex items-center justify-center h-10 px-8 border-y-2 border-slate-900 text-center ${theme.ribbon} min-w-[80%]`}
+              class={`relative flex items-center justify-center h-10 px-8 border-[3px] border-ink-deep text-center ${theme.ribbon} min-w-[80%]`}
             >
               {/* Ribbon Ends */}
               <div
-                class={`absolute -top-[2px] -left-[20px] w-0 h-0 border-y-[20px] border-y-transparent border-r-[20px] border-r-slate-900`}
+                class={`absolute -top-[3px] -left-[20px] w-0 h-0 border-y-[18px] border-y-transparent border-r-[20px] border-r-ink-deep`}
               ></div>
               <div
-                class={`absolute top-[0px] -left-[18px] w-0 h-0 border-y-[18px] border-y-transparent border-r-[18px] ${theme.ribbonL}`}
+                class={`absolute top-[0px] -left-[16px] w-0 h-0 border-y-[15px] border-y-transparent border-r-[16px] ${theme.ribbonL}`}
               ></div>
               <div
-                class={`absolute -top-[2px] -right-[20px] w-0 h-0 border-y-[20px] border-y-transparent border-l-[20px] border-l-slate-900`}
+                class={`absolute -top-[3px] -right-[20px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[20px] border-l-ink-deep`}
               ></div>
               <div
-                class={`absolute top-[0px] -right-[18px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[18px] ${theme.ribbonR}`}
+                class={`absolute top-[0px] -right-[16px] w-0 h-0 border-y-[15px] border-y-transparent border-l-[16px] ${theme.ribbonR}`}
               ></div>
 
-              <h3 class="text-lg font-black text-slate-900 uppercase tracking-widest drop-shadow-sm relative z-10 truncate leading-none mt-0.5">
+              <h3 class="text-lg font-black text-parchment-light uppercase tracking-widest drop-shadow-[1px_1px_0_var(--color-ink-deep)] relative z-10 truncate leading-none mt-1 font-mono">
                 {member.name}
               </h3>
             </div>
           </div>
 
           {/* Content Area */}
-          <div class="p-5 pt-3 flex-1 flex flex-col gap-4">
+          <div class="p-4 pt-3 flex-1 flex flex-col gap-4">
             {/* Class Fantasy */}
             <div
-              class={`text-sm text-center italic font-semibold leading-tight text-slate-300`}
+              class={`text-sm text-center italic font-bold leading-tight text-ink-faded`}
             >
               "{member.classFantasy}"
             </div>
 
-            <div class="w-full h-px bg-slate-800 my-2"></div>
+            <div class="w-full h-[3px] bg-ink-deep/20 my-1"></div>
 
             {/* Responsibilities (Pills) */}
-            <div class="flex flex-wrap justify-center gap-2 mt-auto pb-2">
+            <div class="flex flex-wrap justify-center gap-2 mt-auto pb-1">
               {member.responsibilities.map((r, i) => {
                 const isLeader = r.name === 'Party Leader';
                 return (
                   <div
                     key={i}
-                    class={`relative border rounded-md shadow-inner px-3 py-1.5 flex items-center justify-center group/pill cursor-help transition-colors ${
+                    class={`relative border-[2px] rounded-sm px-2 py-1 flex items-center justify-center group/pill cursor-help transition-transform hover:-translate-y-0.5 shadow-[2px_2px_0_var(--color-ink-deep)] ${
                       isLeader
-                        ? 'bg-amber-900/30 border-amber-600/50 hover:border-amber-400'
-                        : 'bg-slate-900 border-slate-700 hover:border-slate-500'
+                        ? 'bg-gold-400 border-ink-deep'
+                        : 'bg-parchment-base border-ink-deep'
                     }`}
                     title={r.description}
                   >
                     {isLeader && (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-3 w-3 text-amber-500 mr-1.5 -ml-1 mt-0.5"
+                        class="h-3 w-3 text-ink-deep mr-1 -ml-0.5 mt-0.5"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -156,15 +162,15 @@ export function PartyMemberCard({
                       </svg>
                     )}
                     <span
-                      class={`text-[10px] font-extrabold tracking-widest uppercase text-center leading-none mt-0.5 ${isLeader ? 'text-amber-400' : 'text-slate-300'}`}
+                      class={`text-[10px] font-black tracking-widest uppercase text-center leading-none mt-0.5 text-ink-deep`}
                     >
                       {r.name}
                     </span>
                     <button
-                      class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-slate-800 border border-slate-600 text-slate-400 hover:text-white hover:bg-crimson hover:border-crimson flex items-center justify-center opacity-0 group-hover/pill:opacity-100 transition-all text-xs z-10 shadow-lg"
+                      class="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-sm bg-parchment-light border-2 border-ink-deep text-ink-deep hover:text-white hover:bg-crimson flex items-center justify-center opacity-0 group-hover/pill:opacity-100 transition-all text-xs z-10 shadow-[2px_2px_0_var(--color-ink-deep)]"
                       aria-label={`Remove ${r.name}`}
                     >
-                      <span class="-mt-0.5 leading-none">×</span>
+                      <span class="-mt-0.5 font-black leading-none text-sm">×</span>
                     </button>
                   </div>
                 );
@@ -172,10 +178,10 @@ export function PartyMemberCard({
               <button
                 onClick={() => onEdit(member.id)}
                 disabled={!hasAvailableResponsibilities}
-                class={`transition-colors border border-dashed rounded-md px-3 py-1.5 text-[10px] font-extrabold tracking-widest uppercase flex items-center justify-center gap-1.5 ${
+                class={`transition-all border-2 border-dashed rounded-sm px-2 py-1 text-[10px] font-black tracking-widest uppercase flex items-center justify-center gap-1.5 ${
                   hasAvailableResponsibilities
-                    ? 'bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white border-slate-600 cursor-pointer'
-                    : 'bg-slate-900 text-slate-600 border-slate-800 cursor-not-allowed'
+                    ? 'bg-parchment/50 hover:bg-parchment-base text-ink-faded hover:text-ink-deep border-ink-deep/50 hover:border-ink-deep cursor-pointer'
+                    : 'bg-parchment-dark/30 text-ink-light border-ink-deep/20 cursor-not-allowed'
                 }`}
                 title={
                   hasAvailableResponsibilities

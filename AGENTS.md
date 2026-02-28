@@ -38,7 +38,7 @@ Always consult these resources for technical decisions and API usage:
 
 ## Agent Instructions
 
-1. **Context First:** Before making significant changes, read `docs/VISION.md`, `docs/ARCHITECTURE.md`, and `docs/INFRASTRUCTURE.md`.
+1. **Context First:** Before making significant changes, read `docs/VISION.md`, `docs/ARCHITECTURE.md`, `docs/INFRASTRUCTURE.md`, and `docs/VISUAL_IDENTITY.md`.
 
 2. **Standard Compliance:** Adhere to the latest Astro and Bun conventions.
 
@@ -46,11 +46,14 @@ Always consult these resources for technical decisions and API usage:
 
 4. **Testing & Quality:**
    - Leverage `bun test` for unit testing logic in the `/core` and `/templates` directories.
-
    - Run `bun run lint` and `bun run format` before finalizing changes.
 
-5. **War Room Context:** Follow the hierarchy of War Room (Meta) -> GM Session -> Party (Sub-Agents).
+5. **Staff Engineer Quality:** Write highly maintainable, DRY (Don't Repeat Yourself), and well-architected code. Break down large files into smaller, focused, reusable components. Use consistent abstractions and utility functions where appropriate.
 
-6. **Types:** Maintain strict TypeScript typing. Avoid `any`.
+6. **Visual Identity:** Respect the "Retro-Brutalist 16-bit RPG" aesthetic defined in `docs/VISUAL_IDENTITY.md`. Use CSS variables for colors where possible. Extract complex UI blocks into dedicated components.
 
-7. **Visual Validation:** Leverage the [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp/) to view the locally running site (e.g., via `bun dev`). Use it to verify UI changes, validate layouts, and ensure your code modifications behave correctly in the browser.
+7. **War Room Context:** Follow the hierarchy of War Room (Meta) -> GM Session -> Party (Sub-Agents).
+
+8. **Types:** Maintain strict TypeScript typing. Avoid `any`.
+
+9. **Visual Validation:** Leverage the [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp/) to view the locally running site (e.g., via `bun dev`). Use it to verify UI changes, validate layouts, and ensure your code modifications behave correctly in the browser.
