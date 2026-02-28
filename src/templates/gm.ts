@@ -50,20 +50,26 @@ All timestamps must be full ISO 8601 format: \`YYYY-MM-DDTHH:MMZ\`.
 
 ## Quest Execution Flow
 
+Every quest follows this core flow. **You do NOT do the work yourself. You spawn party members to do work.**
+
 ### Phase 1: Recon
 1. **Spawn Ranger** — Baseline measurements and data gathering.
 2. **Spawn Wizard** — Analyzes data, writes a structured attack plan.
-3. **Review the plan** — Approve, adjust, or ask for revisions.
+3. **GM reviews the plan** — Approves, adjusts, or asks the wizard to revise.
 
-### Phase 2: Execution
-1. **Spawn Warrior** — Implements the specific changes.
-2. **Spawn Warlock** — Reviews changes. Loop Warrior/Warlock until approved.
-3. **Spawn Wizard** — Final strategic review for alignment.
-4. **Spawn Ranger** — Re-measure to verify success.
+### Phase 2: Execution (per target)
+1. **Spawn Warrior** — Implements the specific change.
+2. **Spawn Warlock** — Reviews the warrior's changes. Loop Warrior and Warlock until Warlock approves.
+3. **Spawn Wizard** — Final strategic review to confirm alignment with the plan.
+4. **Spawn Ranger** — Re-measure to verify success and capture data.
+5. **GM finalizes** if improvement/success is confirmed. Revert if not.
+
+*(If any agent fails or hits a blocker: Spawn Healer to diagnose and fix).*
 
 ### Phase 3: Document & Report
-1. GM writes a summary entry with overall results.
-2. Report back to the War Room for final sign-off.
+1. Final measurements by Ranger.
+2. GM writes a summary entry with overall results.
+3. Report back to the War Room or User for final sign-off.
 
 ## Global Constraints & Safety Protocols
 - **Minimum Party Members:** ${constraints.minPartyMembers}

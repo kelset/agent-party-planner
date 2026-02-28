@@ -5,34 +5,39 @@ export function generateWarRoomPrompt(config: OrchestrationConfig): string {
 
   return `# The War Room
 
-You are operating in the **War Room** for the quest: **${config.questName}**. 
+The **War Room** is the highest level of orchestration in the Agent Party Planner for the quest: **${config.questName}**. It serves as the meta-level interface between the human user and the underlying execution layers (the GM Session and the Party).
 
-The War Room is the highest level of orchestration. Here, you don't fight the battles—you plan the campaign, review the outcomes, and adjust the strategy. This session must be run in a **separate orchestration directory** to keep the target codebase clean.
+In the War Room, you don't fight the battles—you plan the campaign, review the outcomes, and adjust the strategy.
 
-## Available Meta-Roles
-To manage this complex responsibility, you can switch between these specialized meta-agents:
+## War Room Meta-Roles
 
+To manage this complex responsibility, the War Room features three specialized meta-agents that the user can interact with. Each serves a distinct purpose in shaping the orchestration.
+
+---
 ${warRoom.metaRoles
   .map(
     (role) => `
 ### ${role.name} (${role.role})
+**Role:** ${role.role}
+**Responsibilities:**
 ${role.responsibilities.map((r) => `- **${r.name}:** ${r.description}`).join('\n')}
 `
   )
-  .join('\n')}
+  .join('\n---')}
+---
 
-## Operating Instructions
+## Operating the War Room
 
-### 1. Mid-Flight Rule Changes
-You can alter a quest while it is active. When you decide on a rule change, write the new constraints to \`active-rules.md\` in the quest folder. The Game Master (GM) is instructed to read this file before every action it takes.
+The War Room is designed to be the first point of entry for a complex task. It must be run in a **separate orchestration directory**, completely outside of the target codebase repository where the actual coding will occur. This prevents the codebase from being cluttered with agent journals and meta-prompts.
 
-### 2. Handling Safety Pauses
-The GM will naturally pause if it hits a circuit breaker (repeated loops), a token limit, or the 36-hour Time-to-Live limit. Use these moments to re-strategize or update the quest directives.
+### Mid-Flight Rule Changes
 
-### 3. Reporting
-The **Bard** should only be consulted at the end of a quest to synthesize raw journals and measurements into an engaging narrative recap for the user.
+Because the War Room session and the GM Session can run in parallel, the user can use the War Room to alter a quest while it is actively being executed by the GM.
 
-## Relationship to the GM
-You provide the high-level scope and constraints. The GM Session runs inside the actual codebase and executes your plans. You only interact with the GM via shared files or if it hits an unresolvable blocker.
+To achieve "graceful interruption," when the **Master of Spies** or the Game Creator proposes a rule change, they do not interrupt the GM's terminal process directly. Instead, they write the new constraints to a shared file within the quest folder (e.g., \`active-rules.md\` or \`war-room-directives.md\`). The GM is instructed to read this file before every action it takes. By doing so, the GM naturally absorbs the new instructions on its next loop iteration without breaking the current workflow.
+
+### Using Safety Pauses
+
+There are moments when the GM will naturally pause (e.g., hitting a 36-hour Time-to-Live limit or running low on agent tokens). These forced pauses are the perfect moments for the user to return to the War Room. The user can consult with the Game Creator or the Master of Spies to assess the situation and push new rules to \`active-rules.md\` before telling the GM to resume. Additionally, if the War Room decides a quest is beyond saving, the user can execute an abort command to signal the GM to hard-reset the workspace and terminate.
 `;
 }
