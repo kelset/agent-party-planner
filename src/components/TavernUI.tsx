@@ -221,7 +221,7 @@ export function TavernUI() {
           <h1 class="text-6xl md:text-[5.5rem] lg:text-[7rem] font-black uppercase tracking-widest text-parchment-light mb-6 drop-shadow-[4px_4px_0_var(--color-ink-deep)] font-mono leading-none w-full">
             Assemble Your Party
           </h1>
-          <p class="text-ink-deep font-bold max-w-3xl mx-auto text-lg leading-relaxed bg-parchment/50 p-4 border-2 border-dashed border-ink-deep/30 rounded-sm">
+          <p class="text-ink-deep font-medium italic max-w-3xl mx-auto text-lg leading-relaxed bg-parchment/50 p-4 border-2 border-dashed border-ink-deep/30 rounded-sm">
             I had an idea for an Agent Orchestrator. I could have just made a GitHub Gist, but instead I built a whole website for it. Play with it, assemble your roster, and have fun!
           </p>
         </div>
