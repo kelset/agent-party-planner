@@ -48,16 +48,19 @@
 
 ```text
 src/
-├── themes/          # Visual styles, icons, and theme-specific copy
-│   └── dnd/
-├── templates/       # Base agent prompts and orchestration rules
+├── components/      # UI components (Party slots, Class cards, etc.)
 ├── core/            # Logic for merging templates and generating the package
-└── components/      # UI components (Party slots, Class cards, etc.)
+├── layouts/         # Base page layouts
+├── pages/           # Astro page routes
+├── styles/          # Global and component-specific Tailwind styles
+└── templates/       # Base agent prompts and orchestration rules
 ```
 
-## Proposed Stack
+## Final Stack
 
 - **Runtime:** Bun (for speed and modern DX).
-- **Framework:** Astro (excellent for content/template-focused sites with optional interactivity).
-- **Styling:** Tailwind CSS (for easy theme variables and rapid UI development).
-- **Interactivity:** React or Vanilla JS/HTMX (depending on the complexity of the party builder).
+- **Framework:** Astro 5 (for content/template-focused sites with high performance).
+- **Styling:** Tailwind CSS v4 (using CSS variable-first approach).
+- **Interactivity:** Preact (lightweight reactive components for the party builder).
+- **State:** LZ-String compressed URL state + LocalStorage persistence.
+- **Export:** Client-side JSZip generation.
