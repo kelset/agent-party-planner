@@ -1,5 +1,13 @@
 # 🎲 Agents Party
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ae7c3a34-395a-4b4b-844d-8d48b1e4b5ea/deploy-status)](https://app.netlify.com/projects/agentsparty/deploys) ![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)
+<a href="https://github.com/kelset?tab=followers">
+<img alt="follow me on github" src="https://img.shields.io/github/followers/kelset?label=Follow%20%40kelset&style=social" />
+</a>
+<a href="https://bsky.app/profile/kelset.dev">
+<img src="https://img.shields.io/badge/Bluesky-0285FF?logo=bluesky&logoColor=fff&style=flat" alt="Follow me on bsky" >
+</a>
+
 An interactive web-based tool to visually configure and export **Agent Orchestration** systems.
 
 Inspired by Dungeons & Dragons, this tool allows you to assemble a "Party" of specialized AI agents, customize their roles, and export a ready-to-use orchestration package for platforms like Gemini and Claude.
