@@ -1,8 +1,6 @@
-# 🎲 Agent Party Planner
+# 🎲 Agents Party
 
 An interactive web-based tool to visually configure and export **Agent Orchestration** systems.
-
-**Fully Open Source & Community Driven.**
 
 Inspired by Dungeons & Dragons, this tool allows you to assemble a "Party" of specialized AI agents, customize their roles, and export a ready-to-use orchestration package for platforms like Gemini and Claude.
 
@@ -66,4 +64,4 @@ bun run format
 
 ---
 
-Built with ❤️ by [Lorenzo Sciandra](https://github.com/kelset).
+Made with agentic nerdism by [kelset](https://github.com/kelset).

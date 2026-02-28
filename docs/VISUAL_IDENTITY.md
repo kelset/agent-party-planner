@@ -2,7 +2,7 @@
 
 ## Overview
 
-The "Agent Party Planner" visual identity is a blend of **Dungeons & Dragons** fantasy themes and **retro-brutalist / 16-bit RPG pixel art**. 
+The "Agents Party" visual identity is a blend of **Dungeons & Dragons** fantasy themes and **retro-brutalist / 16-bit RPG pixel art**. 
 
 This aesthetic breaks away from standard, ultra-sleek, rounded modern web interfaces, instead opting for chunky, tactile, and highly distinct UI elements. The goal is to make the user feel like they are interacting with physical game components—parchment scrolls, thick wooden signs, and rigid character cards.
 

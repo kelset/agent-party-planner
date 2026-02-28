@@ -148,7 +148,7 @@ export function MemberEditor({
                     classFantasy: (e.target as HTMLTextAreaElement).value,
                   })
                 }
-                rows={2}
+                rows={3}
                 class="w-full bg-parchment-light border-[3px] border-ink-deep rounded-sm px-4 py-2 text-ink-faded font-bold text-sm focus:outline-none focus:bg-white transition-colors resize-none shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)]"
               />
             </div>
@@ -165,7 +165,7 @@ export function MemberEditor({
                     personality: (e.target as HTMLTextAreaElement).value,
                   })
                 }
-                rows={4}
+                rows={10}
                 class="w-full bg-parchment-light border-[3px] border-ink-deep rounded-sm px-4 py-2 text-ink-faded font-bold text-sm focus:outline-none focus:bg-white transition-colors resize-none leading-relaxed shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)]"
               />
             </div>

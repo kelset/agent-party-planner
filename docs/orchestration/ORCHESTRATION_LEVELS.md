@@ -1,6 +1,6 @@
 # Agent Orchestration Levels
 
-The Agent Party Planner relies on a 3-tier hierarchical structure inspired by a Dungeons & Dragons session. This separation of concerns allows for complex problem-solving by delegating tasks to specialized agents while maintaining strong coordination.
+The Agents Party relies on a 3-tier hierarchical structure inspired by a Dungeons & Dragons session. This separation of concerns allows for complex problem-solving by delegating tasks to specialized agents while maintaining strong coordination.
 
 ## 1. The War Room (Meta-Level)
 

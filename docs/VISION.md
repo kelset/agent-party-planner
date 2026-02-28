@@ -1,4 +1,4 @@
-# Vision: Agent Party Planner
+# Vision: Agents Party
 
 ## Core Concept
 

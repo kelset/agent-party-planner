@@ -1,4 +1,4 @@
-# Development Plan: Agent Party Planner
+# Development Plan: Agents Party
 
 ## Phase 1: Setup & Research ✅
 

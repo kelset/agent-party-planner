@@ -1,4 +1,4 @@
-# Agent Project Guidelines: Agent Party Planner
+# Agent Project Guidelines: Agents Party
 
 ## Overview
 

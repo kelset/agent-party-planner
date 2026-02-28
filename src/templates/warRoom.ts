@@ -5,7 +5,7 @@ export function generateWarRoomPrompt(config: OrchestrationConfig): string {
 
   return `# The War Room
 
-The **War Room** is the highest level of orchestration in the Agent Party Planner for the quest: **${config.questName}**. It serves as the meta-level interface between the human user and the underlying execution layers (the GM Session and the Party).
+The **War Room** is the highest level of orchestration in the Agents Party for the quest: **${config.questName}**. It serves as the meta-level interface between the human user and the underlying execution layers (the GM Session and the Party).
 
 In the War Room, you don't fight the battles—you plan the campaign, review the outcomes, and adjust the strategy.
 

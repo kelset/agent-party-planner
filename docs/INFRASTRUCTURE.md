@@ -1,4 +1,4 @@
-# Infrastructure: Agent Party Planner
+# Infrastructure: Agents Party
 
 ## Domain Management
 

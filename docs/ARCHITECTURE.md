@@ -1,4 +1,4 @@
-# Architecture: Agent Party Planner
+# Architecture: Agents Party
 
 ## Design Principles
 
