@@ -112,6 +112,69 @@ import Layout from '../layouts/Layout.astro';
               and spawning the correct Party Members to do the work. The GM
               coordinates but <em>never</em> writes code or runs tests itself.
             </p>
+            <h4 class="text-sm font-bold text-gold-400 mt-8 mb-2 uppercase tracking-wide">Standard Quest Lifecycle</h4>
+            
+            <div class="relative pl-8 space-y-8 before:absolute before:inset-y-0 before:left-[11px] before:w-[2px] before:bg-tavern-800 mt-6 pb-4">
+              <!-- Phase 1 -->
+              <div class="relative">
+                <div class="absolute -left-[37px] top-1 w-6 h-6 rounded-full bg-tavern-900 border-2 border-emerald-500 flex items-center justify-center">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                </div>
+                <h5 class="text-emerald-400 font-bold mb-2 tracking-wide uppercase text-sm">Phase 1: Recon</h5>
+                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 flex flex-col gap-3 text-sm">
+                  <div class="flex items-start gap-3">
+                    <span class="text-xl">🏹</span>
+                    <div><strong class="text-emerald-400">Ranger</strong> gathers baseline measurements and maps the environment.</div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="text-xl">🧙‍♂️</span>
+                    <div><strong class="text-purple-400">Wizard</strong> analyzes the data and writes a structured attack plan.</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Phase 2 -->
+              <div class="relative">
+                <div class="absolute -left-[37px] top-1 w-6 h-6 rounded-full bg-tavern-900 border-2 border-red-500 flex items-center justify-center">
+                  <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                </div>
+                <h5 class="text-red-400 font-bold mb-2 tracking-wide uppercase text-sm">Phase 2: Execution <span class="text-slate-500 text-xs normal-case">(Iterative Loop)</span></h5>
+                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 flex flex-col gap-3 text-sm">
+                  <div class="flex items-start gap-3">
+                    <span class="text-xl">⚔️</span>
+                    <div><strong class="text-red-400">Warrior</strong> implements the specific changes according to the plan.</div>
+                  </div>
+                  <div class="flex items-center gap-2 pl-4 text-slate-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    <span class="text-xs">Loop until approved</span>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="text-xl">🧛‍♂️</span>
+                    <div><strong class="text-indigo-400">Warlock</strong> scrutinizes the code. Blocks bad changes or approves.</div>
+                  </div>
+                  <div class="mt-2 pt-3 border-t border-slate-800/50 flex flex-col gap-3">
+                    <div class="flex items-start gap-3">
+                      <span class="text-xl">🧙‍♂️</span>
+                      <div><strong class="text-purple-400">Wizard</strong> &amp; <strong class="text-emerald-400">Ranger</strong> verify the final outcome matches the plan and metrics.</div>
+                    </div>
+                    <div class="flex items-start gap-3 opacity-80">
+                      <span class="text-xl">🧑‍⚕️</span>
+                      <div><em>If blockers hit:</em> <strong class="text-cyan-400">Healer</strong> diagnoses and recovers the environment.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Phase 3 -->
+              <div class="relative">
+                <div class="absolute -left-[37px] top-1 w-6 h-6 rounded-full bg-tavern-900 border-2 border-gold-500 flex items-center justify-center">
+                  <span class="w-2 h-2 rounded-full bg-gold-400"></span>
+                </div>
+                <h5 class="text-gold-400 font-bold mb-2 tracking-wide uppercase text-sm">Phase 3: Document & Report</h5>
+                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 flex items-start gap-3 text-sm">
+                  <span class="text-xl">📜</span>
+                  <div>The GM records final measurements, writes the summary log, and reports back to the War Room.</div>
+                </div>
+              </div>
+            </div>
           </section>
 
           <section
