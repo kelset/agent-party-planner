@@ -6,6 +6,7 @@ import type {
   PartyMember,
 } from '../core/types';
 import { defaultPartyPreset } from '../core/presets/defaultParty';
+import { defaultResponsibilities } from '../core/presets/responsibilities';
 import { PartyMemberCard } from './PartyMemberCard';
 import { MemberEditor } from './MemberEditor';
 import { ResponsibilitiesCatalog } from './ResponsibilitiesCatalog';
@@ -22,7 +23,7 @@ export function TavernUI() {
   const [pendingMember, setPendingMember] = useState<PartyMember | null>(null);
   const [customResponsibilities, setCustomResponsibilities] = useState<
     Responsibility[]
-  >([]);
+  >(defaultResponsibilities);
   const [newDuty, setNewDuty] = useState({ name: '', description: '' });
   const [platform, setPlatform] = useState<Platform>('claude');
   const [isExporting, setIsExporting] = useState(false);
@@ -60,6 +61,16 @@ export function TavernUI() {
     if (loadedConfig) {
       setConfig(loadedConfig);
     }
+
+    // Load custom responsibilities from localStorage if they exist
+    const savedResponsibilities = localStorage.getItem('party-planner-responsibilities');
+    if (savedResponsibilities) {
+      try {
+        setCustomResponsibilities(JSON.parse(savedResponsibilities));
+      } catch (e) {
+        console.error('Failed to parse saved responsibilities', e);
+      }
+    }
     
     setIsInitialized(true);
   }, []);
@@ -67,8 +78,9 @@ export function TavernUI() {
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem('party-planner-config', JSON.stringify(config));
+      localStorage.setItem('party-planner-responsibilities', JSON.stringify(customResponsibilities));
     }
-  }, [config, isInitialized]);
+  }, [config, customResponsibilities, isInitialized]);
 
   const handleShare = () => {
     const encoded = LZString.compressToEncodedURIComponent(JSON.stringify(config));
@@ -83,8 +95,30 @@ export function TavernUI() {
 
   const handleAddDuty = () => {
     if (!newDuty.name || !newDuty.description) return;
+    if (customResponsibilities.some(r => r.name === newDuty.name)) {
+      alert('A duty with this name already exists in the catalog.');
+      return;
+    }
     setCustomResponsibilities((prev) => [...prev, { ...newDuty }]);
     setNewDuty({ name: '', description: '' });
+  };
+
+  const handleRemoveDuty = (name: string) => {
+    // Check if it's currently used by any member
+    const isUsed = config.party.some(m => m.responsibilities.some(r => r.name === name));
+    if (isUsed) {
+      alert('This responsibility is currently assigned to a party member and cannot be removed.');
+      return;
+    }
+    setCustomResponsibilities((prev) => prev.filter(r => r.name !== name));
+  };
+
+  const handleResetResponsibilities = () => {
+    setCustomResponsibilities((prev) => {
+      const names = new Set(prev.map(r => r.name));
+      const missing = defaultResponsibilities.filter(r => !names.has(r.name));
+      return [...prev, ...missing];
+    });
   };
 
   const handleRemoveMember = (id: string) => {
@@ -161,24 +195,18 @@ export function TavernUI() {
     }
   };
 
-  // Derive unique responsibilities available across the current party AND the default setup
+  // Derive unique responsibilities available across the current party AND the custom/default ones
   const allResponsibilities = useMemo(() => {
     const map = new Map<string, Responsibility>();
-    // Look in the current config
+    // Start with custom/default ones as baseline
+    customResponsibilities.forEach((r) => {
+      if (!map.has(r.name)) map.set(r.name, r);
+    });
+    // Add any that are currently in the party (in case they were deleted from catalog but still on a member)
     config.party.forEach((member) => {
       member.responsibilities.forEach((r) => {
         if (!map.has(r.name)) map.set(r.name, r);
       });
-    });
-    // ALSO look in the default preset to ensure we don't lose core ones
-    defaultPartyPreset.party.forEach((member) => {
-      member.responsibilities.forEach((r) => {
-        if (!map.has(r.name)) map.set(r.name, r);
-      });
-    });
-    // Add custom created ones
-    customResponsibilities.forEach((r) => {
-      if (!map.has(r.name)) map.set(r.name, r);
     });
     return Array.from(map.values());
   }, [config.party, customResponsibilities]);
@@ -312,6 +340,8 @@ export function TavernUI() {
         setNewDuty={setNewDuty}
         handleAddDuty={handleAddDuty}
         allResponsibilities={allResponsibilities}
+        onRemoveDuty={handleRemoveDuty}
+        onReset={handleResetResponsibilities}
       />
 
       {/* Export Action Scroll */}

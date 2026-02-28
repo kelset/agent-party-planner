@@ -8,6 +8,8 @@ export interface ResponsibilitiesCatalogProps {
   setNewDuty: (duty: { name: string; description: string }) => void;
   handleAddDuty: () => void;
   allResponsibilities: Responsibility[];
+  onRemoveDuty: (name: string) => void;
+  onReset: () => void;
 }
 
 export function ResponsibilitiesCatalog({
@@ -16,7 +18,9 @@ export function ResponsibilitiesCatalog({
   newDuty,
   setNewDuty,
   handleAddDuty,
-  allResponsibilities
+  allResponsibilities,
+  onRemoveDuty,
+  onReset
 }: ResponsibilitiesCatalogProps) {
   return (
     <div class="bg-parchment-base border-[3px] border-ink-deep rounded-sm shadow-[6px_6px_0_var(--color-ink-deep)] relative overflow-hidden">
@@ -53,9 +57,17 @@ export function ResponsibilitiesCatalog({
         <div class="p-6 border-t-[3px] border-ink-deep bg-parchment relative z-10 space-y-8">
           {/* Create New Duty Form */}
           <div class="bg-parchment-light p-6 rounded-sm border-[3px] border-dashed border-ink-deep/30 shadow-[inset_0_0_10px_rgba(44,30,22,0.05)]">
-            <h4 class="text-xs font-black uppercase tracking-widest text-ink-deep mb-4 font-mono">
-              Define a New Duty
-            </h4>
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+              <h4 class="text-xs font-black uppercase tracking-widest text-ink-deep font-mono">
+                Define a New Duty
+              </h4>
+              <button
+                onClick={onReset}
+                class="px-3 py-1.5 bg-parchment-base hover:bg-parchment border-[2px] border-ink-deep text-ink-faded hover:text-ink-deep font-black uppercase tracking-widest text-[9px] rounded-sm transition-all active:translate-y-[2px] active:translate-x-[2px] font-mono shadow-[2px_2px_0_var(--color-ink-deep)] active:shadow-none"
+              >
+                Restore Defaults
+              </button>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
               <div class="md:col-span-1">
                 <label class="block text-[10px] font-black uppercase tracking-widest text-ink-faded mb-2">
@@ -106,9 +118,16 @@ export function ResponsibilitiesCatalog({
             {allResponsibilities.map((r) => (
               <div
                 key={r.name}
-                class="bg-parchment-base p-5 rounded-sm border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] transition-transform hover:-translate-y-1"
+                class="bg-parchment-base p-5 rounded-sm border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] transition-transform hover:-translate-y-1 relative group"
               >
-                <h4 class="text-sm font-black text-ink-deep mb-2 tracking-widest uppercase font-mono">
+                <button
+                  onClick={() => onRemoveDuty(r.name)}
+                  class="absolute top-2 right-2 w-6 h-6 bg-crimson/10 hover:bg-crimson text-crimson hover:text-white border-2 border-crimson/30 hover:border-crimson rounded-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer"
+                  title="Remove from catalog"
+                >
+                  <span class="text-xs leading-none font-black">×</span>
+                </button>
+                <h4 class="text-sm font-black text-ink-deep mb-2 tracking-widest uppercase font-mono pr-6">
                   {r.name}
                 </h4>
                 <p class="text-xs text-ink-faded font-bold leading-relaxed">

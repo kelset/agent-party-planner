@@ -1,4 +1,11 @@
 import type { OrchestrationConfig } from '../types';
+import { defaultResponsibilities } from './responsibilities';
+
+const findResp = (name: string) => {
+  const r = defaultResponsibilities.find(r => r.name === name);
+  if (!r) throw new Error(`Responsibility ${name} not found in defaults`);
+  return r;
+};
 
 export const defaultPartyPreset: OrchestrationConfig = {
   questName: 'New Quest',
@@ -9,21 +16,9 @@ export const defaultPartyPreset: OrchestrationConfig = {
         name: 'The Game Creator',
         role: 'The Architect',
         responsibilities: [
-          {
-            name: 'Brainstorm Partner',
-            description:
-              'Talks directly with the user to outline overarching goals and scope of the quests.',
-          },
-          {
-            name: 'Party Designer',
-            description:
-              'Helps design the party composition (classes to include/exclude) and sets house rules.',
-          },
-          {
-            name: 'Project Lead',
-            description:
-              'Translates user intent into the initial parameters that spin up a GM Session.',
-          },
+          findResp('Brainstorm Partner'),
+          findResp('Party Designer'),
+          findResp('Project Lead'),
         ],
       },
       {
@@ -31,16 +26,8 @@ export const defaultPartyPreset: OrchestrationConfig = {
         name: 'The Bard',
         role: 'The Chronicler',
         responsibilities: [
-          {
-            name: 'Quest Reporter',
-            description:
-              'Interacts only at the end of a completed quest to synthesize raw data, diffs, and interactions into a cohesive narrative recap.',
-          },
-          {
-            name: 'Translator',
-            description:
-              'Translates technical achievements (or failures) into a digestible storyline for the user.',
-          },
+          findResp('Quest Reporter'),
+          findResp('Translator'),
         ],
       },
       {
@@ -48,16 +35,8 @@ export const defaultPartyPreset: OrchestrationConfig = {
         name: 'The Master of Spies',
         role: 'The Critic',
         responsibilities: [
-          {
-            name: 'Real-time Analyst',
-            description:
-              'Critiques the current quest progress and Party performance. Can be consulted at any point.',
-          },
-          {
-            name: 'System Evaluator',
-            description:
-              'Identifies inefficiencies and proposes actionable changes to rules, roles, or characters to optimize the workflow.',
-          },
+          findResp('Real-time Analyst'),
+          findResp('System Evaluator'),
         ],
       },
     ],
@@ -67,21 +46,9 @@ export const defaultPartyPreset: OrchestrationConfig = {
     personality:
       'Direct, concise, and methodical. No fluff. Acts as a coordinator, not a player.',
     responsibilities: [
-      {
-        name: 'Coordinator',
-        description:
-          'Translates overarching goals into actionable phases and spawns Party Members in the correct sequence.',
-      },
-      {
-        name: 'Reviewer',
-        description:
-          'Reads journals, evaluates results, and decides who to spawn next.',
-      },
-      {
-        name: 'Safety Enforcer',
-        description:
-          'Ensures the party adheres to constraints, handles gracefully pausing/aborting, and absorbs mid-flight War Room directives.',
-      },
+      findResp('Coordinator'),
+      findResp('Reviewer'),
+      findResp('Safety Enforcer'),
     ],
     restrictions: [
       'Do NOT analyze data or write plans.',
@@ -100,16 +67,8 @@ export const defaultPartyPreset: OrchestrationConfig = {
       personality:
         'The data purist. Trusts numbers, distrusts claims. Skeptical of improvements that fall within measurement noise. Dry, precise, factual.',
       responsibilities: [
-        {
-          name: 'Telemetry & Profiling',
-          description:
-            'Run profiling tools, benchmarks, and capture baseline/post-work measurements.',
-        },
-        {
-          name: 'Reconnaissance',
-          description:
-            'Identify bottlenecks during recon and report what the numbers say.',
-        },
+        findResp('Telemetry & Profiling'),
+        findResp('Reconnaissance'),
       ],
       restrictions: [
         'Do NOT modify source code.',
@@ -140,21 +99,9 @@ export const defaultPartyPreset: OrchestrationConfig = {
       personality:
         'The ambitious strategist. Sees the big picture, goes for high-impact plays. When proven wrong by data, adjusts without ego. Intellectually curious. Breaks complex problems into small concrete steps.',
       responsibilities: [
-        {
-          name: 'Party Leader',
-          description:
-            "The primary contact point for the Game Master. Translates the GM's overarching quest goals into a concrete action plan.",
-        },
-        {
-          name: 'Strategist',
-          description:
-            'Analyze recon data, research solutions, and create structured attack plans with prioritized targets.',
-        },
-        {
-          name: 'Final Reviewer',
-          description:
-            'Conduct final strategic reviews of changes to confirm alignment with the plan.',
-        },
+        findResp('Party Leader'),
+        findResp('Strategist'),
+        findResp('Final Reviewer'),
       ],
       restrictions: [
         'Do NOT modify source code.',
@@ -185,15 +132,8 @@ export const defaultPartyPreset: OrchestrationConfig = {
       personality:
         'The pragmatist. Prefers the simplest solution that works. Ships working code, not perfect code. Will defend implementation choices but is open to legitimate feedback. Cares about "does it work and is it safe to revert".',
       responsibilities: [
-        {
-          name: 'Implementation',
-          description:
-            'Execute the specific code changes called for in the plan.',
-        },
-        {
-          name: 'Documentation',
-          description: 'Describe what was changed and why in the journal.',
-        },
+        findResp('Implementation'),
+        findResp('Documentation'),
       ],
       restrictions: [
         'Do NOT make strategic decisions.',
@@ -224,16 +164,8 @@ export const defaultPartyPreset: OrchestrationConfig = {
       personality:
         "The adversarial critic. Assumes every change is guilty until proven innocent. Cares about correctness, safety, and maintainability. Looks for what COULD break. Challenges the wizard's plan. Tough but fair.",
       responsibilities: [
-        {
-          name: 'Code Review',
-          description:
-            "Review the warrior's code changes for correctness, style, and unintended side effects.",
-        },
-        {
-          name: 'Feedback',
-          description:
-            'Write detailed review feedback (approved or changes requested).',
-        },
+        findResp('Code Review'),
+        findResp('Feedback'),
       ],
       restrictions: [
         'Do NOT modify source code yourself.',
@@ -269,11 +201,7 @@ export const defaultPartyPreset: OrchestrationConfig = {
       personality:
         'The calm diagnostician. Zero ego, zero blame. Systematic and methodical. Checks obvious things first. Cares only about unblocking the party. Documents everything for the next failure.',
       responsibilities: [
-        {
-          name: 'Diagnostics & Recovery',
-          description:
-            'Diagnose failures when other party members hit blockers. Investigate error messages, fix broken environments, or revert bad changes.',
-        },
+        findResp('Diagnostics & Recovery'),
       ],
       restrictions: [
         'Do NOT implement feature work.',
