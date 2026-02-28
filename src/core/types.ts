@@ -22,6 +22,8 @@ export interface Responsibility {
   name: string;
   /** The full, detailed description of what this responsibility entails */
   description: string;
+  /** The level of orchestration this responsibility belongs to */
+  category?: 'meta' | 'gm' | 'party' | string;
 }
 
 export interface PartyMember {

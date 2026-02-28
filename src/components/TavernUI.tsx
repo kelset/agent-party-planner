@@ -99,7 +99,7 @@ export function TavernUI() {
       alert('A duty with this name already exists in the catalog.');
       return;
     }
-    setCustomResponsibilities((prev) => [...prev, { ...newDuty }]);
+    setCustomResponsibilities((prev) => [...prev, { ...newDuty, category: 'party' }]);
     setNewDuty({ name: '', description: '' });
   };
 
@@ -113,10 +113,26 @@ export function TavernUI() {
     setCustomResponsibilities((prev) => prev.filter(r => r.name !== name));
   };
 
+  const handleRemoveUnassigned = () => {
+    const assignedNames = new Set(
+      config.party.flatMap(m => m.responsibilities.map(r => r.name))
+    );
+    
+    setCustomResponsibilities(prev => 
+      prev.filter(r => 
+        // Keep if it's assigned
+        assignedNames.has(r.name) || 
+        // OR if it's NOT a party level one (keep meta/gm ones as they are hidden infrastructure)
+        r.category !== 'party'
+      )
+    );
+  };
+
   const handleResetResponsibilities = () => {
     setCustomResponsibilities((prev) => {
       const names = new Set(prev.map(r => r.name));
-      const missing = defaultResponsibilities.filter(r => !names.has(r.name));
+      // Only restore party-level defaults
+      const missing = defaultResponsibilities.filter(r => r.category === 'party' && !names.has(r.name));
       return [...prev, ...missing];
     });
   };
@@ -210,6 +226,11 @@ export function TavernUI() {
     });
     return Array.from(map.values());
   }, [config.party, customResponsibilities]);
+
+  const catalogResponsibilities = useMemo(() => {
+    // Only show "party" level ones in the catalog (or ones without a category, which we'll treat as party)
+    return allResponsibilities.filter(r => !r.category || r.category === 'party');
+  }, [allResponsibilities]);
 
   const editingMember = useMemo(
     () => config.party.find((m) => m.id === editingMemberId),
@@ -339,8 +360,9 @@ export function TavernUI() {
         newDuty={newDuty}
         setNewDuty={setNewDuty}
         handleAddDuty={handleAddDuty}
-        allResponsibilities={allResponsibilities}
+        allResponsibilities={catalogResponsibilities}
         onRemoveDuty={handleRemoveDuty}
+        onRemoveUnassigned={handleRemoveUnassigned}
         onReset={handleResetResponsibilities}
       />
 

@@ -9,6 +9,7 @@ export interface ResponsibilitiesCatalogProps {
   handleAddDuty: () => void;
   allResponsibilities: Responsibility[];
   onRemoveDuty: (name: string) => void;
+  onRemoveUnassigned: () => void;
   onReset: () => void;
 }
 
@@ -20,6 +21,7 @@ export function ResponsibilitiesCatalog({
   handleAddDuty,
   allResponsibilities,
   onRemoveDuty,
+  onRemoveUnassigned,
   onReset
 }: ResponsibilitiesCatalogProps) {
   return (
@@ -61,12 +63,20 @@ export function ResponsibilitiesCatalog({
               <h4 class="text-xs font-black uppercase tracking-widest text-ink-deep font-mono">
                 Define a New Duty
               </h4>
-              <button
-                onClick={onReset}
-                class="px-3 py-1.5 bg-parchment-base hover:bg-parchment border-[2px] border-ink-deep text-ink-faded hover:text-ink-deep font-black uppercase tracking-widest text-[9px] rounded-sm transition-all active:translate-y-[2px] active:translate-x-[2px] font-mono shadow-[2px_2px_0_var(--color-ink-deep)] active:shadow-none"
-              >
-                Restore Defaults
-              </button>
+              <div class="flex gap-2">
+                <button
+                  onClick={onRemoveUnassigned}
+                  class="px-3 py-1.5 bg-crimson/10 hover:bg-crimson border-[2px] border-crimson/50 hover:border-crimson text-crimson hover:text-white font-black uppercase tracking-widest text-[9px] rounded-sm transition-all active:translate-y-[2px] active:translate-x-[2px] font-mono shadow-[2px_2px_0_rgba(185,56,56,0.2)] active:shadow-none"
+                >
+                  Clear Unassigned
+                </button>
+                <button
+                  onClick={onReset}
+                  class="px-3 py-1.5 bg-parchment-base hover:bg-parchment border-[2px] border-ink-deep text-ink-faded hover:text-ink-deep font-black uppercase tracking-widest text-[9px] rounded-sm transition-all active:translate-y-[2px] active:translate-x-[2px] font-mono shadow-[2px_2px_0_var(--color-ink-deep)] active:shadow-none"
+                >
+                  Restore Defaults
+                </button>
+              </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
               <div class="md:col-span-1">
