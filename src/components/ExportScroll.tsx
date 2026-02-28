@@ -11,7 +11,7 @@ export interface ExportScrollProps {
 
 export function ExportScroll({ platform, setPlatform, isExporting, onExport, onShare }: ExportScrollProps) {
   return (
-    <div class="mt-16 mb-24 relative flex justify-center px-6">
+    <div class="mt-16 mb-8 relative flex justify-center px-6">
       <div class="relative w-full max-w-2xl drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)]">
         {/* Top Roll */}
         <div class="absolute -top-5 left-0 right-0 h-10 bg-gradient-to-b from-parchment-aged via-parchment-dark to-[#917152] border-[3px] border-ink-deep z-20 flex items-center justify-between">

@@ -33,11 +33,6 @@
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--color-tavern-950);
-  background-image: 
-    linear-gradient(45deg, var(--color-tavern-900) 25%, transparent 25%, transparent 75%, var(--color-tavern-900) 75%, var(--color-tavern-900)),
-    linear-gradient(45deg, var(--color-tavern-900) 25%, transparent 25%, transparent 75%, var(--color-tavern-900) 75%, var(--color-tavern-900));
-  background-size: 32px 32px;
-  background-position: 0 0, 16px 16px;
 }
 
 .dnd-card {
