@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'preact/hooks';
+import { useState, useMemo, useEffect } from 'preact/hooks';
+import LZString from 'lz-string';
 import type {
   OrchestrationConfig,
   Responsibility,
@@ -22,16 +23,70 @@ export function TavernUI() {
   const [newDuty, setNewDuty] = useState({ name: '', description: '' });
   const [platform, setPlatform] = useState<Platform>('claude');
   const [isExporting, setIsExporting] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sharedConfig = urlParams.get('party');
+    let loadedConfig = null;
+
+    if (sharedConfig) {
+      try {
+        const decoded = LZString.decompressFromEncodedURIComponent(sharedConfig);
+        if (decoded) {
+          loadedConfig = JSON.parse(decoded);
+          // Clean up the URL so it doesn't linger
+          window.history.replaceState({}, '', window.location.pathname);
+        }
+      } catch (e) {
+        console.error('Failed to parse shared config from URL', e);
+      }
+    }
+
+    if (!loadedConfig) {
+      const saved = localStorage.getItem('party-planner-config');
+      if (saved) {
+        try {
+          loadedConfig = JSON.parse(saved);
+        } catch (e) {
+          console.error('Failed to parse saved config from localStorage', e);
+        }
+      }
+    }
+
+    if (loadedConfig) {
+      setConfig(loadedConfig);
+    }
+    
+    setIsInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem('party-planner-config', JSON.stringify(config));
+    }
+  }, [config, isInitialized]);
+
+  const handleShare = () => {
+    const encoded = LZString.compressToEncodedURIComponent(JSON.stringify(config));
+    const url = `${window.location.origin}${window.location.pathname}?party=${encoded}`;
+    navigator.clipboard.writeText(url).then(() => {
+      alert('Party configuration URL copied to clipboard! You can share this link with others.');
+    }).catch(err => {
+      console.error('Failed to copy link', err);
+      alert('Failed to copy link to clipboard.');
+    });
+  };
 
   const handleAddDuty = () => {
     if (!newDuty.name || !newDuty.description) return;
-    setCustomResponsibilities((prev) => [...prev, { ...newDuty }]);
+    setCustomResponsibilities((prev) => [prev, { newDuty }]);
     setNewDuty({ name: '', description: '' });
   };
 
   const handleRemoveMember = (id: string) => {
     setConfig((prev) => ({
-      ...prev,
+      prev,
       party: prev.party.filter((m) => m.id !== id),
     }));
     setEditingMemberId(null);
@@ -41,13 +96,13 @@ export function TavernUI() {
   const handleSaveMember = (updatedMember: PartyMember) => {
     if (pendingMember) {
       setConfig((prev) => ({
-        ...prev,
-        party: [...prev.party, updatedMember],
+        prev,
+        party: [prev.party, updatedMember],
       }));
       setPendingMember(null);
     } else {
       setConfig((prev) => ({
-        ...prev,
+        prev,
         party: prev.party.map((m) =>
           m.id === updatedMember.id ? updatedMember : m
         ),
@@ -132,6 +187,10 @@ export function TavernUI() {
 
   const activeMember = editingMember || pendingMember;
 
+  // Don't render until client-side hydration has checked storage/url to prevent flash of default
+  // But to be SEO friendly we should render something. For Astro it's better to render default then swap
+  // We just let it render default Party.
+
   return (
     <section id="the-party" class="py-12 flex flex-col gap-12">
       {/* Member Editor Modal */}
@@ -155,14 +214,32 @@ export function TavernUI() {
       }
 
       {/* Header */}
-      <div class="border-b border-tavern-800 pb-8">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-parchment italic mb-4">
-          Assemble Your Party
-        </h1>
-        <p class="text-slate-400 max-w-2xl">
-          Configure your active roster by editing roles, defining relationships,
-          and removing agents you don't need.
-        </p>
+      <div class="border-b border-tavern-800 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-extrabold text-parchment italic mb-4">
+            Assemble Your Party
+          </h1>
+          <p class="text-slate-400 max-w-2xl">
+            Configure your active roster by editing roles, defining relationships,
+            and removing agents you don't need.
+          </p>
+        </div>
+        
+      </div>
+
+      {/* War Room Callout */}
+      <div class="p-5 bg-slate-900/50 border border-gold-600/20 rounded-xl flex flex-col sm:flex-row gap-5 items-start">
+        <div class="w-12 h-12 rounded-full bg-gold-900/30 border border-gold-600/50 flex items-center justify-center shrink-0">
+          <span class="text-2xl">🏰</span>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-gold-500 uppercase tracking-widest mb-1">
+            The War Room is Ready
+          </h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Your overarching meta-orchestration is overseen by a fixed, highly-opinionated <strong>War Room</strong> consisting of the <strong class="text-parchment">Game Creator</strong>, the <strong class="text-parchment">Master of Spies</strong>, and the <strong class="text-parchment">Bard</strong>. This meta-layer provides strategic planning, performance evaluation, and engaging recaps, leaving you to focus entirely on customizing the execution Party below.
+          </p>
+        </div>
       </div>
 
       {/* Roster Grid */}
@@ -275,7 +352,7 @@ export function TavernUI() {
                     value={newDuty.name}
                     onInput={(e) =>
                       setNewDuty({
-                        ...newDuty,
+                        newDuty,
                         name: (e.target as HTMLInputElement).value,
                       })
                     }
@@ -288,11 +365,11 @@ export function TavernUI() {
                   </label>
                   <input
                     type="text"
-                    placeholder="e.g. Scans legacy logs for patterns..."
+                    placeholder="e.g. Scans legacy logs for patterns"
                     value={newDuty.description}
                     onInput={(e) =>
                       setNewDuty({
-                        ...newDuty,
+                        newDuty,
                         description: (e.target as HTMLInputElement).value,
                       })
                     }
@@ -329,45 +406,117 @@ export function TavernUI() {
         )}
       </div>
 
-      {/* Export Action Bar */}
-      <div class="pt-8 border-t border-tavern-800 flex flex-col sm:flex-row items-center justify-end gap-4">
-        <div class="relative w-full sm:w-64">
-          <select
-            value={platform}
-            onInput={(e) =>
-              setPlatform((e.target as HTMLSelectElement).value as Platform)
-            }
-            class="appearance-none w-full bg-slate-900 border-2 border-tavern-800 text-slate-200 py-4 pl-4 pr-10 rounded-lg focus:outline-none focus:border-gold-600/50 cursor-pointer text-sm font-bold tracking-wide h-[56px] shadow-inner"
+      {/* Export Action Scroll (Pixel Art / Retro RPG Inspo) */}
+      <div class="mt-16 mb-24 relative flex justify-center px-6">
+        <div class="relative w-full max-w-2xl drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)]">
+          {/* Top Roll */}
+          <div class="absolute -top-5 left-0 right-0 h-10 bg-gradient-to-b from-[#c8a98a] via-[#af8d6b] to-[#917152] border-[3px] border-[#2c1e16] z-20 flex items-center justify-between">
+            {/* Left Spindle */}
+            <div class="absolute -left-[20px] flex items-center z-10">
+              <div class="w-[8px] h-[12px] bg-[#5c4033] border-y-[3px] border-l-[3px] border-[#2c1e16] rounded-l-[2px]"></div>
+              <div class="w-[12px] h-[24px] bg-[#75513f] border-[3px] border-[#2c1e16]"></div>
+            </div>
+            {/* Right Spindle */}
+            <div class="absolute -right-[20px] flex items-center z-10">
+              <div class="w-[12px] h-[24px] bg-[#75513f] border-[3px] border-[#2c1e16]"></div>
+              <div class="w-[8px] h-[12px] bg-[#5c4033] border-y-[3px] border-r-[3px] border-[#2c1e16] rounded-r-[2px]"></div>
+            </div>
+            {/* Roll details */}
+            <div class="w-full h-full flex flex-col justify-evenly py-[6px] opacity-40">
+              <div class="w-full h-[3px] bg-[#2c1e16]"></div>
+              <div class="w-full h-[3px] bg-[#2c1e16]"></div>
+            </div>
+          </div>
+
+          {/* Main Scroll Body */}
+          <div 
+            class="relative bg-[#af8d6b] border-[3px] border-t-0 border-b-0 border-[#2c1e16] text-[#2c1e16] pt-12 pb-16 px-6 md:px-12 z-10"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(44, 30, 22, 0.15) 3px, transparent 3px),
+                linear-gradient(to bottom, rgba(44, 30, 22, 0.15) 3px, transparent 3px)
+              `,
+              backgroundSize: '48px 48px',
+              backgroundPosition: 'center top'
+            }}
           >
-            <option value="claude">Claude (Anthropic)</option>
-            <option value="gemini">Gemini (Google)</option>
-            <option value="openai">ChatGPT (OpenAI)</option>
-            <option value="other">Other Agents</option>
-            <option value="markdown">Raw Markdown</option>
-          </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
+            {/* Content Container */}
+            <div class="text-center mb-10 relative z-10 bg-[#af8d6b]/90 p-4 rounded border-[3px] border-[#2c1e16]/10">
+              <h2 class="text-3xl md:text-4xl font-black uppercase tracking-widest text-[#2c1e16] mb-3 drop-shadow-[2px_2px_0_rgba(200,169,138,0.8)]" style={{ fontFamily: 'monospace' }}>Seal The Pact</h2>
+              <p class="text-[#4a3424] font-bold max-w-md mx-auto leading-relaxed">
+                Your party is assembled. Choose your orchestration realm, generate the sacred texts, and share your roster.
+              </p>
+            </div>
+
+            <div class="flex flex-col items-center gap-8 relative z-10 px-2">
+              {/* Step 1: Model Picker */}
+              <div class="w-full max-w-sm flex flex-col items-center text-center bg-[#c8a98a] border-[3px] border-[#2c1e16] p-5 shadow-[6px_6px_0_#2c1e16] transition-transform hover:-translate-y-1">
+                <span class="text-xs font-black text-[#2c1e16] uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-[#2c1e16]/20">I. Select Your Realm</span>
+                <div class="relative w-full mt-2">
+                  <select
+                    value={platform}
+                    onInput={(e) => setPlatform((e.target as HTMLSelectElement).value as Platform)}
+                    class="appearance-none w-full bg-[#e8dcb8] border-[3px] border-[#2c1e16] text-[#2c1e16] py-3 pl-4 pr-10 focus:outline-none focus:bg-[#fffcf5] cursor-pointer text-sm font-black tracking-wide transition-colors shadow-[4px_4px_0_rgba(44,30,22,0.2)]"
+                  >
+                    <option value="claude">Claude (Anthropic)</option>
+                    <option value="gemini">Gemini (Google)</option>
+                    <option value="openai">ChatGPT (OpenAI)</option>
+                    <option value="other">Other Agents</option>
+                    <option value="markdown">Raw Markdown</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2c1e16]">
+                    <svg class="w-6 h-6 stroke-[3px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" d="M19 9l-7 7-7-7"></path></svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 2: Generate */}
+              <div class="w-full max-w-sm flex flex-col items-center text-center bg-[#c8a98a] border-[3px] border-[#2c1e16] p-5 shadow-[6px_6px_0_#2c1e16] transition-transform hover:-translate-y-1">
+                <span class="text-xs font-black text-[#2c1e16] uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-[#2c1e16]/20">II. Forge The Documents</span>
+                <button
+                  onClick={handleExport}
+                  disabled={isExporting}
+                  class="w-full bg-[#b93838] hover:bg-[#a12e2e] text-white uppercase tracking-widest text-sm py-4 font-black disabled:opacity-50 disabled:cursor-not-allowed transition-all active:translate-y-[4px] active:translate-x-[4px] active:shadow-[0_0_0_#2c1e16] border-[3px] border-[#2c1e16] shadow-[4px_4px_0_#2c1e16] mt-2"
+                >
+                  {isExporting ? 'Scribing Scrolls' : 'Generate My Party'}
+                </button>
+              </div>
+
+              {/* Step 3: Share */}
+              <div class="w-full max-w-sm flex flex-col items-center text-center bg-[#c8a98a] border-[3px] border-[#2c1e16] p-5 shadow-[6px_6px_0_#2c1e16] transition-transform hover:-translate-y-1">
+                <span class="text-xs font-black text-[#2c1e16] uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-[#2c1e16]/20">III. Spread The Word</span>
+                <button
+                  onClick={handleShare}
+                  class="flex items-center justify-center gap-3 w-full bg-[#e8dcb8] hover:bg-[#fffcf5] text-[#2c1e16] uppercase tracking-widest text-sm py-4 font-black transition-all active:translate-y-[4px] active:translate-x-[4px] active:shadow-[0_0_0_#2c1e16] border-[3px] border-[#2c1e16] shadow-[4px_4px_0_#2c1e16] mt-2"
+                >
+                  <svg class="w-5 h-5 stroke-[3px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="square" stroke-linejoin="miter" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                  </svg>
+                  Copy Roster Link
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Roll */}
+          <div class="absolute -bottom-5 left-0 right-0 h-10 bg-gradient-to-t from-[#c8a98a] via-[#af8d6b] to-[#917152] border-[3px] border-[#2c1e16] z-20 flex items-center justify-between shadow-[0_10px_10px_rgba(0,0,0,0.3)]">
+            {/* Left Spindle */}
+            <div class="absolute -left-[20px] flex items-center z-10">
+              <div class="w-[8px] h-[12px] bg-[#5c4033] border-y-[3px] border-l-[3px] border-[#2c1e16] rounded-l-[2px]"></div>
+              <div class="w-[12px] h-[24px] bg-[#75513f] border-[3px] border-[#2c1e16]"></div>
+            </div>
+            {/* Right Spindle */}
+            <div class="absolute -right-[20px] flex items-center z-10">
+              <div class="w-[12px] h-[24px] bg-[#75513f] border-[3px] border-[#2c1e16]"></div>
+              <div class="w-[8px] h-[12px] bg-[#5c4033] border-y-[3px] border-r-[3px] border-[#2c1e16] rounded-r-[2px]"></div>
+            </div>
+            {/* Roll details */}
+            <div class="w-full h-full flex flex-col justify-evenly py-[6px] opacity-40">
+              <div class="w-full h-[3px] bg-[#2c1e16]"></div>
+              <div class="w-full h-[3px] bg-[#2c1e16]"></div>
+            </div>
           </div>
         </div>
-        <button
-          onClick={handleExport}
-          disabled={isExporting}
-          class="dnd-button-primary uppercase tracking-widest text-sm w-full sm:w-auto px-10 h-[56px] shadow-lg shadow-gold-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isExporting ? 'Generating...' : 'Generate My Party'}
-        </button>
       </div>
     </section>
   );
