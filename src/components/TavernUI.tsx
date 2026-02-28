@@ -318,19 +318,21 @@ export function TavernUI() {
           })}
 
           {/* Add Member Placeholder */}
-          <button
-            onClick={handleRecruitMember}
-            class="border-[3px] border-dashed border-ink-deep/50 rounded-sm bg-parchment-dark/10 hover:bg-parchment-dark/30 hover:border-ink-deep hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center min-h-[360px] h-full cursor-pointer group shadow-[inset_0_0_20px_rgba(44,30,22,0.1)] p-6"
-          >
-            <div class="w-16 h-16 rounded-sm bg-parchment-base border-[3px] border-ink-deep/50 flex items-center justify-center group-hover:bg-gold-400 group-hover:border-ink-deep transition-colors mb-4 shadow-[2px_2px_0_rgba(44,30,22,0.2)] group-hover:shadow-[4px_4px_0_var(--color-ink-deep)]">
-              <span class="text-3xl font-black text-ink-deep/50 group-hover:text-ink-deep transition-colors">
-                +
+          <div class="relative pt-3 pb-2 w-full max-w-[340px] mx-auto flex flex-col group transition-transform duration-300 hover:-translate-y-2">
+            <button
+              onClick={handleRecruitMember}
+              class="border-[3px] border-dashed border-ink-deep/50 rounded-sm bg-parchment-dark/10 hover:bg-parchment-dark/30 hover:border-ink-deep transition-all duration-300 flex flex-col items-center justify-center min-h-[300px] flex-1 cursor-pointer shadow-[6px_6px_0_var(--color-ink-deep)] p-6"
+            >
+              <div class="w-16 h-16 rounded-sm bg-parchment-base border-[3px] border-ink-deep/50 flex items-center justify-center group-hover:bg-gold-400 group-hover:border-ink-deep transition-colors mb-4 shadow-[2px_2px_0_rgba(44,30,22,0.2)] group-hover:shadow-[4px_4px_0_var(--color-ink-deep)]">
+                <span class="text-3xl font-black text-ink-deep/50 group-hover:text-ink-deep transition-colors">
+                  +
+                </span>
+              </div>
+              <span class="text-ink-deep/60 font-black uppercase tracking-widest text-sm group-hover:text-ink-deep transition-colors font-mono">
+                Recruit Member
               </span>
-            </div>
-            <span class="text-ink-deep/60 font-black uppercase tracking-widest text-sm group-hover:text-ink-deep transition-colors font-mono">
-              Recruit Member
-            </span>
-          </button>
+            </button>
+          </div>
         </div>
 
         {config.party.length < config.constraints.minPartyMembers && (

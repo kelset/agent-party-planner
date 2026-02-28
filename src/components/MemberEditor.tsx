@@ -93,6 +93,36 @@ export function MemberEditor({
     });
   };
 
+  // Available agent classes
+  const AVAILABLE_CLASSES = [
+    'Ranger',
+    'Wizard',
+    'Warrior',
+    'Warlock',
+    'Healer',
+    'Bard',
+    'Paladin',
+    'Rogue',
+  ];
+
+  const handleCycleClass = (direction: 'prev' | 'next') => {
+    const currentIndex = AVAILABLE_CLASSES.indexOf(editedMember.agentClass);
+    let nextIndex;
+    if (direction === 'next') {
+      nextIndex = (currentIndex + 1) % AVAILABLE_CLASSES.length;
+    } else {
+      nextIndex = (currentIndex - 1 + AVAILABLE_CLASSES.length) % AVAILABLE_CLASSES.length;
+    }
+    const nextClass = AVAILABLE_CLASSES[nextIndex];
+
+    setEditedMember((prev) => ({
+      ...prev,
+      agentClass: nextClass,
+      // If the name is still the default "New [Class]", update it too
+      name: prev.name.startsWith('New ') ? `New ${nextClass}` : prev.name
+    }));
+  };
+
   return (
     <div
       class={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-tavern-950/80 backdrop-blur-sm ${
@@ -108,15 +138,39 @@ export function MemberEditor({
         {/* Left Side: Identity & Personality */}
         <div class="w-full md:w-1/3 p-6 md:p-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink-deep overflow-y-auto bg-parchment">
           <div class="mb-8 flex flex-col items-center gap-4 text-center">
-            <div class="w-32 h-32 bg-parchment-dark border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] relative group overflow-hidden"
-                 style={{ backgroundImage: `linear-gradient(to right, rgba(44, 30, 22, 0.1) 2px, transparent 2px), linear-gradient(to bottom, rgba(44, 30, 22, 0.1) 2px, transparent 2px)`, backgroundSize: '16px 16px' }}>
-              <img
-                src={`/images/roles/${editedMember.agentClass.toLowerCase()}.png`}
-                alt={editedMember.agentClass}
-                class="w-full h-full object-cover"
-                style={{ imageRendering: 'pixelated' }}
-              />
+            <div class="relative group mb-2">
+              {/* Cycle Buttons */}
+              <button
+                onClick={() => handleCycleClass('prev')}
+                class="absolute left-[-32px] top-1/2 -translate-y-1/2 w-10 h-10 bg-parchment-base border-[3px] border-ink-deep shadow-[3px_3px_0_var(--color-ink-deep)] rounded-sm flex items-center justify-center text-ink-deep hover:bg-gold-400 active:translate-y-[0.5px] active:translate-x-[0.5px] active:shadow-[2.5px_2.5px_0_var(--color-ink-deep)] transition-all z-20 cursor-pointer"
+                title="Previous Class"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-[4px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="square" stroke-linejoin="miter" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <div class="w-[134px] h-[134px] bg-parchment-dark border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] relative overflow-hidden"
+                   style={{ backgroundImage: `linear-gradient(to right, rgba(44, 30, 22, 0.1) 2px, transparent 2px), linear-gradient(to bottom, rgba(44, 30, 22, 0.1) 2px, transparent 2px)`, backgroundSize: '16px 16px' }}>
+                <img
+                  src={`/images/roles/${editedMember.agentClass.toLowerCase()}.png`}
+                  alt={editedMember.agentClass}
+                  class="w-full h-full object-cover transition-transform duration-300"
+                  style={{ imageRendering: 'pixelated' }}
+                />
+              </div>
+
+              <button
+                onClick={() => handleCycleClass('next')}
+                class="absolute right-[-32px] top-1/2 -translate-y-1/2 w-10 h-10 bg-parchment-base border-[3px] border-ink-deep shadow-[3px_3px_0_var(--color-ink-deep)] rounded-sm flex items-center justify-center text-ink-deep hover:bg-gold-400 active:translate-y-[0.5px] active:translate-x-[0.5px] active:shadow-[2.5px_2.5px_0_var(--color-ink-deep)] transition-all z-20 cursor-pointer"
+                title="Next Class"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-[4px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="square" stroke-linejoin="miter" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
+
             <div class="w-full mt-2">
               <label class="block text-xs font-black uppercase tracking-widest text-ink-deep mb-2 font-mono drop-shadow-[1px_1px_0_var(--color-parchment-aged)]">
                 Agent Name
@@ -132,6 +186,9 @@ export function MemberEditor({
                 }
                 class="w-full bg-parchment-light border-[3px] border-ink-deep rounded-sm px-4 py-2 text-ink-deep font-black focus:outline-none focus:bg-white transition-colors text-center shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)]"
               />
+              <div class="mt-2 inline-block px-3 py-1 bg-gold-400 border-2 border-ink-deep text-[10px] font-black uppercase tracking-tighter font-mono shadow-[1px_1px_0_var(--color-ink-deep)]">
+                Class: {editedMember.agentClass}
+              </div>
             </div>
           </div>
 
@@ -270,20 +327,20 @@ export function MemberEditor({
           <div class="flex flex-col gap-3 mt-6 pt-4 border-t-[3px] border-ink-deep/20">
             <button
               onClick={handleSave}
-              class="w-full py-4 bg-crimson hover:bg-crimson-hover text-white font-black uppercase tracking-widest text-sm rounded-sm shadow-[4px_4px_0_var(--color-ink-deep)] transition-all active:translate-y-[4px] active:translate-x-[4px] active:shadow-[0_0_0_var(--color-ink-deep)] border-[3px] border-ink-deep"
+              class="w-full py-4 bg-crimson hover:bg-crimson-hover text-white font-black uppercase tracking-widest text-sm rounded-sm shadow-[4px_4px_0_var(--color-ink-deep)] transition-all active:translate-y-[4px] active:translate-x-[4px] active:shadow-[0_0_0_var(--color-ink-deep)] border-[3px] border-ink-deep cursor-pointer"
             >
               {isNew ? 'Confirm Recruitment' : 'Apply Changes'}
             </button>
             <div class="flex gap-3">
               <button
                 onClick={isNew ? handleDiscard : handleRemove}
-                class="flex-1 py-3 bg-parchment hover:bg-parchment-light text-crimson border-[3px] border-ink-deep font-black uppercase tracking-widest text-xs rounded-sm shadow-[2px_2px_0_var(--color-ink-deep)] transition-all active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)]"
+                class="flex-1 py-3 bg-parchment hover:bg-parchment-light text-crimson border-[3px] border-ink-deep font-black uppercase tracking-widest text-xs rounded-sm shadow-[2px_2px_0_var(--color-ink-deep)] transition-all active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)] cursor-pointer"
               >
                 {isNew ? 'Discard Draft' : 'Dismiss Agent'}
               </button>
               <button
                 onClick={handleClose}
-                class="flex-1 py-3 bg-parchment-aged hover:bg-parchment text-ink-deep border-[3px] border-ink-deep font-black uppercase tracking-widest text-xs rounded-sm shadow-[2px_2px_0_var(--color-ink-deep)] transition-all active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)]"
+                class="flex-1 py-3 bg-parchment-aged hover:bg-parchment text-ink-deep border-[3px] border-ink-deep font-black uppercase tracking-widest text-xs rounded-sm shadow-[2px_2px_0_var(--color-ink-deep)] transition-all active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)] cursor-pointer"
               >
                 Cancel
               </button>

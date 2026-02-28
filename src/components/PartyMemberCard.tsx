@@ -108,16 +108,16 @@ export function PartyMemberCard({
             >
               {/* Ribbon Ends */}
               <div
-                class={`absolute -top-[3px] -left-[20px] w-0 h-0 border-y-[18px] border-y-transparent border-r-[20px] border-r-ink-deep`}
+                class={`absolute -top-[3px] -left-[20px] w-0 h-0 border-y-[20px] border-y-transparent border-r-[20px] border-r-ink-deep`}
               ></div>
               <div
-                class={`absolute top-[0px] -left-[16px] w-0 h-0 border-y-[15px] border-y-transparent border-r-[16px] ${theme.ribbonL}`}
+                class={`absolute top-0 -left-[16px] w-0 h-0 border-y-[17px] border-y-transparent border-r-[16px] ${theme.ribbonL}`}
               ></div>
               <div
-                class={`absolute -top-[3px] -right-[20px] w-0 h-0 border-y-[18px] border-y-transparent border-l-[20px] border-l-ink-deep`}
+                class={`absolute -top-[3px] -right-[20px] w-0 h-0 border-y-[20px] border-y-transparent border-l-[20px] border-l-ink-deep`}
               ></div>
               <div
-                class={`absolute top-[0px] -right-[16px] w-0 h-0 border-y-[15px] border-y-transparent border-l-[16px] ${theme.ribbonR}`}
+                class={`absolute top-0 -right-[16px] w-0 h-0 border-y-[17px] border-y-transparent border-l-[16px] ${theme.ribbonR}`}
               ></div>
 
               <h3 class="text-lg font-black text-parchment-light uppercase tracking-widest drop-shadow-[1px_1px_0_var(--color-ink-deep)] relative z-10 truncate leading-none mt-1 font-mono">
