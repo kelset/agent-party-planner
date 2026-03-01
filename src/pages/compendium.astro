@@ -15,11 +15,12 @@ import { LorenzoComment } from '../components/LorenzoComment';
       <!-- Navigation -->
       <nav class="flex justify-between items-center mb-16 bg-parchment-base border-[3px] border-ink-deep p-4 shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm">
         <a href="/" class="flex items-center gap-3 group">
-          <div
-            class="w-8 h-8 bg-crimson border-[2px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center group-hover:translate-y-[2px] group-hover:translate-x-[2px] group-hover:shadow-[0_0_0_var(--color-ink-deep)] transition-all"
-          >
-            <span class="text-white font-black text-lg leading-none font-mono">A</span>
-          </div>
+          <img
+            src="/images/logo-sm.png"
+            alt="Agents Party"
+            class="w-10 h-10 group-hover:-translate-y-0.5 group-hover:scale-105 transition-all object-contain rendering-pixelated"
+            style="image-rendering: pixelated;"
+          />
           <span
             class="font-black tracking-widest text-ink-deep uppercase text-sm group-hover:text-crimson transition-colors font-mono"
             >Agents Party</span
@@ -47,7 +48,7 @@ import { LorenzoComment } from '../components/LorenzoComment';
         <p class="text-xl text-ink-deep font-bold mb-12 leading-relaxed bg-parchment p-6 border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm relative text-center">
           The <strong>Agents Party</strong> is an interactive web tool that
           lets you visually configure and export <em>Agent Orchestration</em> packages.
-          Using a Dungeons &amp; Dragons theme, you can assemble a "Party" of specialized
+          Using a fantasy RPG inspired theme, you can assemble a "Party" of specialized
           AI agents, customize their personalities, and download a ready-to-use orchestration
           setup tailored for platforms like Gemini or Claude. All entirely in your
           browser.
@@ -177,6 +178,10 @@ import { LorenzoComment } from '../components/LorenzoComment';
                 </div>
               </div>
             </div>
+            
+            <LorenzoComment class="mt-8 mb-2">
+              Of course, this standard lifecycle is just the default baseline. You can and should adapt it to fit the unique needs and composition of your specific party!
+            </LorenzoComment>
           </section>
 
           <section
