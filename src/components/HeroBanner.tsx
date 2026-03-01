@@ -35,8 +35,8 @@ export function HeroBanner() {
           <div class="absolute top-1 md:top-2 left-0 right-0 h-1.5 md:h-2 bg-gold-400 border-y-[2px] border-ink-deep opacity-90"></div>
           <div class="absolute bottom-1 md:bottom-2 left-0 right-0 h-1.5 md:h-2 bg-gold-400 border-y-[2px] border-ink-deep opacity-90"></div>
 
-          <h1 class="font-black uppercase tracking-widest text-parchment-light drop-shadow-[4px_4px_0_var(--color-ink-deep)] font-mono leading-none text-center px-4 relative z-20 whitespace-nowrap"
-              style={{ fontSize: 'clamp(2rem, 7vw, 10rem)' }}>
+          <h1 class="font-black uppercase tracking-widest text-parchment-light drop-shadow-[4px_4px_0_var(--color-ink-deep)] font-mono leading-none text-center px-4 relative z-20 whitespace-nowrap max-w-[90%]"
+              style={{ fontSize: 'clamp(1.5rem, 5vw, 5.5rem)' }}>
             Assemble Your Party
           </h1>
         </div>
