@@ -272,7 +272,7 @@ export function TavernUI() {
             Assemble Your Party
           </h1>
           <LorenzoComment>
-            I had an idea for an Agent Orchestrator. I could have just made a GitHub Gist, but <br class="hidden md:block" /> instead I built a whole website for it. Play with it, assemble your roster, and have fun!
+            I had an idea for an Agent Orchestrator. I could have just made a GitHub Gist, but <br class="hidden md:block" /> instead I built a whole website for it. Play with it, assemble your roster, and have fun!<br class="hidden md:block" /> <span class="italic opacity-80 mt-2 block">(psst: did I mention it's all OSS?!? <a href="https://github.com/kelset/agent-party-planner" class="underline hover:text-crimson transition-colors" target="_blank" rel="noopener noreferrer">the repo is here</a>)</span>
           </LorenzoComment>
         </div>
       </div>
