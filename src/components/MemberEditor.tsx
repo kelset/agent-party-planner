@@ -131,12 +131,12 @@ export function MemberEditor({
       onClick={(e) => e.target === e.currentTarget && handleClose()}
     >
       <div
-        class={`relative bg-parchment-base border-[3px] border-ink-deep rounded-sm shadow-[8px_8px_0_var(--color-ink-deep)] w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row ${
+        class={`relative bg-parchment-base border-[3px] border-ink-deep rounded-sm shadow-[8px_8px_0_var(--color-ink-deep)] w-full max-w-5xl max-h-[90vh] overflow-y-auto md:overflow-hidden flex flex-col md:flex-row ${
           isClosing ? 'animate-card-flip-reverse' : 'animate-card-flip'
         }`}
       >
         {/* Left Side: Identity & Personality */}
-        <div class="w-full md:w-1/3 p-6 md:p-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink-deep overflow-y-auto bg-parchment">
+        <div class="w-full md:w-1/3 p-6 md:p-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink-deep shrink-0 md:shrink md:overflow-y-auto bg-parchment">
           <div class="mb-8 flex flex-col items-center gap-4 text-center">
             <div class="relative group mb-2">
               {/* Cycle Buttons */}
@@ -230,12 +230,12 @@ export function MemberEditor({
         </div>
 
         {/* Middle: Responsibilities */}
-        <div class="w-full md:w-1/3 p-6 md:p-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink-deep flex flex-col overflow-hidden bg-parchment-aged relative">
+        <div class="w-full md:w-1/3 p-6 md:p-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink-deep flex flex-col md:overflow-hidden bg-parchment-aged relative shrink-0 md:shrink">
           <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
           <h3 class="text-xs font-black uppercase tracking-widest text-ink-deep mb-4 font-mono z-10 drop-shadow-[1px_1px_0_var(--color-parchment-dark)]">
             Responsibilities
           </h3>
-          <div class="flex-1 overflow-y-auto pr-2 space-y-3 z-10">
+          <div class="flex-1 md:overflow-y-auto pr-2 space-y-3 z-10">
             {allResponsibilities.map((r) => {
               const isAssigned = editedMember.responsibilities.some(
                 (res) => res.name === r.name
@@ -266,11 +266,11 @@ export function MemberEditor({
         </div>
 
         {/* Right Side: Relationships & Actions */}
-        <div class="w-full md:w-1/3 p-6 md:p-8 flex flex-col overflow-hidden bg-parchment-dark">
+        <div class="w-full md:w-1/3 p-6 md:p-8 flex flex-col md:overflow-hidden bg-parchment-dark shrink-0 md:shrink">
           <h3 class="text-xs font-black uppercase tracking-widest text-ink-deep mb-4 font-mono drop-shadow-[1px_1px_0_var(--color-parchment-aged)]">
             Relationships
           </h3>
-          <div class="flex-1 overflow-y-auto pr-2 space-y-4">
+          <div class="flex-1 md:overflow-y-auto pr-2 space-y-4">
             {otherMembers.length === 0 && (
               <p class="text-xs text-ink-deep font-bold italic bg-parchment/30 p-3 border-2 border-dashed border-ink-deep/30">
                 No other party members to relate to.

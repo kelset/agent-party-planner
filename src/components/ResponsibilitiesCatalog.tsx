@@ -1,4 +1,3 @@
-import { useState } from 'preact/hooks';
 import type { Responsibility } from '../core/types';
 
 export interface ResponsibilitiesCatalogProps {

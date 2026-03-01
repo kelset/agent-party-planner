@@ -37,7 +37,7 @@
 ## Phase 5: Polishing & Generalization 🏗️
 
 - [x] **Visual Identity:** Standardize the "Retro-Brutalist" style across all components and pages.
-- [ ] **Visual Polish:** Add card-entry animations and refine the "Forge" generation feedback.
-- [ ] **Responsive QA:** Ensure the Member Editor and Roster Grid are flawless on mobile.
-- [ ] **Agnosticism:** Verify that the core logic is fully decoupled from the D&D theme for future skins.
-- [ ] **Community:** Integrate a "Buy Me a Coffee" button and finalize Open Source documentation.
+- [x] **Visual Polish:** Add card-entry animations and refine the "Forge" generation feedback.
+- [x] **Responsive QA:** Ensure the Member Editor and Roster Grid are flawless on mobile.
+- [x] **Agnosticism:** Verify that the core logic is fully decoupled from the D&D theme for future skins.
+- [x] **Community:** Integrate a "Buy Me a Coffee" button and finalize Open Source documentation.

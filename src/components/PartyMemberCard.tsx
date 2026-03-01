@@ -4,6 +4,7 @@ interface Props {
   member: PartyMember;
   onEdit: (id: string) => void;
   hasAvailableResponsibilities: boolean;
+  index?: number;
 }
 
 const colorMap: Record<
@@ -46,11 +47,12 @@ export function PartyMemberCard({
   member,
   onEdit,
   hasAvailableResponsibilities,
+  index = 0,
 }: Props) {
   const theme = colorMap[member.agentClass] || colorMap.default;
 
   return (
-    <div class="relative pt-3 pb-2 group transition-transform duration-300 hover:-translate-y-2 w-full max-w-[340px] mx-auto flex flex-col">
+    <div class="relative pt-3 pb-2 group transition-transform duration-300 hover:-translate-y-2 w-full max-w-[340px] mx-auto flex flex-col animate-card-entry opacity-0" style={{ animationFillMode: 'forwards', animationDelay: `${index * 0.1}s` }}>
       {/* Main Card Body (The Frame) */}
       <div class="rounded-sm shadow-[6px_6px_0_var(--color-ink-deep)] relative flex-1 flex flex-col bg-parchment border-[3px] border-ink-deep overflow-visible">
         {/* Top Right Edit Button (The Triple Dot) */}

@@ -303,7 +303,7 @@ export function TavernUI() {
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
-          {config.party.map((member) => {
+          {config.party.map((member, index) => {
             const hasAvailableResponsibilities = allResponsibilities.some(
               (r) => !member.responsibilities.some((res) => res.name === r.name)
             );
@@ -313,12 +313,13 @@ export function TavernUI() {
                 member={member}
                 onEdit={setEditingMemberId}
                 hasAvailableResponsibilities={hasAvailableResponsibilities}
+                index={index}
               />
             );
           })}
 
           {/* Add Member Placeholder */}
-          <div class="relative pt-3 pb-2 w-full max-w-[340px] mx-auto flex flex-col group transition-transform duration-300 hover:-translate-y-2">
+          <div class="relative pt-3 pb-2 w-full max-w-[340px] mx-auto flex flex-col group transition-transform duration-300 hover:-translate-y-2 animate-card-entry opacity-0" style={{ animationFillMode: 'forwards', animationDelay: `${config.party.length * 0.1}s` }}>
             <button
               onClick={handleRecruitMember}
               class="border-[3px] border-dashed border-ink-deep/50 rounded-sm bg-parchment-dark/10 hover:bg-parchment-dark/30 hover:border-ink-deep transition-all duration-300 flex flex-col items-center justify-center min-h-[300px] flex-1 cursor-pointer shadow-[6px_6px_0_var(--color-ink-deep)] p-6"
