@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import type { PartyMember, Responsibility } from '../core/types';
+import { sanitizeString } from '../core/sanitizer';
 
 interface Props {
   member: PartyMember;
@@ -181,7 +182,7 @@ export function MemberEditor({
                 onInput={(e) =>
                   setEditedMember({
                     ...editedMember,
-                    name: (e.target as HTMLInputElement).value,
+                    name: sanitizeString((e.target as HTMLInputElement).value),
                   })
                 }
                 class="w-full bg-parchment-light border-[3px] border-ink-deep rounded-sm px-4 py-2 text-ink-deep font-black focus:outline-none focus:bg-white transition-colors text-center shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)]"
@@ -202,7 +203,7 @@ export function MemberEditor({
                 onInput={(e) =>
                   setEditedMember({
                     ...editedMember,
-                    classFantasy: (e.target as HTMLTextAreaElement).value,
+                    classFantasy: sanitizeString((e.target as HTMLTextAreaElement).value),
                   })
                 }
                 rows={3}
@@ -219,7 +220,7 @@ export function MemberEditor({
                 onInput={(e) =>
                   setEditedMember({
                     ...editedMember,
-                    personality: (e.target as HTMLTextAreaElement).value,
+                    personality: sanitizeString((e.target as HTMLTextAreaElement).value),
                   })
                 }
                 rows={10}
@@ -313,7 +314,7 @@ export function MemberEditor({
                       updateRelationship(
                         other.id,
                         rel?.type || 'neutral',
-                        (e.target as HTMLTextAreaElement).value
+                        sanitizeString((e.target as HTMLTextAreaElement).value)
                       )
                     }
                     rows={2}

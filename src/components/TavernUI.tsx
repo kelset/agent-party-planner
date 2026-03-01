@@ -14,6 +14,7 @@ import { ExportScroll } from './ExportScroll';
 import { LorenzoComment } from './LorenzoComment';
 import { OrchestrationForge } from '../core/forge';
 import { OrchestrationCourier } from '../core/courier';
+import { sanitizeConfig } from '../core/sanitizer';
 import type { Platform } from '../core/adapters';
 
 import { HeroBanner } from './HeroBanner';
@@ -40,7 +41,7 @@ export function TavernUI() {
       try {
         const decoded = LZString.decompressFromEncodedURIComponent(sharedConfig);
         if (decoded) {
-          loadedConfig = JSON.parse(decoded);
+          loadedConfig = sanitizeConfig(JSON.parse(decoded));
           // Clean up the URL so it doesn't linger
           window.history.replaceState({}, '', window.location.pathname);
         }
@@ -53,7 +54,7 @@ export function TavernUI() {
       const saved = localStorage.getItem('party-planner-config');
       if (saved) {
         try {
-          loadedConfig = JSON.parse(saved);
+          loadedConfig = sanitizeConfig(JSON.parse(saved));
         } catch (e) {
           console.error('Failed to parse saved config from localStorage', e);
         }
@@ -73,7 +74,7 @@ export function TavernUI() {
     const savedResponsibilities = localStorage.getItem('party-planner-responsibilities');
     if (savedResponsibilities) {
       try {
-        setCustomResponsibilities(JSON.parse(savedResponsibilities));
+        setCustomResponsibilities(sanitizeConfig(JSON.parse(savedResponsibilities)));
       } catch (e) {
         console.error('Failed to parse saved responsibilities', e);
       }

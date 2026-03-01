@@ -1,4 +1,5 @@
 import type { Responsibility } from '../core/types';
+import { sanitizeString } from '../core/sanitizer';
 
 export interface ResponsibilitiesCatalogProps {
   isCatalogOpen: boolean;
@@ -89,7 +90,7 @@ export function ResponsibilitiesCatalog({
                   onInput={(e) =>
                     setNewDuty({
                       ...newDuty,
-                      name: (e.target as HTMLInputElement).value,
+                      name: sanitizeString((e.target as HTMLInputElement).value),
                     })
                   }
                   class="w-full bg-white border-[3px] border-ink-deep rounded-sm px-4 py-3 text-ink-deep font-bold text-sm focus:outline-none shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)] transition-colors"
@@ -106,7 +107,7 @@ export function ResponsibilitiesCatalog({
                   onInput={(e) =>
                     setNewDuty({
                       ...newDuty,
-                      description: (e.target as HTMLInputElement).value,
+                      description: sanitizeString((e.target as HTMLInputElement).value),
                     })
                   }
                   class="w-full bg-white border-[3px] border-ink-deep rounded-sm px-4 py-3 text-ink-deep font-bold text-sm focus:outline-none shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)] transition-colors"
