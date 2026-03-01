@@ -16,6 +16,8 @@ import { OrchestrationForge } from '../core/forge';
 import { OrchestrationCourier } from '../core/courier';
 import type { Platform } from '../core/adapters';
 
+import { HeroBanner } from './HeroBanner';
+
 export function TavernUI() {
   const [config, setConfig] = useState<OrchestrationConfig>(defaultPartyPreset);
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
@@ -268,47 +270,7 @@ export function TavernUI() {
       {/* Header */}
       <div class="border-b-[3px] border-ink-deep/30 pb-12 mb-8 flex flex-col items-center text-center gap-6 w-full">
         <div class="w-full flex flex-col items-center">
-          <div class="relative w-full max-w-[110%] md:max-w-[120%] -ml-[5%] md:-ml-[10%] mb-12 flex justify-center drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)] z-10">
-            {/* The Horizontal Banner Structure */}
-            <div class="relative flex items-stretch w-full">
-              {/* Left End/Fold */}
-              <div class="relative w-12 md:w-20 shrink-0">
-                <div class="absolute inset-0 bg-crimson-active border-y-[4px] border-l-[4px] border-ink-deep" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 25% 50%)' }}></div>
-              </div>
-              
-              {/* Main Banner Body */}
-              <div class="relative flex-1 bg-crimson border-y-[4px] border-ink-deep flex items-center justify-center py-6 md:py-10 z-10"
-                   style={{
-                     backgroundImage: `linear-gradient(to right, rgba(44, 30, 22, 0.1) 4px, transparent 4px), linear-gradient(to bottom, rgba(44, 30, 22, 0.1) 4px, transparent 4px)`,
-                     backgroundSize: '32px 32px'
-                   }}>
-                   
-                {/* Gold Trims inside banner */}
-                <div class="absolute top-1 md:top-2 left-0 right-0 h-1 md:h-2 bg-gold-400 border-y-[2px] border-ink-deep opacity-80"></div>
-                <div class="absolute bottom-1 md:bottom-2 left-0 right-0 h-1 md:h-2 bg-gold-400 border-y-[2px] border-ink-deep opacity-80"></div>
-                
-                <h1 class="text-4xl sm:text-5xl md:text-[5.5rem] lg:text-[6.5rem] font-black uppercase tracking-widest text-parchment-light drop-shadow-[4px_4px_0_var(--color-ink-deep)] font-mono leading-none text-center whitespace-nowrap z-20">
-                  Assemble Your Party
-                </h1>
-              </div>
-
-              {/* Right End/Fold */}
-              <div class="relative w-12 md:w-20 shrink-0">
-                <div class="absolute inset-0 bg-crimson-active border-y-[4px] border-r-[4px] border-ink-deep" style={{ clipPath: 'polygon(0 0, 100% 0, 75% 50%, 100% 100%, 0 100%)' }}></div>
-              </div>
-              
-              {/* Spindles / Poles holding the banner */}
-              <div class="absolute -left-2 top-[-10px] bottom-[-10px] w-6 bg-parchment-dark border-[3px] border-ink-deep rounded-full z-20 shadow-[4px_0_0_rgba(0,0,0,0.3)]">
-                <div class="absolute -top-4 -left-2 w-10 h-10 bg-gold-400 rounded-full border-[3px] border-ink-deep shadow-[inset_-4px_-4px_0_rgba(0,0,0,0.2)]"></div>
-                <div class="absolute -bottom-4 -left-2 w-10 h-10 bg-gold-400 rounded-full border-[3px] border-ink-deep shadow-[inset_-4px_-4px_0_rgba(0,0,0,0.2)]"></div>
-              </div>
-              
-              <div class="absolute -right-2 top-[-10px] bottom-[-10px] w-6 bg-parchment-dark border-[3px] border-ink-deep rounded-full z-20 shadow-[-4px_0_0_rgba(0,0,0,0.3)]">
-                <div class="absolute -top-4 -right-2 w-10 h-10 bg-gold-400 rounded-full border-[3px] border-ink-deep shadow-[inset_-4px_-4px_0_rgba(0,0,0,0.2)]"></div>
-                <div class="absolute -bottom-4 -right-2 w-10 h-10 bg-gold-400 rounded-full border-[3px] border-ink-deep shadow-[inset_-4px_-4px_0_rgba(0,0,0,0.2)]"></div>
-              </div>
-            </div>
-          </div>
+          <HeroBanner />
           <LorenzoComment>
             I had an idea for an Agent Orchestrator. I could have just made a GitHub Gist, but <br class="hidden md:block" /> instead I built a whole website for it. Play with it, assemble your roster, and have fun!<br class="hidden md:block" /> <span class="italic opacity-80 mt-2 block">(psst: did I mention it's all OSS?!? <a href="https://github.com/kelset/agent-party-planner" class="underline hover:text-crimson transition-colors" target="_blank" rel="noopener noreferrer">the repo is here</a>)</span>
           </LorenzoComment>
