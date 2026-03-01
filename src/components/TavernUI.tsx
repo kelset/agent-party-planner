@@ -246,7 +246,7 @@ export function TavernUI() {
   // We just let it render default Party.
 
   return (
-    <section id="the-party" class="py-12 flex flex-col gap-12">
+    <section id="the-party" class="flex flex-col gap-12">
       {/* Member Editor Modal */}
       {
         activeMember && (
@@ -268,7 +268,7 @@ export function TavernUI() {
       }
 
       {/* Header */}
-      <div class="border-b-[3px] border-ink-deep/30 pb-12 mb-8 flex flex-col items-center text-center gap-6 w-full">
+      <div class="mb-8 flex flex-col items-center text-center gap-6 w-full">
         <div class="w-full flex flex-col items-center">
           <HeroBanner />
           <LorenzoComment>
