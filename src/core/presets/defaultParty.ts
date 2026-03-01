@@ -9,7 +9,7 @@ const findResp = (name: string) => {
 
 export const defaultPartyPreset: OrchestrationConfig = {
   questName: 'New Quest',
-  warRoom: {
+  throneRoom: {
     metaRoles: [
       {
         id: 'meta-creator',
@@ -221,7 +221,7 @@ export const defaultPartyPreset: OrchestrationConfig = {
     maxLoops: 3,
     timeToLiveHours: 36,
     customRules: [
-      'If new War Room directives contradict recently completed work, use `git revert` or `git checkout` to discard the "Ghost Work".',
+      'If new Throne Room directives contradict recently completed work, use `git revert` or `git checkout` to discard the "Ghost Work".',
     ],
   },
 };

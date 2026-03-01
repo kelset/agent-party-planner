@@ -49,7 +49,7 @@ export interface PartyMember {
   relationships: AgentRelationship[];
 }
 
-export interface WarRoomMetaRole {
+export interface ThroneRoomMetaRole {
   id: string;
   name: string;
   role: string;
@@ -71,8 +71,8 @@ export interface OrchestrationConfig {
   /** The working title of the active quest */
   questName: string;
   /** The meta-level configuration and available agents */
-  warRoom: {
-    metaRoles: WarRoomMetaRole[];
+  throneRoom: {
+    metaRoles: ThroneRoomMetaRole[];
   };
   /** Configuration for the Game Master coordinator */
   gm: {

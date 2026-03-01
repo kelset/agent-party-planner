@@ -1,7 +1,7 @@
 import type { Responsibility } from '../types';
 
 export const defaultResponsibilities: Responsibility[] = [
-  // War Room: Creator
+  // Throne Room: Creator
   {
     name: 'Brainstorm Partner',
     description:
@@ -20,7 +20,7 @@ export const defaultResponsibilities: Responsibility[] = [
       'Translates user intent into the initial parameters that spin up a GM Session.',
     category: 'meta',
   },
-  // War Room: Bard
+  // Throne Room: Bard
   {
     name: 'Quest Reporter',
     description:
@@ -33,7 +33,7 @@ export const defaultResponsibilities: Responsibility[] = [
       'Translates technical achievements (or failures) into a digestible storyline for the user.',
     category: 'meta',
   },
-  // War Room: Master of Spies
+  // Throne Room: Master of Spies
   {
     name: 'Real-time Analyst',
     description:
@@ -62,7 +62,7 @@ export const defaultResponsibilities: Responsibility[] = [
   {
     name: 'Safety Enforcer',
     description:
-      'Ensures the party adheres to constraints, handles gracefully pausing/aborting, and absorbs mid-flight War Room directives.',
+      'Ensures the party adheres to constraints, handles gracefully pausing/aborting, and absorbs mid-flight Throne Room directives.',
     category: 'gm',
   },
   // Ranger

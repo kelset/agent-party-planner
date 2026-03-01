@@ -2,21 +2,21 @@
 
 The Agents Party relies on a 3-tier hierarchical structure inspired by a Dungeons & Dragons session. This separation of concerns allows for complex problem-solving by delegating tasks to specialized agents while maintaining strong coordination.
 
-## 1. The War Room (Meta-Level)
+## 1. The Throne Room (Meta-Level)
 
 - **Role:** The ultimate overseer and interface with the human user.
 - **Responsibilities:**
   - Handles the highest level of orchestration and strategic direction.
   - Defines the overarching rules, scope, and constraints for the session.
   - Reviews the final outputs from the GM before presenting them to the user.
-- **Meta-Roles:** Includes specialized agents like the **Game Creator** (planning), the **Bard** (narrative recaps), and the **Master of Spies** (real-time critique and rule adjustments). For full details, see [The War Room](./WAR_ROOM.md).
+- **Meta-Roles:** Includes specialized agents like the **Game Creator** (planning), the **Bard** (narrative recaps), and the **Master of Spies** (real-time critique and rule adjustments). For full details, see [The Throne Room](./THRONE_ROOM.md).
 - **Analogy:** The group of players deciding which campaign to run and setting the house rules before the game begins.
 
 ## 2. The GM Session (Coordinator)
 
 - **Role:** The Game Master (GM) acts as the project manager and coordinator.
 - **Responsibilities:**
-  - Receives quests (tasks) from the War Room.
+  - Receives quests (tasks) from the Throne Room.
   - Translates overarching goals into actionable phases.
   - Spawns Party Members (sub-agents) in the correct sequence.
   - Reads journals, evaluates results, and decides who to spawn next.

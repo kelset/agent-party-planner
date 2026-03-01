@@ -277,7 +277,7 @@ export function TavernUI() {
         </div>
       </div>
 
-      {/* War Room Callout */}
+      {/* Throne Room Callout */}
       <div class="p-6 bg-parchment-base border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm flex flex-col sm:flex-row gap-6 items-start relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
         <div class="w-16 h-16 rounded-sm bg-parchment border-[3px] border-ink-deep flex items-center justify-center shrink-0 shadow-[2px_2px_0_var(--color-ink-deep)] z-10">
@@ -285,10 +285,10 @@ export function TavernUI() {
         </div>
         <div class="z-10">
           <h3 class="text-base font-black text-ink-deep uppercase tracking-widest mb-2 font-mono">
-            The War Room is Ready
+            The Throne Room is Ready
           </h3>
           <p class="text-sm font-bold text-ink-faded leading-relaxed">
-            Your overarching meta-orchestration is overseen by a fixed, highly-opinionated <strong>War Room</strong> consisting of the <strong class="text-crimson">Game Creator</strong>, the <strong class="text-crimson">Master of Spies</strong>, and the <strong class="text-crimson">Bard</strong>. This meta-layer provides strategic planning, performance evaluation, and engaging recaps, leaving you to focus entirely on customizing the execution Party below.
+            Your overarching meta-orchestration is overseen by a fixed, highly-opinionated <strong>Throne Room</strong> consisting of the <strong class="text-crimson">Game Creator</strong>, the <strong class="text-crimson">Master of Spies</strong>, and the <strong class="text-crimson">Bard</strong>. This meta-layer provides strategic planning, performance evaluation, and engaging recaps, leaving you to focus entirely on customizing the execution Party below.
           </p>
         </div>
       </div>

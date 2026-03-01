@@ -9,15 +9,15 @@ describe('OrchestrationForge', () => {
       'markdown'
     );
 
-    // Should have 1 War Room, 1 GM Guide, 5 party members, 1 README, and 2 scripts
+    // Should have 1 Throne Room, 1 GM Guide, 5 party members, 1 README, and 2 scripts
     expect(files.length).toBe(1 + 1 + 5 + 1 + 2);
 
     const paths = files.map((f) => f.path);
-    expect(paths).toContain('war-room.md');
+    expect(paths).toContain('throne-room.md');
     expect(paths).toContain('gm-guide.md');
     expect(paths).toContain('party/ranger.md');
     expect(paths).toContain('README.md');
-    expect(paths).toContain('start-war-room.sh');
+    expect(paths).toContain('start-throne-room.sh');
     expect(paths).toContain('start-quest.sh');
 
     const rangerContent = files.find(
@@ -34,7 +34,7 @@ describe('OrchestrationForge', () => {
     expect(paths).toContain('SKILL.md');
     expect(paths).toContain('roles/ranger_system_prompt.txt');
     expect(paths).toContain('README.md');
-    expect(paths).toContain('start-war-room.sh');
+    expect(paths).toContain('start-throne-room.sh');
   });
 
   it('should generate Claude platform specific files', () => {
@@ -42,7 +42,7 @@ describe('OrchestrationForge', () => {
 
     const paths = files.map((f) => f.path);
     expect(paths).toContain('orchestrator.md');
-    expect(paths).toContain('meta/war-room.md');
+    expect(paths).toContain('meta/throne-room.md');
     expect(paths).toContain('agents/ranger.md');
     expect(paths).toContain('README.md');
   });
@@ -60,10 +60,10 @@ describe('OrchestrationForge', () => {
 
     const paths = files.map((f) => f.path);
     expect(paths).toContain('README.md');
-    expect(paths).toContain('start-war-room.sh');
+    expect(paths).toContain('start-throne-room.sh');
 
     const scriptContent = files.find(
-      (f) => f.path === 'start-war-room.sh'
+      (f) => f.path === 'start-throne-room.sh'
     )?.content;
     expect(scriptContent).toContain(
       '# Add your favorite agent CLI command here'

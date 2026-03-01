@@ -1,23 +1,23 @@
-export function generateWarRoomScript(platform: string): string {
+export function generateThroneRoomScript(platform: string): string {
   let command: string;
   switch (platform) {
     case 'gemini':
-      command = 'gemini --permissions read,write --system-prompt war_room.md';
+      command = 'gemini --permissions read,write --system-prompt throne_room.md';
       break;
     case 'claude':
       command =
-        'claude --permissions read,write --system-prompt meta/war-room.md';
+        'claude --permissions read,write --system-prompt meta/throne-room.md';
       break;
     case 'openai':
-      command = 'openai-agents start --config meta/war-room.md';
+      command = 'openai-agents start --config meta/throne-room.md';
       break;
     default:
       command = `# Add your favorite agent CLI command here
-# e.g., my-agent --prompt war-room.md`;
+# e.g., my-agent --prompt throne-room.md`;
   }
 
   return `#!/bin/bash
-# Start the War Room (Meta-Level) Session
+# Start the Throne Room (Meta-Level) Session
 # Run this from the orchestration directory.
 
 ${command}

@@ -69,7 +69,7 @@ Every quest follows this core flow. **You do NOT do the work yourself. You spawn
 ### Phase 3: Document & Report
 1. Final measurements by Ranger.
 2. GM writes a summary entry with overall results.
-3. Report back to the War Room or User for final sign-off.
+3. Report back to the Throne Room or User for final sign-off.
 
 ## Global Constraints & Safety Protocols
 - **Minimum Party Members:** ${constraints.minPartyMembers}
@@ -78,6 +78,6 @@ Every quest follows this core flow. **You do NOT do the work yourself. You spawn
 ${constraints.customRules.map((r) => `- ${r}`).join('\n')}
 
 ## Mid-Flight Directives
-Before every action, **always** read the \`active-rules.md\` file in the quest folder. The War Room may update this mid-flight. If new directives contradict recently completed work, use \`git revert\` or \`git checkout\` to discard the "Ghost Work" before proceeding.
+Before every action, **always** read the \`active-rules.md\` file in the quest folder. The Throne Room may update this mid-flight. If new directives contradict recently completed work, use \`git revert\` or \`git checkout\` to discard the "Ghost Work" before proceeding.
 `;
 }

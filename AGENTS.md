@@ -52,7 +52,7 @@ Always consult these resources for technical decisions and API usage:
 
 6. **Visual Identity:** Respect the "Retro-Brutalist 16-bit RPG" aesthetic defined in `docs/VISUAL_IDENTITY.md`. Use CSS variables for colors where possible. Extract complex UI blocks into dedicated components.
 
-7. **War Room Context:** Follow the hierarchy of War Room (Meta) -> GM Session -> Party (Sub-Agents).
+7. **Throne Room Context:** Follow the hierarchy of Throne Room (Meta) -> GM Session -> Party (Sub-Agents).
 
 8. **Types:** Maintain strict TypeScript typing. Avoid `any`.
 

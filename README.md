@@ -52,7 +52,7 @@ bun run format
 ## 📂 Project Structure
 
 - `src/core/`: Core orchestration logic and template merging.
-- `src/templates/`: Base prompts for the War Room, GM, and Classes.
+- `src/templates/`: Base prompts for the Throne Room, GM, and Classes.
 - `src/themes/`: Visual styling and theme-specific assets.
 - `docs/`: Product vision, architecture, and infrastructure plans.
 
@@ -66,7 +66,7 @@ bun run format
 ### Orchestration
 
 - [Orchestration Levels](./docs/orchestration/ORCHESTRATION_LEVELS.md)
-- [The War Room](./docs/orchestration/WAR_ROOM.md)
+- [The Throne Room](./docs/orchestration/THRONE_ROOM.md)
 - [Game Master Guide](./docs/orchestration/GAME_MASTER_GUIDE.md)
 - [Party Roles](./docs/orchestration/PARTY_ROLES.md)
 

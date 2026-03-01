@@ -4,7 +4,7 @@
 
 - [x] Initialize project directory and Git.
 - [x] Document Vision and Architecture.
-- [x] Extract and document core orchestration models (War Room, GM, Party Roles).
+- [x] Extract and document core orchestration models (Throne Room, GM, Party Roles).
 - [x] Scaffold the base project (Astro 5 + Tailwind 4 + Preact).
 - [x] **Research:** Investigate orchestration patterns for Gemini, Claude, and OpenAI.
 
@@ -18,7 +18,7 @@
 
 ## Phase 3: Visual Party Builder (The Tavern) ✅
 
-- [x] **War Room Configuration:** Implementation of an opinionated, fixed meta-orchestration callout.
+- [x] **Throne Room Configuration:** Implementation of an opinionated, fixed meta-orchestration callout.
 - [x] **The Roster:** Build the party composition screen with add/remove/recruit logic.
 - [x] **Member Editor:** Implement the 3D "flip" modal for deep role customization.
 - [x] **Relationship Mapping:** Implement the bond/tension editor within the character sheets.
@@ -31,7 +31,7 @@
 
 - [x] Implement client-side ZIP generation using `jszip`.
 - [x] **Platform Selection:** Connect the platform selector to the adapter logic.
-- [x] **CLI Wrappers:** Generate `start-war-room.sh` and `start-quest.sh` with platform-specific commands.
+- [x] **CLI Wrappers:** Generate `start-throne-room.sh` and `start-quest.sh` with platform-specific commands.
 - [x] **Instructional README:** Generate a rich "Getting Started" guide inside the exported package.
 
 ## Phase 5: Polishing & Generalization 🏗️

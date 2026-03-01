@@ -15,7 +15,7 @@
    - Theme provider/layer to allow for future visual swaps.
 
 2. **Template Engine (The Forge):**
-   - A collection of base prompts and rules for the War Room, GM, and Classes.
+   - A collection of base prompts and rules for the Throne Room, GM, and Classes.
    - **Platform Adapters:** Logic to format the orchestration according to the target agent (Gemini, Claude, etc.).
    - Logic to merge user-provided variables into these templates.
 

@@ -1,10 +1,10 @@
 import type { OrchestrationConfig } from './types';
 import { generateGMPrompt } from '../templates/gm';
 import { generatePartyMemberPrompt } from '../templates/member';
-import { generateWarRoomPrompt } from '../templates/warRoom';
+import { generateThroneRoomPrompt } from '../templates/throneRoom';
 import { generateExportReadme } from '../templates/exportReadme';
 import {
-  generateWarRoomScript,
+  generateThroneRoomScript,
   generateQuestScript,
 } from '../templates/scripts';
 
@@ -23,10 +23,10 @@ export class MarkdownAdapter implements PlatformAdapter {
   generate(config: OrchestrationConfig): ExportFile[] {
     const files: ExportFile[] = [];
 
-    // War Room
+    // Throne Room
     files.push({
-      path: 'war-room.md',
-      content: generateWarRoomPrompt(config),
+      path: 'throne-room.md',
+      content: generateThroneRoomPrompt(config),
     });
 
     // GM Guide
@@ -49,8 +49,8 @@ export class MarkdownAdapter implements PlatformAdapter {
       content: generateExportReadme(config, 'Markdown'),
     });
     files.push({
-      path: 'start-war-room.sh',
-      content: generateWarRoomScript('markdown'),
+      path: 'start-throne-room.sh',
+      content: generateThroneRoomScript('markdown'),
     });
     files.push({
       path: 'start-quest.sh',
@@ -67,8 +67,8 @@ export class OpenAIAdapter implements PlatformAdapter {
 
     // OpenAI Swarm / Agents often use individual instruction files
     files.push({
-      path: 'meta/war-room.md',
-      content: generateWarRoomPrompt(config),
+      path: 'meta/throne-room.md',
+      content: generateThroneRoomPrompt(config),
     });
 
     files.push({
@@ -89,8 +89,8 @@ export class OpenAIAdapter implements PlatformAdapter {
       content: generateExportReadme(config, 'OpenAI'),
     });
     files.push({
-      path: 'start-war-room.sh',
-      content: generateWarRoomScript('openai'),
+      path: 'start-throne-room.sh',
+      content: generateThroneRoomScript('openai'),
     });
     files.push({
       path: 'start-quest.sh',
@@ -106,8 +106,8 @@ export class GeminiAdapter implements PlatformAdapter {
     const files: ExportFile[] = [];
 
     files.push({
-      path: 'war_room.md',
-      content: generateWarRoomPrompt(config),
+      path: 'throne_room.md',
+      content: generateThroneRoomPrompt(config),
     });
 
     files.push({
@@ -131,8 +131,8 @@ export class GeminiAdapter implements PlatformAdapter {
       content: generateExportReadme(config, 'Gemini'),
     });
     files.push({
-      path: 'start-war-room.sh',
-      content: generateWarRoomScript('gemini'),
+      path: 'start-throne-room.sh',
+      content: generateThroneRoomScript('gemini'),
     });
     files.push({
       path: 'start-quest.sh',
@@ -148,8 +148,8 @@ export class ClaudeAdapter implements PlatformAdapter {
     const files: ExportFile[] = [];
 
     files.push({
-      path: 'meta/war-room.md',
-      content: generateWarRoomPrompt(config),
+      path: 'meta/throne-room.md',
+      content: generateThroneRoomPrompt(config),
     });
 
     files.push({
@@ -170,8 +170,8 @@ export class ClaudeAdapter implements PlatformAdapter {
       content: generateExportReadme(config, 'Claude'),
     });
     files.push({
-      path: 'start-war-room.sh',
-      content: generateWarRoomScript('claude'),
+      path: 'start-throne-room.sh',
+      content: generateThroneRoomScript('claude'),
     });
     files.push({
       path: 'start-quest.sh',
@@ -188,8 +188,8 @@ export class OtherAdapter implements PlatformAdapter {
     const files: ExportFile[] = [];
 
     files.push({
-      path: 'war-room.md',
-      content: generateWarRoomPrompt(config),
+      path: 'throne-room.md',
+      content: generateThroneRoomPrompt(config),
     });
 
     files.push({
@@ -210,8 +210,8 @@ export class OtherAdapter implements PlatformAdapter {
       content: generateExportReadme(config, 'Other'),
     });
     files.push({
-      path: 'start-war-room.sh',
-      content: generateWarRoomScript('other'),
+      path: 'start-throne-room.sh',
+      content: generateThroneRoomScript('other'),
     });
     files.push({
       path: 'start-quest.sh',
