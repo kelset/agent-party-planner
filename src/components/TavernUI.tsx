@@ -61,6 +61,11 @@ export function TavernUI() {
     }
 
     if (loadedConfig) {
+      // Migrate legacy warRoom configs to throneRoom
+      if ((loadedConfig as any).warRoom && !loadedConfig.throneRoom) {
+        loadedConfig.throneRoom = (loadedConfig as any).warRoom;
+        delete (loadedConfig as any).warRoom;
+      }
       setConfig(loadedConfig);
     }
 
@@ -253,7 +258,7 @@ export function TavernUI() {
           <MemberEditor
             member={activeMember}
             isNew={!!pendingMember}
-            allResponsibilities={allResponsibilities}
+            allResponsibilities={catalogResponsibilities}
             otherMembers={config.party
               .filter((m) => m.id !== activeMember.id)
               .map((m) => ({ id: m.id, name: m.name }))}
