@@ -34,7 +34,7 @@
 - [x] **CLI Wrappers:** Generate `start-throne-room.sh` and `start-quest.sh` with platform-specific commands.
 - [x] **Instructional README:** Generate a rich "Getting Started" guide inside the exported package.
 
-## Phase 5: Polishing & Generalization 🏗️
+## Phase 5: Polishing & Generalization ✅
 
 - [x] **Visual Identity:** Standardize the "Retro-Brutalist" style across all components and pages.
 - [x] **Visual Polish:** Add card-entry animations and refine the "Forge" generation feedback.
