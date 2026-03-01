@@ -2,22 +2,22 @@ export function generateThroneRoomScript(platform: string): string {
   let command: string;
   switch (platform) {
     case 'gemini':
-      command = 'gemini --permissions read,write --system-prompt throne_room.md';
+      command = 'gemini --permissions read,write --system-prompt throne_room/game-creator.md';
       break;
     case 'claude':
       command =
-        'claude --permissions read,write --system-prompt meta/throne-room.md';
+        'claude --permissions read,write --system-prompt meta/game-creator.md';
       break;
     case 'openai':
-      command = 'openai-agents start --config meta/throne-room.md';
+      command = 'openai-agents start --config meta/game-creator.md';
       break;
     default:
       command = `# Add your favorite agent CLI command here
-# e.g., my-agent --prompt throne-room.md`;
+# e.g., my-agent --prompt throne-room/game-creator.md`;
   }
 
   return `#!/bin/bash
-# Start the Throne Room (Meta-Level) Session
+# Start the Throne Room (Game Creator) Session
 # Run this from the orchestration directory.
 
 ${command}

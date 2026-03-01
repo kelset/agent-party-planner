@@ -11,6 +11,7 @@ import { PartyMemberCard } from './PartyMemberCard';
 import { MemberEditor } from './MemberEditor';
 import { ResponsibilitiesCatalog } from './ResponsibilitiesCatalog';
 import { ExportScroll } from './ExportScroll';
+import { ExportSuccessModal } from './ExportSuccessModal';
 import { LorenzoComment } from './LorenzoComment';
 import { OrchestrationForge } from '../core/forge';
 import { OrchestrationCourier } from '../core/courier';
@@ -30,6 +31,7 @@ export function TavernUI() {
   const [newDuty, setNewDuty] = useState({ name: '', description: '' });
   const [platform, setPlatform] = useState<Platform>('claude');
   const [isExporting, setIsExporting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
@@ -211,6 +213,7 @@ export function TavernUI() {
         blob,
         `agent-party-${config.questName.toLowerCase().replace(/\s+/g, '-')}.zip`
       );
+      setShowSuccessModal(true);
     } catch (error) {
       console.error('Failed to export party:', error);
       alert('Failed to generate the party package. Please try again.');
@@ -382,6 +385,12 @@ export function TavernUI() {
         isExporting={isExporting}
         onExport={handleExport}
         onShare={handleShare}
+      />
+
+      {/* Success Modal */}
+      <ExportSuccessModal 
+        isOpen={showSuccessModal} 
+        onClose={() => setShowSuccessModal(false)} 
       />
     </section>
   );

@@ -36,7 +36,7 @@ Navigate to the root of your **target codebase repository** and run the quest se
 \`\`\`
 
 ## 📂 Folder Structure
-- \`throne-room.md\`: Instructions for the meta-level planners.
+- \`throne-room/\` (or \`meta/\`): Instructions for the meta-level planners (Game Creator, Bard, Master of Spies).
 - \`gm-guide.md\` (or \`SKILL.md\`): The coordination manual for the Game Master.
 - \`party/\`: The character sheets and specialized prompts for your sub-agents.
 - \`journal.md\`: (Generated during quest) The shared log for agent communication.

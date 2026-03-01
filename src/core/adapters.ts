@@ -1,7 +1,7 @@
 import type { OrchestrationConfig } from './types';
 import { generateGMPrompt } from '../templates/gm';
 import { generatePartyMemberPrompt } from '../templates/member';
-import { generateThroneRoomPrompt } from '../templates/throneRoom';
+import { generateGameCreatorPrompt, generateMetaAgentPrompt } from '../templates/throneRoom';
 import { generateExportReadme } from '../templates/exportReadme';
 import {
   generateThroneRoomScript,
@@ -19,15 +19,34 @@ export interface PlatformAdapter {
   generate(config: OrchestrationConfig): ExportFile[];
 }
 
+function generateThroneRoomFiles(config: OrchestrationConfig, basePath: string): ExportFile[] {
+  const files: ExportFile[] = [];
+  const gameCreator = config.throneRoom.metaRoles.find(r => r.id === 'meta-creator');
+  const otherMetaRoles = config.throneRoom.metaRoles.filter(r => r.id !== 'meta-creator');
+
+  if (gameCreator) {
+    files.push({
+      path: `${basePath}game-creator.md`,
+      content: generateGameCreatorPrompt(config, gameCreator),
+    });
+  }
+
+  otherMetaRoles.forEach(role => {
+    files.push({
+      path: `${basePath}${role.id.replace('meta-', '')}.md`,
+      content: generateMetaAgentPrompt(config, role),
+    });
+  });
+
+  return files;
+}
+
 export class MarkdownAdapter implements PlatformAdapter {
   generate(config: OrchestrationConfig): ExportFile[] {
     const files: ExportFile[] = [];
 
     // Throne Room
-    files.push({
-      path: 'throne-room.md',
-      content: generateThroneRoomPrompt(config),
-    });
+    files.push(...generateThroneRoomFiles(config, 'throne-room/'));
 
     // GM Guide
     files.push({
@@ -66,10 +85,7 @@ export class OpenAIAdapter implements PlatformAdapter {
     const files: ExportFile[] = [];
 
     // OpenAI Swarm / Agents often use individual instruction files
-    files.push({
-      path: 'meta/throne-room.md',
-      content: generateThroneRoomPrompt(config),
-    });
+    files.push(...generateThroneRoomFiles(config, 'meta/'));
 
     files.push({
       path: 'instructions/gm.txt',
@@ -105,10 +121,7 @@ export class GeminiAdapter implements PlatformAdapter {
   generate(config: OrchestrationConfig): ExportFile[] {
     const files: ExportFile[] = [];
 
-    files.push({
-      path: 'throne_room.md',
-      content: generateThroneRoomPrompt(config),
-    });
+    files.push(...generateThroneRoomFiles(config, 'throne_room/'));
 
     files.push({
       path: 'SKILL.md',
@@ -147,10 +160,7 @@ export class ClaudeAdapter implements PlatformAdapter {
   generate(config: OrchestrationConfig): ExportFile[] {
     const files: ExportFile[] = [];
 
-    files.push({
-      path: 'meta/throne-room.md',
-      content: generateThroneRoomPrompt(config),
-    });
+    files.push(...generateThroneRoomFiles(config, 'meta/'));
 
     files.push({
       path: 'orchestrator.md',
@@ -187,10 +197,7 @@ export class OtherAdapter implements PlatformAdapter {
     // Same as markdown structure but for "Other" platform
     const files: ExportFile[] = [];
 
-    files.push({
-      path: 'throne-room.md',
-      content: generateThroneRoomPrompt(config),
-    });
+    files.push(...generateThroneRoomFiles(config, 'throne-room/'));
 
     files.push({
       path: 'gm-guide.md',

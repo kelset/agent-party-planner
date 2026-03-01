@@ -9,11 +9,13 @@ describe('OrchestrationForge', () => {
       'markdown'
     );
 
-    // Should have 1 Throne Room, 1 GM Guide, 5 party members, 1 README, and 2 scripts
-    expect(files.length).toBe(1 + 1 + 5 + 1 + 2);
+    // Should have 3 Throne Room meta agents, 1 GM Guide, 5 party members, 1 README, and 2 scripts
+    expect(files.length).toBe(3 + 1 + 5 + 1 + 2);
 
     const paths = files.map((f) => f.path);
-    expect(paths).toContain('throne-room.md');
+    expect(paths).toContain('throne-room/game-creator.md');
+    expect(paths).toContain('throne-room/bard.md');
+    expect(paths).toContain('throne-room/spies.md');
     expect(paths).toContain('gm-guide.md');
     expect(paths).toContain('party/ranger.md');
     expect(paths).toContain('README.md');
@@ -42,7 +44,8 @@ describe('OrchestrationForge', () => {
 
     const paths = files.map((f) => f.path);
     expect(paths).toContain('orchestrator.md');
-    expect(paths).toContain('meta/throne-room.md');
+    expect(paths).toContain('meta/game-creator.md');
+    expect(paths).toContain('meta/bard.md');
     expect(paths).toContain('agents/ranger.md');
     expect(paths).toContain('README.md');
   });
