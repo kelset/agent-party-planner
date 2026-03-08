@@ -173,6 +173,19 @@ export function TavernUI() {
     });
   };
 
+  const handleResetParty = () => {
+    if (
+      window.confirm(
+        'Are you sure you want to reset the party to the default composition? This will erase all your custom changes and roles.'
+      )
+    ) {
+      setConfig(defaultPartyPreset);
+      setCustomResponsibilities(defaultResponsibilities);
+      localStorage.removeItem('party-planner-config');
+      localStorage.removeItem('party-planner-responsibilities');
+    }
+  };
+
   const handleRemoveMember = (id: string) => {
     setConfig((prev) => ({
       ...prev,
@@ -363,9 +376,18 @@ export function TavernUI() {
       {/* Roster Grid */}
       <div>
         <div class="mb-8 flex justify-between items-end border-b-[3px] border-ink-deep/20 pb-4 mt-8">
-          <h2 class="text-2xl font-black text-parchment-light uppercase tracking-widest drop-shadow-[2px_2px_0_var(--color-ink-deep)] font-mono">
-            The Roster
-          </h2>
+          <div class="flex items-center gap-4">
+            <h2 class="text-2xl font-black text-parchment-light uppercase tracking-widest drop-shadow-[2px_2px_0_var(--color-ink-deep)] font-mono">
+              The Roster
+            </h2>
+            <button
+              onClick={handleResetParty}
+              class="text-xs font-black uppercase tracking-widest bg-parchment-dark text-ink-faded hover:text-ink-deep hover:bg-parchment-light px-2 py-1 rounded-sm border-[2px] border-ink-deep/50 hover:border-ink-deep transition-colors shadow-[2px_2px_0_rgba(44,30,22,0.2)] hover:shadow-[2px_2px_0_var(--color-ink-deep)]"
+              title="Reset Party to Defaults"
+            >
+              Reset to Defaults
+            </button>
+          </div>
           <div class="text-sm font-bold text-ink-faded bg-parchment-base px-3 py-1 border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm">
             Members:{' '}
             <span class="text-ink-deep font-black">{config.party.length}</span>{' '}
