@@ -3,14 +3,16 @@ export function generateThroneRoomScript(platform: string): string {
   switch (platform) {
     case 'gemini':
       command =
-        'gemini --permissions read,write --system-prompt throne_room/game-creator.md';
+        'gemini --permissions read,write -i "Please read these rules carefully and adopt the persona of the Game Creator. Acknowledge when you are ready to begin:\n\n$(cat throne_room/game-creator.md)"';
       break;
     case 'claude':
       command =
-        'claude --permissions read,write --system-prompt meta/game-creator.md';
+        'claude -p "Please read these rules carefully and adopt the persona of the Game Creator. Acknowledge when you are ready to begin:\n\n$(cat throne_room/game-creator.md)"';
       break;
     case 'openai':
-      command = 'openai-agents start --config meta/game-creator.md';
+      // Fallback for OpenAI/Codex using standard string piping
+      command =
+        'codex -p "Please read these rules carefully and adopt the persona of the Game Creator. Acknowledge when you are ready to begin:\n\n$(cat throne_room/game-creator.md)"';
       break;
     default:
       command = `# Add your favorite agent CLI command here
@@ -29,14 +31,16 @@ export function generateQuestScript(platform: string): string {
   let command: string;
   switch (platform) {
     case 'gemini':
-      command = 'gemini --permissions read,write --system-prompt SKILL.md';
+      command =
+        'gemini --permissions read,write -i "Please read these rules carefully and adopt the persona of the Game Master. Acknowledge when you are ready to begin coordinating the party:\n\n$(cat SKILL.md)"';
       break;
     case 'claude':
       command =
-        'claude --permissions read,write --system-prompt orchestrator.md';
+        'claude -p "Please read these rules carefully and adopt the persona of the Game Master. Acknowledge when you are ready to begin coordinating the party:\n\n$(cat orchestrator.md)"';
       break;
     case 'openai':
-      command = 'openai-agents start --config instructions/gm.txt';
+      command =
+        'codex -p "Please read these rules carefully and adopt the persona of the Game Master. Acknowledge when you are ready to begin coordinating the party:\n\n$(cat orchestrator.md)"';
       break;
     default:
       command = `# Add your favorite agent CLI command here
