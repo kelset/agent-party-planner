@@ -41,7 +41,10 @@ export function ResponsibilitiesCatalog({
         <div class="flex items-center gap-4">
           <span class="text-3xl drop-shadow-sm">📜</span>
           <h3 class="text-lg font-black text-ink-deep tracking-widest uppercase font-mono drop-shadow-[1px_1px_0_var(--color-parchment-light)]">
-            Responsibilities Catalog
+            Responsibilities Catalog{' '}
+            <span class="text-ink-faded text-sm">
+              ({allResponsibilities.length})
+            </span>
           </h3>
         </div>
         <span
