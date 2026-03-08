@@ -24,3 +24,27 @@ Because these tools frequently update their flags and usage patterns, this catal
 - **Documentation:** [Codex Docs](https://github.com/openai/codex/tree/main/docs)
 - **Command:** `codex` (or `openai`)
 - _(Needs detailed flag mapping once API is confirmed)_
+
+---
+
+## Sub-Agents & Agent Teams Implementation
+
+Each AI CLI ecosystem approaches multi-agent orchestration slightly differently. Our meta-framework must account for these capabilities:
+
+### Claude Code
+
+Claude Code makes a distinct separation between **Subagents** (Hub-and-Spoke) and **Agent Teams** (Collaborative).
+
+- **Subagents (Default):** The main agent spawns short-lived, isolated subagents (often using smaller models like Haiku) for tasks like `explore` or `plan`. They cannot talk to each other and only report back to the main agent. This maps well to our standard **GM -> Party** model.
+- **Agent Teams (`claude --team`):** A collaborative model where one agent acts as a Team Lead, creating a shared task list. Teammates can claim tasks, communicate directly with each other, and share findings without routing through the lead. This is ideal for highly complex, parallelized features but consumes significantly more tokens.
+
+### Gemini CLI
+
+The Gemini CLI implements specialized agents via **Skills**.
+
+- **Skills (`SKILL.md`):** A skill is a package that extends the agent's capabilities. It defines _what_ the skill does, _when_ to trigger it, and _how_ to execute it via a `SKILL.md` file.
+- **Execution:** When the Gemini agent recognizes a need, it automatically triggers `activate_skill(skill_name="...")`. The instructions inside the activated `SKILL.md` become "expert procedural guidance" that overrides general defaults. Our exported `SKILL.md` acts as the overarching rulebook that the main Gemini process follows.
+
+### OpenAI / Codex
+
+- Currently, standard CLI wrappers for OpenAI/Codex generally operate as single-agent loops. Sub-agent spawning usually requires custom logic built into the tool execution layer (e.g. Swarm or AutoGen), rather than being a native CLI flag. Our `start-quest.sh` wrapper handles this by injecting the orchestrator prompt to force the single model to act as the GM, which then conceptually simulates sub-agents by addressing them in its output.
