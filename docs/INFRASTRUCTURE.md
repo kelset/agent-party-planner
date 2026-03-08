@@ -5,7 +5,7 @@
 - **Potential Name:** `agentsparty.dev`
 - **Registrar:** Namecheap
 - **Cost:** ~£10/year
-- **Status:** Pending finalization of the alpha iteration to ensure the name aligns with the product's final direction.
+- **Status:** Finalized and deployed.
 
 ## Hosting & Deployment
 

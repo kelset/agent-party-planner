@@ -40,4 +40,4 @@
 - [x] **Visual Polish:** Add card-entry animations and refine the "Forge" generation feedback.
 - [x] **Responsive QA:** Ensure the Member Editor and Roster Grid are flawless on mobile.
 - [x] **Agnosticism:** Verify that the core logic is fully decoupled from the D&D theme for future skins.
-- [x] **Community:** Integrate a "Buy Me a Coffee" button and finalize Open Source documentation.
+- [x] **Community:** Finalize Open Source documentation. (Sponsor button deprioritized).
