@@ -2,9 +2,13 @@
   "name": "agents-party",
   "type": "module",
   "version": "0.1.0",
+  "bin": {
+    "throne-room": "./dist/cli/index.js"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:cli": "bun build ./src/cli/index.ts --target=node --outfile=./dist/cli/index.js",
     "preview": "astro preview",
     "astro": "astro",
     "test": "bun test",
@@ -13,10 +17,12 @@
   },
   "dependencies": {
     "@astrojs/preact": "^4.1.3",
+    "@clack/prompts": "^1.1.0",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.18.0",
     "jszip": "^3.10.1",
     "lz-string": "^1.5.0",
+    "picocolors": "^1.1.1",
     "preact": "^10.28.4",
     "tailwindcss": "^4.2.1"
   },
