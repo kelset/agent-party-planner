@@ -422,8 +422,14 @@ import { LorenzoComment } from '../components/LorenzoComment';
               >
             </h3>
             <p class="text-ink-faded font-bold mb-4 relative z-10">
-              The default presets are heavily inspired by Simon Willison's <em
-                >Agentic Engineering Patterns</em
+              The default presets are a culmination of custom ideas, ongoing
+              trends in the broader agent ecosystem, and recent additions
+              inspired by <a
+                href="https://simonwillison.net/guides/agentic-engineering-patterns/"
+                class="text-crimson hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Simon Willison's <em>Agentic Engineering Patterns</em></a
               >. The system enforces strict behavioral guidelines to prevent
               "vibe coding" and AI hallucinations:
             </p>
@@ -447,31 +453,48 @@ import { LorenzoComment } from '../components/LorenzoComment';
                 git branches to test different approaches simultaneously.
               </li>
             </ul>
+          </section>
 
+          <LorenzoComment class="mt-8 mb-2">
             <h4
-              class="text-sm font-black text-gold-600 mt-8 mb-2 uppercase tracking-widest font-mono relative z-10"
+              class="text-sm font-black text-crimson mb-2 uppercase tracking-widest font-mono relative z-10"
             >
               ⚠️ Experimental Gotchas
             </h4>
-            <p class="text-ink-faded font-bold text-sm relative z-10">
+            <p class="font-bold text-sm relative z-10">
               To fully unlock the "true" parallel multi-agent potential of these
               tools, you need to enable their experimental flags:
               <br /><br />
-              - <strong>Gemini:</strong> Set <code
+              - <a
+                href="https://geminicli.com/docs/core/subagents/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-crimson hover:underline"
+                ><strong>Gemini (Subagents)</strong></a
+              >: Set <code
                 >"experimental": &#123; "enableAgents": true &#125;</code
               > in your global settings to natively route to our <code
                 >.gemini/agents/</code
               > files.<br />
-              - <strong>Codex:</strong> Ensure <code>multi_agent = true</code> is
-              toggled via <code>/experimental</code> so it reads our <code
-                >.codex/config.toml</code
-              >.<br />
-              - <strong>Claude:</strong> Simply run the quest with the <code
-                >--team</code
-              > flag to switch from hub-and-spoke subagents to a fully collaborative
-              Agent Team.
+              - <a
+                href="https://developers.openai.com/codex/multi-agent"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-crimson hover:underline"
+                ><strong>Codex (Multi-Agent)</strong></a
+              >: Ensure <code>multi_agent = true</code> is toggled via <code
+                >/experimental</code
+              > so it reads our <code>.codex/config.toml</code>.<br />
+              - <a
+                href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#agent-teams"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-crimson hover:underline"
+                ><strong>Claude (Agent Teams)</strong></a
+              >: Simply run the quest with the <code>--team</code> flag to switch
+              from hub-and-spoke subagents to a fully collaborative Agent Team.
             </p>
-          </section>
+          </LorenzoComment>
         </div>
       </article>
 
