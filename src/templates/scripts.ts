@@ -29,10 +29,20 @@ ${command}
 
 export function generateQuestScript(platform: string): string {
   let command: string;
+  let copyLogic = '';
+
   switch (platform) {
     case 'gemini':
       command =
         'gemini --permissions read,write -i "Please read these rules carefully and adopt the persona of the Game Master. Acknowledge when you are ready to begin coordinating the party:\n\n$(cat SKILL.md)"';
+      copyLogic = `
+# Gemini Experimental Subagents require the .gemini folder to be in the working directory
+echo "Syncing .gemini sub-agents to target codebase..."
+cp -R "$(dirname "$0")/.gemini" "$TARGET_DIR/"
+if ! grep -q "^.gemini/$" "$TARGET_DIR/.gitignore" 2>/dev/null; then
+  echo -e "\\n# Agents Party CLI output\\n.gemini/" >> "$TARGET_DIR/.gitignore"
+fi
+`;
       break;
     case 'claude':
       command =
@@ -41,6 +51,14 @@ export function generateQuestScript(platform: string): string {
     case 'openai':
       command =
         'codex -p "Please read these rules carefully and adopt the persona of the Game Master. Acknowledge when you are ready to begin coordinating the party:\n\n$(cat orchestrator.md)"';
+      copyLogic = `
+# Codex Multi-Agent requires the .codex config folder to be in the working directory
+echo "Syncing .codex sub-agents to target codebase..."
+cp -R "$(dirname "$0")/.codex" "$TARGET_DIR/"
+if ! grep -q "^.codex/$" "$TARGET_DIR/.gitignore" 2>/dev/null; then
+  echo -e "\\n# Agents Party CLI output\\n.codex/" >> "$TARGET_DIR/.gitignore"
+fi
+`;
       break;
     default:
       command = `# Add your favorite agent CLI command here
@@ -57,7 +75,7 @@ if [ ! -d "$TARGET_DIR" ]; then
   echo "Error: $TARGET_DIR is not a directory."
   exit 1
 fi
-
+${copyLogic}
 cd "$TARGET_DIR"
 echo "Launching GM Session in $TARGET_DIR..."
 

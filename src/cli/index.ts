@@ -96,6 +96,15 @@ async function main() {
   const platform =
     platformArg === 'other' ? 'markdown' : (platformArg as Platform);
 
+  let experimentalWarning = '';
+  if (platform === 'gemini') {
+    experimentalWarning =
+      '⚠️ NOTE: Native subagents require `"experimental": { "enableAgents": true }` in your Gemini CLI settings.json';
+  } else if (platform === 'openai') {
+    experimentalWarning =
+      '⚠️ NOTE: Native orchestration requires Multi-Agent to be enabled in Codex (e.g., via `/experimental` toggle).';
+  }
+
   const s = spinner();
   s.start('Forging orchestration files...');
 
@@ -118,6 +127,10 @@ async function main() {
 
   s.stop(pc.green('Orchestration files forged in .orchestration/'));
 
+  if (experimentalWarning) {
+    note(experimentalWarning, 'Experimental Features');
+  }
+
   note(
     `The Game Creator will now guide you through planning your quest.\nWhen you are ready, they will give you a command to start the GM session.`,
     'Next Steps'
@@ -127,13 +140,13 @@ async function main() {
   let commandArgs: string[] = [];
   const promptPath = '.orchestration/throne_room/game-creator.md';
 
-  let systemPromptContent = '';
+  let systemPromptContent: string;
   try {
     systemPromptContent = fs.readFileSync(
       path.join(process.cwd(), promptPath),
       'utf-8'
     );
-  } catch (e) {
+  } catch {
     // Fallback if not found, though it should have just been written
     systemPromptContent = 'You are the Game Creator in the Throne Room.';
   }

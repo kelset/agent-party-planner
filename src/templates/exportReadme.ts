@@ -4,10 +4,30 @@ export function generateExportReadme(
   config: OrchestrationConfig,
   platform: string
 ): string {
+  let experimentalNote = '';
+  if (platform === 'Gemini') {
+    experimentalNote = `\n### ⚠️ Experimental Features Required
+For the **Gemini Subagents** to work natively in parallel, you must enable experimental agent support in your global Gemini CLI settings:
+Ensure \`"experimental": { "enableAgents": true }\` is set in your \`settings.json\`.
+
+*Note: The \`start-quest.sh\` script will automatically copy the generated \`.gemini/\` subagent folder into your target codebase and append it to your \`.gitignore\` so the GM session can access them.*
+`;
+  } else if (platform === 'OpenAI') {
+    experimentalNote = `\n### ⚠️ Experimental Features Required
+For the **Codex Multi-Agent** orchestrator to work natively, you must have the experimental multi-agent feature enabled (e.g. \`multi_agent = true\` in your config or via \`/experimental\` toggle).
+
+*Note: The \`start-quest.sh\` script will automatically copy the generated \`.codex/\` orchestrator folder into your target codebase and append it to your \`.gitignore\` so the GM session can access them.*
+`;
+  } else if (platform === 'Claude') {
+    experimentalNote = `\n### 💡 Agent Teams
+Claude supports "Agent Teams" natively. If you want a highly collaborative, parallelized session instead of standard hub-and-spoke subagents, you can append \`--team\` to the Claude command inside the \`start-quest.sh\` script!
+`;
+  }
+
   return `# 🎲 Agents Party: ${config.questName}
 
 This package contains your customized **Agent Orchestration** setup, optimized for **${platform}**.
-
+${experimentalNote}
 ## 🏗️ The 3-Tier Hierarchy
 
 The system follows a separation of concerns inspired by Dungeons & Dragons:
