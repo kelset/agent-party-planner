@@ -8,12 +8,12 @@ This document outlines potential improvements to the **Agents Party** orchestrat
 
 ### recap
 
-The fundamental shift in software engineering is that the cost of generating code has dropped to near zero. Instead of rationing our time and avoiding "unnecessary" scripts or tests, we should aggressively use agents to write them. However, while writing code is cheap, verifying that the code is *good* (correct, secure, maintainable) remains the bottleneck.
+The fundamental shift in software engineering is that the cost of generating code has dropped to near zero. Instead of rationing our time and avoiding "unnecessary" scripts or tests, we should aggressively use agents to write them. However, while writing code is cheap, verifying that the code is _good_ (correct, secure, maintainable) remains the bottleneck.
 
 ### what we could do in ours
 
-* **Shift Focus to Verification:** Emphasize in `PARTY_ROLES.md` that the **Warrior** should freely generate implementations without hesitation, while the **Warlock** (Code Review) and **Ranger** (Telemetry) take on a heavier burden of verification.
-* **Aggressive Branching:** Instruct the **GM** to allow the party to create multiple experimental branches ("cheap code") to try different approaches simultaneously, letting the **Wizard** evaluate the best outcome.
+- **Shift Focus to Verification:** Emphasize in `PARTY_ROLES.md` that the **Warrior** should freely generate implementations without hesitation, while the **Warlock** (Code Review) and **Ranger** (Telemetry) take on a heavier burden of verification.
+- **Aggressive Branching:** Instruct the **GM** to allow the party to create multiple experimental branches ("cheap code") to try different approaches simultaneously, letting the **Wizard** evaluate the best outcome.
 
 ---
 
@@ -25,8 +25,8 @@ Engineers should use agents to automate tasks they already understand deeply. By
 
 ### what we could do in ours
 
-* **The Bag of Tricks:** In `THRONE_ROOM.md`, instruct the **Game Creator** to ask the user if they have existing code snippets, preferred patterns, or "hoarded knowledge" relevant to the quest.
-* **Knowledge Injection:** Provide a mechanism for the user to inject a `knowledge-base.md` into the orchestration directory, which the **GM** explicitly passes to the **Wizard** and **Warrior**.
+- **The Bag of Tricks:** In `THRONE_ROOM.md`, instruct the **Game Creator** to ask the user if they have existing code snippets, preferred patterns, or "hoarded knowledge" relevant to the quest.
+- **Knowledge Injection:** Provide a mechanism for the user to inject a `knowledge-base.md` into the orchestration directory, which the **GM** explicitly passes to the **Wizard** and **Warrior**.
 
 ---
 
@@ -38,8 +38,8 @@ Willison warns against "vibe coding" (blindly accepting code without tests), gia
 
 ### what we could do in ours
 
-* **Context Minimization:** Update the **GM**'s instructions in `GAME_MASTER_GUIDE.md` so that when it spawns a sub-agent, it *only* passes the specific chunk of the `journal.md` relevant to that agent, rather than the entire file.
-* **Strict Guardrails:** Explicitly instruct the **Warlock** to look for security vulnerabilities and prompt injection risks in the Warrior's code.
+- **Context Minimization:** Update the **GM**'s instructions in `GAME_MASTER_GUIDE.md` so that when it spawns a sub-agent, it _only_ passes the specific chunk of the `journal.md` relevant to that agent, rather than the entire file.
+- **Strict Guardrails:** Explicitly instruct the **Warlock** to look for security vulnerabilities and prompt injection risks in the Warrior's code.
 
 ---
 
@@ -47,12 +47,12 @@ Willison warns against "vibe coding" (blindly accepting code without tests), gia
 
 ### recap
 
-This is one of the most reliable patterns. You instruct the agent to write a failing test first, verify that it fails (Red), and *only then* write the implementation to make it pass (Green). This grounds the agent in reality and prevents hallucinations.
+This is one of the most reliable patterns. You instruct the agent to write a failing test first, verify that it fails (Red), and _only then_ write the implementation to make it pass (Green). This grounds the agent in reality and prevents hallucinations.
 
 ### what we could do in ours
 
-* **Mandatory TDD:** Modify the **Warrior**'s role in `PARTY_ROLES.md` to strictly enforce Red/Green TDD. The Warrior must commit the failing test first.
-* **Enforcement:** Update the **Warlock** to automatically reject any implementation that is not accompanied by a corresponding test.
+- **Mandatory TDD:** Modify the **Warrior**'s role in `PARTY_ROLES.md` to strictly enforce Red/Green TDD. The Warrior must commit the failing test first.
+- **Enforcement:** Update the **Warlock** to automatically reject any implementation that is not accompanied by a corresponding test.
 
 ---
 
@@ -64,8 +64,8 @@ Before an agent changes anything in a new environment, it must run the existing 
 
 ### what we could do in ours
 
-* **Phase 1 Update:** In `GAME_MASTER_GUIDE.md` (Phase 1: Recon), instruct the **Ranger** or **Healer** to run the existing test suite.
-* **Halt on Red:** If the baseline test suite fails, the **GM** must halt the quest and spawn the **Healer** to fix the environment before the **Wizard** is allowed to write an attack plan.
+- **Phase 1 Update:** In `GAME_MASTER_GUIDE.md` (Phase 1: Recon), instruct the **Ranger** or **Healer** to run the existing test suite.
+- **Halt on Red:** If the baseline test suite fails, the **GM** must halt the quest and spawn the **Healer** to fix the environment before the **Wizard** is allowed to write an attack plan.
 
 ---
 
@@ -77,8 +77,8 @@ Using agents to automate what would normally be manual QA—such as writing Play
 
 ### what we could do in ours
 
-* **Visual QA Role:** We could expand the **Ranger**'s responsibilities to include visual regression and automated UI testing, not just telemetry and performance.
-* **Playwright Generation:** The **Wizard** can be instructed to explicitly include an "agentic manual test" step in their attack plans for frontend features.
+- **Visual QA Role:** We could expand the **Ranger**'s responsibilities to include visual regression and automated UI testing, not just telemetry and performance.
+- **Playwright Generation:** The **Wizard** can be instructed to explicitly include an "agentic manual test" step in their attack plans for frontend features.
 
 ---
 
@@ -90,8 +90,8 @@ When faced with complex, undocumented code, you ask the agent to write a highly 
 
 ### what we could do in ours
 
-* **Recon Artifacts:** When the **Ranger** does recon on a complex file, they can be instructed to generate a "Linear Walkthrough" artifact in the orchestration folder.
-* **Review Tool:** The **Warlock** can request a linear walkthrough from the **Warrior** if a proposed pull request/code change is too dense to review at a glance.
+- **Recon Artifacts:** When the **Ranger** does recon on a complex file, they can be instructed to generate a "Linear Walkthrough" artifact in the orchestration folder.
+- **Review Tool:** The **Warlock** can request a linear walkthrough from the **Warrior** if a proposed pull request/code change is too dense to review at a glance.
 
 ---
 
@@ -103,5 +103,5 @@ Going beyond text, agents can generate small interactive tools (like a single-fi
 
 ### what we could do in ours
 
-* **Interactive Recaps:** Instead of just writing a markdown summary, the **Bard** in the Throne Room could be tasked with generating an `index.html` file that serves as an interactive, visual recap of the completed quest.
-* **Data Visualization:** The **Ranger** could generate interactive charts for their telemetry data instead of raw numeric logs.
+- **Interactive Recaps:** Instead of just writing a markdown summary, the **Bard** in the Throne Room could be tasked with generating an `index.html` file that serves as an interactive, visual recap of the completed quest.
+- **Data Visualization:** The **Ranger** could generate interactive charts for their telemetry data instead of raw numeric logs.

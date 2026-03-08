@@ -65,8 +65,9 @@ After each party member finishes:
 2. **Write to your GM diary** (`gm-diary.md`). Log your reasoning: what you observed, what you decided, why.
 3. **Check for Throne Room Directives.** Before deciding the next step, **always** read the shared `active-rules.md` (or equivalent directives file) in the quest folder. The Throne Room (Master of Spies or Game Creator) may update this file mid-flight. Reading it on every loop ensures you gracefully absorb any new constraints or role changes without needing a manual interruption. _Important: If new Throne Room directives contradict recently completed work, use `git revert` or `git checkout` to discard that specific "Ghost Work" before moving to the next valid step._
 4. **Decide next steps.** Based on findings and current rules, determine who to spawn next and what to ask them.
-5. **Brief the next party member.** When spawning, tell them their specific task, the current party roster, and point them to read the journals.
+5. **Brief the next party member (Context Minimization).** When spawning, tell them their specific task, the current party roster, and point them to read the journals. **Crucially, do not pass the entire journal or plan if it is not relevant.** Provide only the specific chunk of context they need to complete their current step to avoid confusion and reduce security risks.
 6. **Lean into party dynamics.** Frame handoffs through the personality tensions. (e.g., "The Warlock rejected your changes. Read their review and address the issues.")
+7. **Encourage Aggressive Branching.** When the party needs to experiment, encourage them to create multiple experimental branches ("cheap code") to try different approaches simultaneously.
 
 ## Quest Execution
 
@@ -74,9 +75,10 @@ Every quest follows this core flow:
 
 ### Phase 1: Recon
 
-1. **Spawn Ranger** — baseline measurements and data gathering.
-2. **Spawn Wizard** — analyzes data, writes a structured attack plan.
-3. **GM reviews the plan** — approves, adjusts, or asks the wizard to revise.
+1. **Spawn Ranger or Healer** — First, run the existing test suite to establish a clean baseline. If the tests fail, spawn the Healer to fix the environment before proceeding.
+2. **Spawn Ranger** — baseline measurements and data gathering.
+3. **Spawn Wizard** — analyzes data, writes a structured attack plan.
+4. **GM reviews the plan** — approves, adjusts, or asks the wizard to revise.
 
 ### Phase 2: Execution (per target)
 

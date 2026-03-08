@@ -20,11 +20,23 @@ export const defaultResponsibilities: Responsibility[] = [
       'Translates user intent into the initial parameters that spin up a GM Session.',
     category: 'meta',
   },
+  {
+    name: 'Knowledge Injection',
+    description:
+      'Asks the user for preferred code patterns, snippets, or existing knowledge bases to reuse known solutions.',
+    category: 'meta',
+  },
   // Throne Room: Bard
   {
     name: 'Quest Reporter',
     description:
       'Interacts only at the end of a completed quest to synthesize raw data, diffs, and interactions into a cohesive narrative recap.',
+    category: 'meta',
+  },
+  {
+    name: 'Interactive Recaps',
+    description:
+      'Generates interactive HTML/JS artifacts to visually explain or recap the completed quest.',
     category: 'meta',
   },
   {
@@ -65,6 +77,12 @@ export const defaultResponsibilities: Responsibility[] = [
       'Ensures the party adheres to constraints, handles gracefully pausing/aborting, and absorbs mid-flight Throne Room directives.',
     category: 'gm',
   },
+  {
+    name: 'Context Minimization',
+    description:
+      'Passes only the strictly relevant chunk of a plan or journal to sub-agents to avoid confusing them or leaking excess context.',
+    category: 'gm',
+  },
   // Ranger
   {
     name: 'Telemetry & Profiling',
@@ -76,6 +94,24 @@ export const defaultResponsibilities: Responsibility[] = [
     name: 'Reconnaissance',
     description:
       'Identify bottlenecks during recon and report what the numbers say.',
+    category: 'party',
+  },
+  {
+    name: 'Visual QA',
+    description:
+      'Performs agentic manual testing via Playwright/Puppeteer or visual regression verification.',
+    category: 'party',
+  },
+  {
+    name: 'Linear Walkthroughs',
+    description:
+      'Generates detailed, step-by-step documentation artifacts when investigating complex legacy code.',
+    category: 'party',
+  },
+  {
+    name: 'Data Visualization',
+    description:
+      'Generates interactive charts (e.g. HTML/JS files) to visualize telemetry instead of just logging raw numbers.',
     category: 'party',
   },
   // Wizard
@@ -97,6 +133,12 @@ export const defaultResponsibilities: Responsibility[] = [
       'Conduct final strategic reviews of changes to confirm alignment with the plan.',
     category: 'party',
   },
+  {
+    name: 'Agentic Manual Testing',
+    description:
+      'Explicitly includes UI automation (e.g., writing test scripts) in the attack plans for frontend features.',
+    category: 'party',
+  },
   // Warrior
   {
     name: 'Implementation',
@@ -106,6 +148,12 @@ export const defaultResponsibilities: Responsibility[] = [
   {
     name: 'Documentation',
     description: 'Describe what was changed and why in the journal.',
+    category: 'party',
+  },
+  {
+    name: 'Red/Green TDD',
+    description:
+      'Strictly writes a failing test first, ensures it fails, and only then implements the code to make it pass.',
     category: 'party',
   },
   // Warlock
@@ -119,6 +167,18 @@ export const defaultResponsibilities: Responsibility[] = [
     name: 'Feedback',
     description:
       'Write detailed review feedback (approved or changes requested).',
+    category: 'party',
+  },
+  {
+    name: 'TDD Enforcement',
+    description:
+      'Automatically rejects any pull request or code change that lacks a corresponding test.',
+    category: 'party',
+  },
+  {
+    name: 'Security Auditing',
+    description:
+      'Actively looks for security vulnerabilities, unauthorized data access, and prompt injection risks in the code.',
     category: 'party',
   },
   // Healer

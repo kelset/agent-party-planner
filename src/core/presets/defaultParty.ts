@@ -19,13 +19,18 @@ export const defaultPartyPreset: OrchestrationConfig = {
           findResp('Brainstorm Partner'),
           findResp('Party Designer'),
           findResp('Project Lead'),
+          findResp('Knowledge Injection'),
         ],
       },
       {
         id: 'meta-bard',
         name: 'The Bard',
         role: 'The Chronicler',
-        responsibilities: [findResp('Quest Reporter'), findResp('Translator')],
+        responsibilities: [
+          findResp('Quest Reporter'),
+          findResp('Translator'),
+          findResp('Interactive Recaps'),
+        ],
       },
       {
         id: 'meta-spies',
@@ -46,6 +51,7 @@ export const defaultPartyPreset: OrchestrationConfig = {
       findResp('Coordinator'),
       findResp('Reviewer'),
       findResp('Safety Enforcer'),
+      findResp('Context Minimization'),
     ],
     restrictions: [
       'Do NOT analyze data or write plans.',
@@ -66,6 +72,9 @@ export const defaultPartyPreset: OrchestrationConfig = {
       responsibilities: [
         findResp('Telemetry & Profiling'),
         findResp('Reconnaissance'),
+        findResp('Visual QA'),
+        findResp('Linear Walkthroughs'),
+        findResp('Data Visualization'),
       ],
       restrictions: [
         'Do NOT modify source code.',
@@ -99,6 +108,7 @@ export const defaultPartyPreset: OrchestrationConfig = {
         findResp('Party Leader'),
         findResp('Strategist'),
         findResp('Final Reviewer'),
+        findResp('Agentic Manual Testing'),
       ],
       restrictions: [
         'Do NOT modify source code.',
@@ -128,7 +138,11 @@ export const defaultPartyPreset: OrchestrationConfig = {
       classFantasy: 'The frontline fighter who swings the sword.',
       personality:
         'The pragmatist. Prefers the simplest solution that works. Ships working code, not perfect code. Will defend implementation choices but is open to legitimate feedback. Cares about "does it work and is it safe to revert".',
-      responsibilities: [findResp('Implementation'), findResp('Documentation')],
+      responsibilities: [
+        findResp('Implementation'),
+        findResp('Documentation'),
+        findResp('Red/Green TDD'),
+      ],
       restrictions: [
         'Do NOT make strategic decisions.',
         'Do NOT review your own code.',
@@ -157,7 +171,12 @@ export const defaultPartyPreset: OrchestrationConfig = {
         'The dark scholar who scrutinizes every incantation for flaws.',
       personality:
         "The adversarial critic. Assumes every change is guilty until proven innocent. Cares about correctness, safety, and maintainability. Looks for what COULD break. Challenges the wizard's plan. Tough but fair.",
-      responsibilities: [findResp('Code Review'), findResp('Feedback')],
+      responsibilities: [
+        findResp('Code Review'),
+        findResp('Feedback'),
+        findResp('TDD Enforcement'),
+        findResp('Security Auditing'),
+      ],
       restrictions: [
         'Do NOT modify source code yourself.',
         'Do NOT run benchmarks.',

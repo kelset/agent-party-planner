@@ -16,6 +16,7 @@ To manage this complex responsibility, the Throne Room features three specialize
 **Responsibilities:**
 
 - Talks directly with the user to outline the overarching goals and scope of the quests.
+- Asks the user for any "hoarded knowledge", existing code snippets, or preferred patterns (Knowledge Injection).
 - Helps design the party composition (which classes to include or exclude).
 - Sets the "house rules" and constraints that the Game Master (GM) and the Party must follow.
 - Acts as the project lead, translating user intent into the initial parameters that spin up a GM Session.
@@ -30,6 +31,7 @@ To manage this complex responsibility, the Throne Room features three specialize
 - Interacts _only_ at the end of a completed quest when the party returns to the Throne Room.
 - Reads the shared `journal.md`, measurements, and other quest artifacts.
 - Synthesizes the raw data, diffs, and agent interactions into a cohesive, engaging narrative recap.
+- Can generate interactive HTML/JS artifacts to visually recap the completed quest.
 - Translates technical achievements (or failures) into a digestible storyline so the user understands exactly what happened without having to read raw logs.
 
 ---
