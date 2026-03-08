@@ -41,7 +41,8 @@ export function TavernUI() {
 
     if (sharedConfig) {
       try {
-        const decoded = LZString.decompressFromEncodedURIComponent(sharedConfig);
+        const decoded =
+          LZString.decompressFromEncodedURIComponent(sharedConfig);
         if (decoded) {
           loadedConfig = sanitizeConfig(JSON.parse(decoded));
           // Clean up the URL so it doesn't linger
@@ -65,84 +66,109 @@ export function TavernUI() {
 
     if (loadedConfig) {
       // Migrate legacy warRoom configs to throneRoom
-      if ((loadedConfig as any).warRoom && !loadedConfig.throneRoom) {
-        loadedConfig.throneRoom = (loadedConfig as any).warRoom;
-        delete (loadedConfig as any).warRoom;
+      const legacyConfig = loadedConfig as Record<string, unknown>;
+      if (legacyConfig.warRoom && !legacyConfig.throneRoom) {
+        legacyConfig.throneRoom = legacyConfig.warRoom;
+        delete legacyConfig.warRoom;
       }
       setConfig(loadedConfig);
     }
 
     // Load custom responsibilities from localStorage if they exist
-    const savedResponsibilities = localStorage.getItem('party-planner-responsibilities');
+    const savedResponsibilities = localStorage.getItem(
+      'party-planner-responsibilities'
+    );
     if (savedResponsibilities) {
       try {
-        setCustomResponsibilities(sanitizeConfig(JSON.parse(savedResponsibilities)));
+        setCustomResponsibilities(
+          sanitizeConfig(JSON.parse(savedResponsibilities))
+        );
       } catch (e) {
         console.error('Failed to parse saved responsibilities', e);
       }
     }
-    
+
     setIsInitialized(true);
   }, []);
 
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem('party-planner-config', JSON.stringify(config));
-      localStorage.setItem('party-planner-responsibilities', JSON.stringify(customResponsibilities));
+      localStorage.setItem(
+        'party-planner-responsibilities',
+        JSON.stringify(customResponsibilities)
+      );
     }
   }, [config, customResponsibilities, isInitialized]);
 
   const handleShare = () => {
-    const encoded = LZString.compressToEncodedURIComponent(JSON.stringify(config));
+    const encoded = LZString.compressToEncodedURIComponent(
+      JSON.stringify(config)
+    );
     const url = `${window.location.origin}${window.location.pathname}?party=${encoded}`;
-    navigator.clipboard.writeText(url).then(() => {
-      alert('Party configuration URL copied to clipboard! You can share this link with others.');
-    }).catch(err => {
-      console.error('Failed to copy link', err);
-      alert('Failed to copy link to clipboard.');
-    });
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        alert(
+          'Party configuration URL copied to clipboard! You can share this link with others.'
+        );
+      })
+      .catch((err) => {
+        console.error('Failed to copy link', err);
+        alert('Failed to copy link to clipboard.');
+      });
   };
 
   const handleAddDuty = () => {
     if (!newDuty.name || !newDuty.description) return;
-    if (customResponsibilities.some(r => r.name === newDuty.name)) {
+    if (customResponsibilities.some((r) => r.name === newDuty.name)) {
       alert('A duty with this name already exists in the catalog.');
       return;
     }
-    setCustomResponsibilities((prev) => [...prev, { ...newDuty, category: 'party' }]);
+    setCustomResponsibilities((prev) => [
+      ...prev,
+      { ...newDuty, category: 'party' },
+    ]);
     setNewDuty({ name: '', description: '' });
   };
 
   const handleRemoveDuty = (name: string) => {
     // Check if it's currently used by any member
-    const isUsed = config.party.some(m => m.responsibilities.some(r => r.name === name));
+    const isUsed = config.party.some((m) =>
+      m.responsibilities.some((r) => r.name === name)
+    );
     if (isUsed) {
-      alert('This responsibility is currently assigned to a party member and cannot be removed.');
+      alert(
+        'This responsibility is currently assigned to a party member and cannot be removed.'
+      );
       return;
     }
-    setCustomResponsibilities((prev) => prev.filter(r => r.name !== name));
+    setCustomResponsibilities((prev) => prev.filter((r) => r.name !== name));
   };
 
   const handleRemoveUnassigned = () => {
     const assignedNames = new Set(
-      config.party.flatMap(m => m.responsibilities.map(r => r.name))
+      config.party.flatMap((m) => m.responsibilities.map((r) => r.name))
     );
-    
-    setCustomResponsibilities(prev => 
-      prev.filter(r => 
-        // Keep if it's assigned
-        assignedNames.has(r.name) || 
-        // OR if it's NOT a party level one (keep meta/gm ones as they are hidden infrastructure)
-        r.category !== 'party'
+
+    setCustomResponsibilities((prev) =>
+      prev.filter(
+        (r) =>
+          // Keep if it's assigned
+          assignedNames.has(r.name) ||
+          // OR if it's NOT a party level one (keep meta/gm ones as they are hidden infrastructure)
+          r.category !== 'party'
       )
     );
   };
 
   const handleResetResponsibilities = () => {
     setCustomResponsibilities((prev) => {
-      const names = new Set(prev.map(r => r.name));
+      const names = new Set(prev.map((r) => r.name));
       // Only restore party-level defaults
-      const missing = defaultResponsibilities.filter(r => r.category === 'party' && !names.has(r.name));
+      const missing = defaultResponsibilities.filter(
+        (r) => r.category === 'party' && !names.has(r.name)
+      );
       return [...prev, ...missing];
     });
   };
@@ -240,7 +266,9 @@ export function TavernUI() {
 
   const catalogResponsibilities = useMemo(() => {
     // Only show "party" level ones in the catalog (or ones without a category, which we'll treat as party)
-    return allResponsibilities.filter(r => !r.category || r.category === 'party');
+    return allResponsibilities.filter(
+      (r) => !r.category || r.category === 'party'
+    );
   }, [allResponsibilities]);
 
   const editingMember = useMemo(
@@ -281,14 +309,37 @@ export function TavernUI() {
         <div class="w-full flex flex-col items-center">
           <HeroBanner />
           <LorenzoComment>
-            I had an idea for an Agent Orchestrator. I could have just made a GitHub Gist, but <br class="hidden md:block" /> instead I built a whole website for it. Play with it, assemble your roster, and have fun!<br class="hidden md:block" /> <span class="italic opacity-80 mt-2 block">(psst: did I mention it's all OSS?!? <a href="https://github.com/kelset/agent-party-planner" class="underline hover:text-crimson transition-colors" target="_blank" rel="noopener noreferrer">the repo is here</a>)</span>
+            I had an idea for an Agent Orchestrator. I could have just made a
+            GitHub Gist, but <br class="hidden md:block" /> instead I built a
+            whole website for it. Play with it, assemble your roster, and have
+            fun!
+            <br class="hidden md:block" />{' '}
+            <span class="italic opacity-80 mt-2 block">
+              (psst: did I mention it's all OSS?!?{' '}
+              <a
+                href="https://github.com/kelset/agent-party-planner"
+                class="underline hover:text-crimson transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                the repo is here
+              </a>
+              )
+            </span>
           </LorenzoComment>
         </div>
       </div>
 
       {/* Throne Room Callout */}
       <div class="p-6 bg-parchment-base border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm flex flex-col sm:flex-row gap-6 items-start relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
+        <div
+          class="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)',
+            backgroundSize: '16px 16px',
+          }}
+        ></div>
         <div class="w-16 h-16 rounded-sm bg-parchment border-[3px] border-ink-deep flex items-center justify-center shrink-0 shadow-[2px_2px_0_var(--color-ink-deep)] z-10">
           <span class="text-3xl drop-shadow-sm">🏰</span>
         </div>
@@ -297,7 +348,14 @@ export function TavernUI() {
             The Throne Room is Ready
           </h3>
           <p class="text-sm font-bold text-ink-faded leading-relaxed">
-            Your overarching meta-orchestration is overseen by a fixed, highly-opinionated <strong>Throne Room</strong> consisting of the <strong class="text-crimson">Game Creator</strong>, the <strong class="text-crimson">Master of Spies</strong>, and the <strong class="text-crimson">Bard</strong>. This meta-layer provides strategic planning, performance evaluation, and engaging recaps, leaving you to focus entirely on customizing the execution Party below.
+            Your overarching meta-orchestration is overseen by a fixed,
+            highly-opinionated <strong>Throne Room</strong> consisting of the{' '}
+            <strong class="text-crimson">Game Creator</strong>, the{' '}
+            <strong class="text-crimson">Master of Spies</strong>, and the{' '}
+            <strong class="text-crimson">Bard</strong>. This meta-layer provides
+            strategic planning, performance evaluation, and engaging recaps,
+            leaving you to focus entirely on customizing the execution Party
+            below.
           </p>
         </div>
       </div>
@@ -305,9 +363,13 @@ export function TavernUI() {
       {/* Roster Grid */}
       <div>
         <div class="mb-8 flex justify-between items-end border-b-[3px] border-ink-deep/20 pb-4 mt-8">
-          <h2 class="text-2xl font-black text-parchment-light uppercase tracking-widest drop-shadow-[2px_2px_0_var(--color-ink-deep)] font-mono">The Roster</h2>
+          <h2 class="text-2xl font-black text-parchment-light uppercase tracking-widest drop-shadow-[2px_2px_0_var(--color-ink-deep)] font-mono">
+            The Roster
+          </h2>
           <div class="text-sm font-bold text-ink-faded bg-parchment-base px-3 py-1 border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm">
-            Members: <span class="text-ink-deep font-black">{config.party.length}</span> / min {config.constraints.minPartyMembers}
+            Members:{' '}
+            <span class="text-ink-deep font-black">{config.party.length}</span>{' '}
+            / min {config.constraints.minPartyMembers}
           </div>
         </div>
 
@@ -328,7 +390,13 @@ export function TavernUI() {
           })}
 
           {/* Add Member Placeholder */}
-          <div class="relative pt-3 pb-2 w-full max-w-[340px] mx-auto flex flex-col group transition-transform duration-300 hover:-translate-y-2 animate-card-entry opacity-0" style={{ animationFillMode: 'forwards', animationDelay: `${config.party.length * 0.1}s` }}>
+          <div
+            class="relative pt-3 pb-2 w-full max-w-[340px] mx-auto flex flex-col group transition-transform duration-300 hover:-translate-y-2 animate-card-entry opacity-0"
+            style={{
+              animationFillMode: 'forwards',
+              animationDelay: `${config.party.length * 0.1}s`,
+            }}
+          >
             <button
               onClick={handleRecruitMember}
               class="border-[3px] border-dashed border-ink-deep/50 rounded-sm bg-parchment-dark/10 hover:bg-parchment-dark/30 hover:border-ink-deep transition-all duration-300 flex flex-col items-center justify-center min-h-[300px] flex-1 cursor-pointer shadow-[6px_6px_0_var(--color-ink-deep)] p-6"
@@ -388,9 +456,9 @@ export function TavernUI() {
       />
 
       {/* Success Modal */}
-      <ExportSuccessModal 
-        isOpen={showSuccessModal} 
-        onClose={() => setShowSuccessModal(false)} 
+      <ExportSuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
       />
     </section>
   );

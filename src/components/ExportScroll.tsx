@@ -8,7 +8,13 @@ export interface ExportScrollProps {
   onShare: () => void;
 }
 
-export function ExportScroll({ platform, setPlatform, isExporting, onExport, onShare }: ExportScrollProps) {
+export function ExportScroll({
+  platform,
+  setPlatform,
+  isExporting,
+  onExport,
+  onShare,
+}: ExportScrollProps) {
   return (
     <div class="mt-16 mb-8 relative flex justify-center px-6">
       <div class="relative w-full max-w-2xl drop-shadow-[0_15px_15px_rgba(0,0,0,0.5)]">
@@ -32,7 +38,7 @@ export function ExportScroll({ platform, setPlatform, isExporting, onExport, onS
         </div>
 
         {/* Main Scroll Body */}
-        <div 
+        <div
           class="relative bg-parchment-dark border-[3px] border-t-0 border-b-0 border-ink-deep text-ink-deep pt-12 pb-16 px-6 md:px-12 z-10"
           style={{
             backgroundImage: `
@@ -40,25 +46,37 @@ export function ExportScroll({ platform, setPlatform, isExporting, onExport, onS
               linear-gradient(to bottom, rgba(44, 30, 22, 0.15) 3px, transparent 3px)
             `,
             backgroundSize: '48px 48px',
-            backgroundPosition: 'center top'
+            backgroundPosition: 'center top',
           }}
         >
           {/* Content Container */}
           <div class="text-center mb-10 relative z-10 bg-parchment-dark/90 p-4 rounded border-[3px] border-ink-deep/10">
-            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-widest text-ink-deep mb-3 drop-shadow-[2px_2px_0_var(--color-parchment-aged)]" style={{ fontFamily: 'monospace' }}>Seal The Pact</h2>
+            <h2
+              class="text-3xl md:text-4xl font-black uppercase tracking-widest text-ink-deep mb-3 drop-shadow-[2px_2px_0_var(--color-parchment-aged)]"
+              style={{ fontFamily: 'monospace' }}
+            >
+              Seal The Pact
+            </h2>
             <p class="text-ink-faded font-bold max-w-md mx-auto leading-relaxed">
-              Your party is assembled. Choose your orchestration realm, generate the sacred texts, and share your roster.
+              Your party is assembled. Choose your orchestration realm, generate
+              the sacred texts, and share your roster.
             </p>
           </div>
 
           <div class="flex flex-col items-center gap-8 relative z-10 px-2">
             {/* Step 1: Model Picker */}
             <div class="w-full max-w-sm flex flex-col items-center text-center bg-parchment-aged border-[3px] border-ink-deep p-5 shadow-[6px_6px_0_var(--color-ink-deep)] transition-transform hover:-translate-y-1">
-              <span class="text-xs font-black text-ink-deep uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-ink-deep/20">I. Select Your Realm</span>
+              <span class="text-xs font-black text-ink-deep uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-ink-deep/20">
+                I. Select Your Realm
+              </span>
               <div class="relative w-full mt-2">
                 <select
                   value={platform}
-                  onInput={(e) => setPlatform((e.target as HTMLSelectElement).value as Platform)}
+                  onInput={(e) =>
+                    setPlatform(
+                      (e.target as HTMLSelectElement).value as Platform
+                    )
+                  }
                   class="appearance-none w-full bg-parchment-base border-[3px] border-ink-deep text-ink-deep py-3 pl-4 pr-10 focus:outline-none focus:bg-parchment-light cursor-pointer text-sm font-black tracking-wide transition-colors shadow-[4px_4px_0_rgba(44,30,22,0.2)]"
                 >
                   <option value="claude">Claude (Anthropic)</option>
@@ -68,14 +86,27 @@ export function ExportScroll({ platform, setPlatform, isExporting, onExport, onS
                   <option value="markdown">Raw Markdown</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-ink-deep">
-                  <svg class="w-6 h-6 stroke-[3px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" d="M19 9l-7 7-7-7"></path></svg>
+                  <svg
+                    class="w-6 h-6 stroke-[3px]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="square"
+                      stroke-linejoin="miter"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
                 </div>
               </div>
             </div>
 
             {/* Step 2: Generate */}
             <div class="w-full max-w-sm flex flex-col items-center text-center bg-parchment-aged border-[3px] border-ink-deep p-5 shadow-[6px_6px_0_var(--color-ink-deep)] transition-transform hover:-translate-y-1">
-              <span class="text-xs font-black text-ink-deep uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-ink-deep/20">II. Forge The Documents</span>
+              <span class="text-xs font-black text-ink-deep uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-ink-deep/20">
+                II. Forge The Documents
+              </span>
               <button
                 onClick={onExport}
                 disabled={isExporting}
@@ -83,9 +114,25 @@ export function ExportScroll({ platform, setPlatform, isExporting, onExport, onS
               >
                 {isExporting ? (
                   <>
-                    <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg
+                      class="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"
+                      ></circle>
+                      <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
                     </svg>
                     Forging...
                   </>
@@ -97,13 +144,24 @@ export function ExportScroll({ platform, setPlatform, isExporting, onExport, onS
 
             {/* Step 3: Share */}
             <div class="w-full max-w-sm flex flex-col items-center text-center bg-parchment-aged border-[3px] border-ink-deep p-5 shadow-[6px_6px_0_var(--color-ink-deep)] transition-transform hover:-translate-y-1">
-              <span class="text-xs font-black text-ink-deep uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-ink-deep/20">III. Spread The Word</span>
+              <span class="text-xs font-black text-ink-deep uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-ink-deep/20">
+                III. Spread The Word
+              </span>
               <button
                 onClick={onShare}
                 class="flex items-center justify-center gap-3 w-full bg-parchment-base hover:bg-parchment-light text-ink-deep uppercase tracking-widest text-sm py-4 font-black transition-all active:translate-y-[4px] active:translate-x-[4px] active:shadow-[0_0_0_var(--color-ink-deep)] border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] mt-2"
               >
-                <svg class="w-5 h-5 stroke-[3px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="square" stroke-linejoin="miter" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                <svg
+                  class="w-5 h-5 stroke-[3px]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="square"
+                    stroke-linejoin="miter"
+                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                  ></path>
                 </svg>
                 Copy Roster Link
               </button>

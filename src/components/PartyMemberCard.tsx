@@ -52,7 +52,13 @@ export function PartyMemberCard({
   const theme = colorMap[member.agentClass] || colorMap.default;
 
   return (
-    <div class="relative pt-3 pb-2 group transition-transform duration-300 hover:-translate-y-2 w-full max-w-[340px] mx-auto flex flex-col animate-card-entry opacity-0" style={{ animationFillMode: 'forwards', animationDelay: `${index * 0.1}s` }}>
+    <div
+      class="relative pt-3 pb-2 group transition-transform duration-300 hover:-translate-y-2 w-full max-w-[340px] mx-auto flex flex-col animate-card-entry opacity-0"
+      style={{
+        animationFillMode: 'forwards',
+        animationDelay: `${index * 0.1}s`,
+      }}
+    >
       {/* Main Card Body (The Frame) */}
       <div class="rounded-sm shadow-[6px_6px_0_var(--color-ink-deep)] relative flex-1 flex flex-col bg-parchment border-[3px] border-ink-deep overflow-visible">
         {/* Top Right Edit Button (The Triple Dot) */}
@@ -74,11 +80,12 @@ export function PartyMemberCard({
         {/* Inner Content Wrapper */}
         <div class="flex-1 flex flex-col relative border-2 border-ink-deep/10 m-1">
           {/* Image Area */}
-          <div class="h-44 bg-parchment-dark relative flex items-center justify-center border-b-[3px] border-ink-deep shadow-[inset_0_-10px_20px_rgba(0,0,0,0.3)] overflow-hidden group/image"
-               style={{
-                 backgroundImage: `linear-gradient(to right, rgba(44, 30, 22, 0.1) 2px, transparent 2px), linear-gradient(to bottom, rgba(44, 30, 22, 0.1) 2px, transparent 2px)`,
-                 backgroundSize: '20px 20px'
-               }}
+          <div
+            class="h-44 bg-parchment-dark relative flex items-center justify-center border-b-[3px] border-ink-deep shadow-[inset_0_-10px_20px_rgba(0,0,0,0.3)] overflow-hidden group/image"
+            style={{
+              backgroundImage: `linear-gradient(to right, rgba(44, 30, 22, 0.1) 2px, transparent 2px), linear-gradient(to bottom, rgba(44, 30, 22, 0.1) 2px, transparent 2px)`,
+              backgroundSize: '20px 20px',
+            }}
           >
             <span class="text-ink-deep font-black uppercase tracking-widest text-lg z-0 opacity-30 absolute font-mono">
               Portrait
@@ -172,7 +179,9 @@ export function PartyMemberCard({
                       class="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-sm bg-parchment-light border-2 border-ink-deep text-ink-deep hover:text-white hover:bg-crimson flex items-center justify-center opacity-0 group-hover/pill:opacity-100 transition-all text-xs z-10 shadow-[2px_2px_0_var(--color-ink-deep)]"
                       aria-label={`Remove ${r.name}`}
                     >
-                      <span class="-mt-0.5 font-black leading-none text-sm">×</span>
+                      <span class="-mt-0.5 font-black leading-none text-sm">
+                        ×
+                      </span>
                     </button>
                   </div>
                 );

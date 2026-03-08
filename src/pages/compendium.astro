@@ -13,7 +13,9 @@ import { LorenzoComment } from '../components/LorenzoComment';
 
     <div class="max-w-6xl mx-auto px-6 py-12 relative">
       <!-- Navigation -->
-      <nav class="flex justify-between items-center mb-16 bg-parchment-base border-[3px] border-ink-deep p-4 shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm">
+      <nav
+        class="flex justify-between items-center mb-16 bg-parchment-base border-[3px] border-ink-deep p-4 shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm"
+      >
         <a href="/" class="flex items-center gap-3 group">
           <img
             src="/images/logo-sm.png"
@@ -26,29 +28,45 @@ import { LorenzoComment } from '../components/LorenzoComment';
             >Agents Party</span
           >
         </a>
-        <div class="hidden md:flex gap-8 text-sm font-black uppercase tracking-widest text-ink-deep font-mono items-center">
-          <a href="/compendium" class="hover:text-crimson hover:-translate-y-0.5 transition-transform"
+        <div
+          class="hidden md:flex gap-8 text-sm font-black uppercase tracking-widest text-ink-deep font-mono items-center"
+        >
+          <a
+            href="/compendium"
+            class="hover:text-crimson hover:-translate-y-0.5 transition-transform"
             >Compendium</a
           >
-          <a href="https://github.com/kelset/agent-party-planner" class="hover:text-crimson hover:-translate-y-0.5 transition-transform flex items-center gap-2">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+          <a
+            href="https://github.com/kelset/agent-party-planner"
+            class="hover:text-crimson hover:-translate-y-0.5 transition-transform flex items-center gap-2"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+              ><path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"></path></svg
+            >
             GitHub
           </a>
         </div>
       </nav>
 
       <!-- Content -->
-      <article class="prose prose-invert max-w-none prose-h3:text-ink-deep prose-p:text-ink-faded prose-strong:text-ink-deep">
+      <article
+        class="prose prose-invert max-w-none prose-h3:text-ink-deep prose-p:text-ink-faded prose-strong:text-ink-deep"
+      >
         <h1
           class="text-4xl md:text-5xl font-black text-parchment-light mb-8 tracking-widest uppercase drop-shadow-[4px_4px_0_var(--color-ink-deep)] font-mono"
         >
           The Compendium
         </h1>
 
-        <p class="text-xl text-ink-deep font-bold mb-12 leading-relaxed bg-parchment p-6 border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm relative text-center">
-          The <strong>Agents Party</strong> is an interactive web tool that
-          lets you visually configure and export <em>Agent Orchestration</em> packages.
-          Using a fantasy RPG inspired theme, you can assemble a "Party" of specialized
+        <p
+          class="text-xl text-ink-deep font-bold mb-12 leading-relaxed bg-parchment p-6 border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm relative text-center"
+        >
+          The <strong>Agents Party</strong> is an interactive web tool that lets you
+          visually configure and export <em>Agent Orchestration</em> packages. Using
+          a fantasy RPG inspired theme, you can assemble a "Party" of specialized
           AI agents, customize their personalities, and download a ready-to-use orchestration
           setup tailored for platforms like Gemini or Claude. All entirely in your
           browser.
@@ -60,18 +78,31 @@ import { LorenzoComment } from '../components/LorenzoComment';
           The Multi-Tier Architecture
         </h2>
         <LorenzoComment class="mb-12">
-          The exported packages follow a strict 3-tier hierarchy that separates meta-planning<br class="hidden md:block"/> from actual coding. This ensures privacy, reduces clutter, and maintains clear roles.
+          The exported packages follow a strict 3-tier hierarchy that separates
+          meta-planning<br class="hidden md:block" /> from actual coding. This ensures
+          privacy, reduces clutter, and maintains clear roles.
         </LorenzoComment>
 
         <div class="space-y-8 mb-16">
           <section
             class="bg-parchment-base p-6 rounded-sm border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] relative overflow-hidden"
           >
-            <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
+            <div
+              class="absolute inset-0 opacity-10 pointer-events-none"
+              style={{
+                backgroundImage:
+                  'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)',
+                backgroundSize: '16px 16px',
+              }}
+            >
+            </div>
             <h3
               class="text-xl font-black text-ink-deep mb-3 flex items-center gap-3 font-mono relative z-10"
             >
-              <span class="text-gold-600 drop-shadow-[1px_1px_0_var(--color-ink-deep)]">I.</span> The Throne Room <span
+              <span
+                class="text-gold-600 drop-shadow-[1px_1px_0_var(--color-ink-deep)]"
+                >I.</span
+              > The Throne Room <span
                 class="text-sm font-bold text-ink-faded tracking-widest uppercase"
                 >(Meta-Level)</span
               >
@@ -81,7 +112,9 @@ import { LorenzoComment } from '../components/LorenzoComment';
               the quest, set constraints, and adjust rules mid-flight. It runs
               in an isolated directory to keep your main codebase clean.
             </p>
-            <ul class="list-disc list-inside text-ink-faded font-bold mt-4 space-y-2 relative z-10">
+            <ul
+              class="list-disc list-inside text-ink-faded font-bold mt-4 space-y-2 relative z-10"
+            >
               <li>
                 <strong class="text-crimson">The Game Creator:</strong> The architect
                 and your primary brainstorming partner.
@@ -100,11 +133,22 @@ import { LorenzoComment } from '../components/LorenzoComment';
           <section
             class="bg-parchment-base p-6 rounded-sm border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] relative overflow-hidden"
           >
-            <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
+            <div
+              class="absolute inset-0 opacity-10 pointer-events-none"
+              style={{
+                backgroundImage:
+                  'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)',
+                backgroundSize: '16px 16px',
+              }}
+            >
+            </div>
             <h3
               class="text-xl font-black text-ink-deep mb-3 flex items-center gap-3 font-mono relative z-10"
             >
-              <span class="text-gold-600 drop-shadow-[1px_1px_0_var(--color-ink-deep)]">II.</span> The GM Session <span
+              <span
+                class="text-gold-600 drop-shadow-[1px_1px_0_var(--color-ink-deep)]"
+                >II.</span
+              > The GM Session <span
                 class="text-sm font-bold text-ink-faded tracking-widest uppercase"
                 >(Coordinator)</span
               >
@@ -115,83 +159,173 @@ import { LorenzoComment } from '../components/LorenzoComment';
               and spawning the correct Party Members to do the work. The GM
               coordinates but <em>never</em> writes code or runs tests itself.
             </p>
-            <h4 class="text-sm font-black text-ink-deep mt-8 mb-2 uppercase tracking-widest font-mono relative z-10">Standard Quest Lifecycle</h4>
-            
-            <div class="relative pl-8 space-y-8 before:absolute before:inset-y-0 before:left-[11px] before:w-[3px] before:bg-ink-deep mt-6 pb-4 relative z-10 font-bold">
+            <h4
+              class="text-sm font-black text-ink-deep mt-8 mb-2 uppercase tracking-widest font-mono relative z-10"
+            >
+              Standard Quest Lifecycle
+            </h4>
+
+            <div
+              class="relative pl-8 space-y-8 before:absolute before:inset-y-0 before:left-[11px] before:w-[3px] before:bg-ink-deep mt-6 pb-4 relative z-10 font-bold"
+            >
               <!-- Phase 1 -->
               <div class="relative">
-                <div class="absolute -left-[39px] -top-0.5 w-6 h-6 rounded-sm bg-parchment border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center">
+                <div
+                  class="absolute -left-[39px] -top-0.5 w-6 h-6 rounded-sm bg-parchment border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center"
+                >
                   <span class="w-2 h-2 rounded-sm bg-emerald-500"></span>
                 </div>
-                <h5 class="text-ink-deep font-black mb-2 tracking-widest uppercase text-sm font-mono">Phase 1: Recon</h5>
-                <div class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep flex flex-col gap-3 text-sm shadow-[2px_2px_0_var(--color-ink-deep)]">
+                <h5
+                  class="text-ink-deep font-black mb-2 tracking-widest uppercase text-sm font-mono"
+                >
+                  Phase 1: Recon
+                </h5>
+                <div
+                  class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep flex flex-col gap-3 text-sm shadow-[2px_2px_0_var(--color-ink-deep)]"
+                >
                   <div class="flex items-start gap-3">
                     <span class="text-xl drop-shadow-sm">🏹</span>
-                    <div class="text-ink-faded"><strong class="text-emerald-600 font-black tracking-wide">Ranger</strong> gathers baseline measurements and maps the environment.</div>
+                    <div class="text-ink-faded">
+                      <strong class="text-emerald-600 font-black tracking-wide"
+                        >Ranger</strong
+                      > gathers baseline measurements and maps the environment.
+                    </div>
                   </div>
                   <div class="flex items-start gap-3">
                     <span class="text-xl drop-shadow-sm">🧙‍♂️</span>
-                    <div class="text-ink-faded"><strong class="text-purple-600 font-black tracking-wide">Wizard</strong> analyzes the data and writes a structured attack plan.</div>
+                    <div class="text-ink-faded">
+                      <strong class="text-purple-600 font-black tracking-wide"
+                        >Wizard</strong
+                      > analyzes the data and writes a structured attack plan.
+                    </div>
                   </div>
                 </div>
               </div>
               <!-- Phase 2 -->
               <div class="relative">
-                <div class="absolute -left-[39px] -top-0.5 w-6 h-6 rounded-sm bg-parchment border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center">
+                <div
+                  class="absolute -left-[39px] -top-0.5 w-6 h-6 rounded-sm bg-parchment border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center"
+                >
                   <span class="w-2 h-2 rounded-sm bg-crimson"></span>
                 </div>
-                <h5 class="text-ink-deep font-black mb-2 tracking-widest uppercase text-sm font-mono">Phase 2: Execution <span class="text-ink-faded text-xs normal-case">(Iterative Loop)</span></h5>
-                <div class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep flex flex-col gap-3 text-sm shadow-[2px_2px_0_var(--color-ink-deep)]">
+                <h5
+                  class="text-ink-deep font-black mb-2 tracking-widest uppercase text-sm font-mono"
+                >
+                  Phase 2: Execution <span
+                    class="text-ink-faded text-xs normal-case"
+                    >(Iterative Loop)</span>
+                </h5>
+                <div
+                  class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep flex flex-col gap-3 text-sm shadow-[2px_2px_0_var(--color-ink-deep)]"
+                >
                   <div class="flex items-start gap-3">
                     <span class="text-xl drop-shadow-sm">⚔️</span>
-                    <div class="text-ink-faded"><strong class="text-crimson font-black tracking-wide">Warrior</strong> implements the specific changes according to the plan.</div>
+                    <div class="text-ink-faded">
+                      <strong class="text-crimson font-black tracking-wide"
+                        >Warrior</strong
+                      > implements the specific changes according to the plan.
+                    </div>
                   </div>
                   <div class="flex items-center gap-2 pl-4 text-ink-light">
-                    <svg class="w-4 h-4 stroke-[3px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                    <span class="text-xs uppercase tracking-widest font-black">Loop until approved</span>
+                    <svg
+                      class="w-4 h-4 stroke-[3px]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      ><path
+                        stroke-linecap="square"
+                        stroke-linejoin="miter"
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      ></path></svg
+                    >
+                    <span class="text-xs uppercase tracking-widest font-black"
+                      >Loop until approved</span
+                    >
                   </div>
                   <div class="flex items-start gap-3">
                     <span class="text-xl drop-shadow-sm">🧛‍♂️</span>
-                    <div class="text-ink-faded"><strong class="text-purple-800 font-black tracking-wide">Warlock</strong> scrutinizes the code. Blocks bad changes or approves.</div>
+                    <div class="text-ink-faded">
+                      <strong class="text-purple-800 font-black tracking-wide"
+                        >Warlock</strong
+                      > scrutinizes the code. Blocks bad changes or approves.
+                    </div>
                   </div>
-                  <div class="mt-2 pt-3 border-t-[3px] border-ink-deep/20 flex flex-col gap-3">
+                  <div
+                    class="mt-2 pt-3 border-t-[3px] border-ink-deep/20 flex flex-col gap-3"
+                  >
                     <div class="flex items-start gap-3">
                       <span class="text-xl drop-shadow-sm">🧙‍♂️</span>
-                      <div class="text-ink-faded"><strong class="text-purple-600 font-black tracking-wide">Wizard</strong> &amp; <strong class="text-emerald-600 font-black tracking-wide">Ranger</strong> verify the final outcome matches the plan and metrics.</div>
+                      <div class="text-ink-faded">
+                        <strong class="text-purple-600 font-black tracking-wide"
+                          >Wizard</strong
+                        > &amp; <strong
+                          class="text-emerald-600 font-black tracking-wide"
+                          >Ranger</strong
+                        > verify the final outcome matches the plan and metrics.
+                      </div>
                     </div>
                     <div class="flex items-start gap-3 opacity-80">
                       <span class="text-xl drop-shadow-sm">🧑‍⚕️</span>
-                      <div class="text-ink-faded"><em>If blockers hit:</em> <strong class="text-cyan-700 font-black tracking-wide">Healer</strong> diagnoses and recovers the environment.</div>
+                      <div class="text-ink-faded">
+                        <em>If blockers hit:</em>
+                        <strong class="text-cyan-700 font-black tracking-wide"
+                          >Healer</strong
+                        > diagnoses and recovers the environment.
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- Phase 3 -->
               <div class="relative">
-                <div class="absolute -left-[39px] -top-0.5 w-6 h-6 rounded-sm bg-parchment border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center">
+                <div
+                  class="absolute -left-[39px] -top-0.5 w-6 h-6 rounded-sm bg-parchment border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center"
+                >
                   <span class="w-2 h-2 rounded-sm bg-gold-400"></span>
                 </div>
-                <h5 class="text-ink-deep font-black mb-2 tracking-widest uppercase text-sm font-mono">Phase 3: Document & Report</h5>
-                <div class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep flex items-start gap-3 text-sm shadow-[2px_2px_0_var(--color-ink-deep)]">
+                <h5
+                  class="text-ink-deep font-black mb-2 tracking-widest uppercase text-sm font-mono"
+                >
+                  Phase 3: Document & Report
+                </h5>
+                <div
+                  class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep flex items-start gap-3 text-sm shadow-[2px_2px_0_var(--color-ink-deep)]"
+                >
                   <span class="text-xl drop-shadow-sm">📜</span>
-                  <div class="text-ink-faded">The GM records final measurements, writes the summary log, and reports back to the Throne Room.</div>
+                  <div class="text-ink-faded">
+                    The GM records final measurements, writes the summary log,
+                    and reports back to the Throne Room.
+                  </div>
                 </div>
               </div>
             </div>
-            
+
             <LorenzoComment class="mt-8 mb-2">
-              Of course, this standard lifecycle is just the default baseline. You can and should adapt it to fit the unique needs and composition of your specific party!
+              Of course, this standard lifecycle is just the default baseline.
+              You can and should adapt it to fit the unique needs and
+              composition of your specific party!
             </LorenzoComment>
           </section>
 
           <section
             class="bg-parchment-base p-6 rounded-sm border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] relative overflow-hidden"
           >
-            <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
+            <div
+              class="absolute inset-0 opacity-10 pointer-events-none"
+              style={{
+                backgroundImage:
+                  'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)',
+                backgroundSize: '16px 16px',
+              }}
+            >
+            </div>
             <h3
               class="text-xl font-black text-ink-deep mb-3 flex items-center gap-3 font-mono relative z-10"
             >
-              <span class="text-gold-600 drop-shadow-[1px_1px_0_var(--color-ink-deep)]">III.</span> The Party <span
+              <span
+                class="text-gold-600 drop-shadow-[1px_1px_0_var(--color-ink-deep)]"
+                >III.</span
+              > The Party <span
                 class="text-sm font-bold text-ink-faded tracking-widest uppercase"
                 >(Sub-Agents)</span
               >
@@ -202,11 +336,14 @@ import { LorenzoComment } from '../components/LorenzoComment';
               but experts who push back on bad plans and scrutinize each other's
               work.
             </p>
-            <div class="grid md:grid-cols-2 gap-4 text-sm relative z-10 font-bold">
+            <div
+              class="grid md:grid-cols-2 gap-4 text-sm relative z-10 font-bold"
+            >
               <div
                 class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)]"
               >
-                <strong class="text-emerald-600 block mb-1 font-black tracking-widest uppercase font-mono"
+                <strong
+                  class="text-emerald-600 block mb-1 font-black tracking-widest uppercase font-mono"
                   >🏹 Ranger (Telemetry)</strong
                 >
                 <span class="text-ink-faded"
@@ -216,7 +353,8 @@ import { LorenzoComment } from '../components/LorenzoComment';
               <div
                 class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)]"
               >
-                <strong class="text-purple-600 block mb-1 font-black tracking-widest uppercase font-mono"
+                <strong
+                  class="text-purple-600 block mb-1 font-black tracking-widest uppercase font-mono"
                   >🧙‍♂️ Wizard (Strategist)</strong
                 >
                 <span class="text-ink-faded"
@@ -226,7 +364,8 @@ import { LorenzoComment } from '../components/LorenzoComment';
               <div
                 class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)]"
               >
-                <strong class="text-crimson block mb-1 font-black tracking-widest uppercase font-mono"
+                <strong
+                  class="text-crimson block mb-1 font-black tracking-widest uppercase font-mono"
                   >⚔️ Warrior (Implementation)</strong
                 >
                 <span class="text-ink-faded"
@@ -236,7 +375,8 @@ import { LorenzoComment } from '../components/LorenzoComment';
               <div
                 class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)]"
               >
-                <strong class="text-purple-800 block mb-1 font-black tracking-widest uppercase font-mono"
+                <strong
+                  class="text-purple-800 block mb-1 font-black tracking-widest uppercase font-mono"
                   >🧛‍♂️ Warlock (Code Review)</strong
                 >
                 <span class="text-ink-faded"
@@ -246,7 +386,8 @@ import { LorenzoComment } from '../components/LorenzoComment';
               <div
                 class="bg-parchment p-4 rounded-sm border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] md:col-span-2"
               >
-                <strong class="text-cyan-700 block mb-1 font-black tracking-widest uppercase font-mono"
+                <strong
+                  class="text-cyan-700 block mb-1 font-black tracking-widest uppercase font-mono"
                   >🧑‍⚕️ Healer (Diagnostics)</strong
                 >
                 <span class="text-ink-faded"
@@ -273,10 +414,17 @@ import { LorenzoComment } from '../components/LorenzoComment';
     >
       <span>© 2026 Agents Party</span>
       <div class="flex gap-8 text-center md:text-left">
-        <span>Made with agentic nerdism by <a href="https://kelset.dev" class="hover:text-crimson hover:-translate-y-0.5 transition-transform">kelset</a></span>
+        <span
+          >Made with agentic nerdism by <a
+            href="https://kelset.dev"
+            class="hover:text-crimson hover:-translate-y-0.5 transition-transform"
+            >kelset</a
+          ></span
+        >
         <a
           href="https://github.com/kelset/agent-party-planner"
-          class="hover:text-crimson hover:-translate-y-0.5 transition-transform">GitHub</a
+          class="hover:text-crimson hover:-translate-y-0.5 transition-transform"
+          >GitHub</a
         >
       </div>
     </footer>

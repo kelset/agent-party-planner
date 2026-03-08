@@ -2,7 +2,7 @@ import type { OrchestrationConfig } from '../types';
 import { defaultResponsibilities } from './responsibilities';
 
 const findResp = (name: string) => {
-  const r = defaultResponsibilities.find(r => r.name === name);
+  const r = defaultResponsibilities.find((r) => r.name === name);
   if (!r) throw new Error(`Responsibility ${name} not found in defaults`);
   return r;
 };
@@ -25,10 +25,7 @@ export const defaultPartyPreset: OrchestrationConfig = {
         id: 'meta-bard',
         name: 'The Bard',
         role: 'The Chronicler',
-        responsibilities: [
-          findResp('Quest Reporter'),
-          findResp('Translator'),
-        ],
+        responsibilities: [findResp('Quest Reporter'), findResp('Translator')],
       },
       {
         id: 'meta-spies',
@@ -131,10 +128,7 @@ export const defaultPartyPreset: OrchestrationConfig = {
       classFantasy: 'The frontline fighter who swings the sword.',
       personality:
         'The pragmatist. Prefers the simplest solution that works. Ships working code, not perfect code. Will defend implementation choices but is open to legitimate feedback. Cares about "does it work and is it safe to revert".',
-      responsibilities: [
-        findResp('Implementation'),
-        findResp('Documentation'),
-      ],
+      responsibilities: [findResp('Implementation'), findResp('Documentation')],
       restrictions: [
         'Do NOT make strategic decisions.',
         'Do NOT review your own code.',
@@ -163,10 +157,7 @@ export const defaultPartyPreset: OrchestrationConfig = {
         'The dark scholar who scrutinizes every incantation for flaws.',
       personality:
         "The adversarial critic. Assumes every change is guilty until proven innocent. Cares about correctness, safety, and maintainability. Looks for what COULD break. Challenges the wizard's plan. Tough but fair.",
-      responsibilities: [
-        findResp('Code Review'),
-        findResp('Feedback'),
-      ],
+      responsibilities: [findResp('Code Review'), findResp('Feedback')],
       restrictions: [
         'Do NOT modify source code yourself.',
         'Do NOT run benchmarks.',
@@ -200,9 +191,7 @@ export const defaultPartyPreset: OrchestrationConfig = {
         'The cleric who patches wounds and cures ailments mid-battle.',
       personality:
         'The calm diagnostician. Zero ego, zero blame. Systematic and methodical. Checks obvious things first. Cares only about unblocking the party. Documents everything for the next failure.',
-      responsibilities: [
-        findResp('Diagnostics & Recovery'),
-      ],
+      responsibilities: [findResp('Diagnostics & Recovery')],
       restrictions: [
         'Do NOT implement feature work.',
         'Do NOT make overarching strategic decisions.',

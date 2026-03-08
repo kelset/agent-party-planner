@@ -12,13 +12,15 @@ describe('Sanitizer', () => {
       expect(sanitizeString('<script>alert(1)</script>')).toBe('alert(1)');
       expect(sanitizeString('<b>Bold</b>')).toBe('Bold');
       expect(sanitizeString('<img src="x" onerror="alert(1)" />')).toBe('');
-      expect(sanitizeString('Text with <iframe>iframe</iframe> embedded')).toBe('Text with iframe embedded');
+      expect(sanitizeString('Text with <iframe>iframe</iframe> embedded')).toBe(
+        'Text with iframe embedded'
+      );
     });
 
     it('should handle non-string inputs gracefully by returning an empty string', () => {
-      expect(sanitizeString(null as any)).toBe('');
-      expect(sanitizeString(undefined as any)).toBe('');
-      expect(sanitizeString(123 as any)).toBe('');
+      expect(sanitizeString(null as unknown as string)).toBe('');
+      expect(sanitizeString(undefined as unknown as string)).toBe('');
+      expect(sanitizeString(123 as unknown as string)).toBe('');
     });
   });
 

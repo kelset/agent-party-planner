@@ -1,7 +1,12 @@
 import type { OrchestrationConfig, ThroneRoomMetaRole } from '../core/types';
 
-export function generateGameCreatorPrompt(config: OrchestrationConfig, gameCreatorRole: ThroneRoomMetaRole): string {
-  const otherRoles = config.throneRoom.metaRoles.filter(r => r.id !== gameCreatorRole.id);
+export function generateGameCreatorPrompt(
+  config: OrchestrationConfig,
+  gameCreatorRole: ThroneRoomMetaRole
+): string {
+  const otherRoles = config.throneRoom.metaRoles.filter(
+    (r) => r.id !== gameCreatorRole.id
+  );
 
   return `# The Game Creator (Throne Room)
 
@@ -23,11 +28,15 @@ To assist you in evaluating the quest, you have access to specialized council me
 
 When you need their expertise, read their respective instruction files in this directory and spawn them as sub-agents:
 
-${otherRoles.map(role => `### ${role.name} (${role.role})
+${otherRoles
+  .map(
+    (role) => `### ${role.name} (${role.role})
 **File:** \`${role.id.replace('meta-', '')}.md\`
 **When to spawn them:**
-${role.responsibilities.map(r => `- ${r.description}`).join('\n')}
-`).join('\n')}
+${role.responsibilities.map((r) => `- ${r.description}`).join('\n')}
+`
+  )
+  .join('\n')}
 
 ## Operations & Mid-Flight Adjustments
 
@@ -48,7 +57,10 @@ If the execution becomes a complete mess and the situation is beyond saving, you
 `;
 }
 
-export function generateMetaAgentPrompt(config: OrchestrationConfig, role: ThroneRoomMetaRole): string {
+export function generateMetaAgentPrompt(
+  config: OrchestrationConfig,
+  role: ThroneRoomMetaRole
+): string {
   return `# ${role.name} (Throne Room)
 
 You are **${role.name}**, operating in the **Throne Room** for the quest: **${config.questName}**.

@@ -22,11 +22,18 @@ export function ResponsibilitiesCatalog({
   allResponsibilities,
   onRemoveDuty,
   onRemoveUnassigned,
-  onReset
+  onReset,
 }: ResponsibilitiesCatalogProps) {
   return (
     <div class="bg-parchment-base border-[3px] border-ink-deep rounded-sm shadow-[6px_6px_0_var(--color-ink-deep)] relative overflow-hidden">
-      <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
+      <div
+        class="absolute inset-0 opacity-10 pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)',
+          backgroundSize: '16px 16px',
+        }}
+      ></div>
       <button
         onClick={() => setIsCatalogOpen(!isCatalogOpen)}
         class="w-full px-6 py-5 flex justify-between items-center bg-transparent hover:bg-parchment-dark/10 transition-colors cursor-pointer relative z-10"
@@ -90,7 +97,9 @@ export function ResponsibilitiesCatalog({
                   onInput={(e) =>
                     setNewDuty({
                       ...newDuty,
-                      name: sanitizeString((e.target as HTMLInputElement).value),
+                      name: sanitizeString(
+                        (e.target as HTMLInputElement).value
+                      ),
                     })
                   }
                   class="w-full bg-white border-[3px] border-ink-deep rounded-sm px-4 py-3 text-ink-deep font-bold text-sm focus:outline-none shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)] transition-colors"
@@ -107,7 +116,9 @@ export function ResponsibilitiesCatalog({
                   onInput={(e) =>
                     setNewDuty({
                       ...newDuty,
-                      description: sanitizeString((e.target as HTMLInputElement).value),
+                      description: sanitizeString(
+                        (e.target as HTMLInputElement).value
+                      ),
                     })
                   }
                   class="w-full bg-white border-[3px] border-ink-deep rounded-sm px-4 py-3 text-ink-deep font-bold text-sm focus:outline-none shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)] transition-colors"

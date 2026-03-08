@@ -112,7 +112,9 @@ export function MemberEditor({
     if (direction === 'next') {
       nextIndex = (currentIndex + 1) % AVAILABLE_CLASSES.length;
     } else {
-      nextIndex = (currentIndex - 1 + AVAILABLE_CLASSES.length) % AVAILABLE_CLASSES.length;
+      nextIndex =
+        (currentIndex - 1 + AVAILABLE_CLASSES.length) %
+        AVAILABLE_CLASSES.length;
     }
     const nextClass = AVAILABLE_CLASSES[nextIndex];
 
@@ -120,7 +122,7 @@ export function MemberEditor({
       ...prev,
       agentClass: nextClass,
       // If the name is still the default "New [Class]", update it too
-      name: prev.name.startsWith('New ') ? `New ${nextClass}` : prev.name
+      name: prev.name.startsWith('New ') ? `New ${nextClass}` : prev.name,
     }));
   };
 
@@ -146,13 +148,28 @@ export function MemberEditor({
                 class="absolute left-[-32px] top-1/2 -translate-y-1/2 w-10 h-10 bg-parchment-base border-[3px] border-ink-deep shadow-[3px_3px_0_var(--color-ink-deep)] rounded-sm flex items-center justify-center text-ink-deep hover:bg-gold-400 active:translate-y-[0.5px] active:translate-x-[0.5px] active:shadow-[2.5px_2.5px_0_var(--color-ink-deep)] transition-all z-20 cursor-pointer"
                 title="Previous Class"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-[4px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="square" stroke-linejoin="miter" d="M15 19l-7-7 7-7" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 stroke-[4px]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="square"
+                    stroke-linejoin="miter"
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </button>
 
-              <div class="w-[134px] h-[134px] bg-parchment-dark border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] relative overflow-hidden"
-                   style={{ backgroundImage: `linear-gradient(to right, rgba(44, 30, 22, 0.1) 2px, transparent 2px), linear-gradient(to bottom, rgba(44, 30, 22, 0.1) 2px, transparent 2px)`, backgroundSize: '16px 16px' }}>
+              <div
+                class="w-[134px] h-[134px] bg-parchment-dark border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] relative overflow-hidden"
+                style={{
+                  backgroundImage: `linear-gradient(to right, rgba(44, 30, 22, 0.1) 2px, transparent 2px), linear-gradient(to bottom, rgba(44, 30, 22, 0.1) 2px, transparent 2px)`,
+                  backgroundSize: '16px 16px',
+                }}
+              >
                 <img
                   src={`/images/roles/${editedMember.agentClass.toLowerCase()}.png`}
                   alt={editedMember.agentClass}
@@ -166,8 +183,18 @@ export function MemberEditor({
                 class="absolute right-[-32px] top-1/2 -translate-y-1/2 w-10 h-10 bg-parchment-base border-[3px] border-ink-deep shadow-[3px_3px_0_var(--color-ink-deep)] rounded-sm flex items-center justify-center text-ink-deep hover:bg-gold-400 active:translate-y-[0.5px] active:translate-x-[0.5px] active:shadow-[2.5px_2.5px_0_var(--color-ink-deep)] transition-all z-20 cursor-pointer"
                 title="Next Class"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-[4px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="square" stroke-linejoin="miter" d="M9 5l7 7-7 7" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 stroke-[4px]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="square"
+                    stroke-linejoin="miter"
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </button>
             </div>
@@ -203,7 +230,9 @@ export function MemberEditor({
                 onInput={(e) =>
                   setEditedMember({
                     ...editedMember,
-                    classFantasy: sanitizeString((e.target as HTMLTextAreaElement).value),
+                    classFantasy: sanitizeString(
+                      (e.target as HTMLTextAreaElement).value
+                    ),
                   })
                 }
                 rows={3}
@@ -220,7 +249,9 @@ export function MemberEditor({
                 onInput={(e) =>
                   setEditedMember({
                     ...editedMember,
-                    personality: sanitizeString((e.target as HTMLTextAreaElement).value),
+                    personality: sanitizeString(
+                      (e.target as HTMLTextAreaElement).value
+                    ),
                   })
                 }
                 rows={10}
@@ -232,7 +263,14 @@ export function MemberEditor({
 
         {/* Middle: Responsibilities */}
         <div class="w-full md:w-1/3 p-6 md:p-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink-deep flex flex-col md:overflow-hidden bg-parchment-aged relative shrink-0 md:shrink">
-          <div class="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
+          <div
+            class="absolute inset-0 opacity-10 pointer-events-none"
+            style={{
+              backgroundImage:
+                'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)',
+              backgroundSize: '16px 16px',
+            }}
+          ></div>
           <h3 class="text-xs font-black uppercase tracking-widest text-ink-deep mb-4 font-mono z-10 drop-shadow-[1px_1px_0_var(--color-parchment-dark)]">
             Responsibilities
           </h3>
@@ -255,9 +293,15 @@ export function MemberEditor({
                     <span class="font-black text-xs uppercase tracking-wider font-mono">
                       {r.name}
                     </span>
-                    {isAssigned && <span class="text-ink-deep text-lg leading-none font-black">✓</span>}
+                    {isAssigned && (
+                      <span class="text-ink-deep text-lg leading-none font-black">
+                        ✓
+                      </span>
+                    )}
                   </div>
-                  <p class={`text-[10px] leading-tight font-bold ${isAssigned ? 'opacity-90' : 'opacity-70'}`}>
+                  <p
+                    class={`text-[10px] leading-tight font-bold ${isAssigned ? 'opacity-90' : 'opacity-70'}`}
+                  >
                     {r.description}
                   </p>
                 </button>

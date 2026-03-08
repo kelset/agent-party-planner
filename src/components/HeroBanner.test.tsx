@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'bun:test';
-import { h } from 'preact';
 import { render } from '@testing-library/preact';
 import { HeroBanner } from './HeroBanner';
 

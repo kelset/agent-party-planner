@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 
 interface Props {
@@ -43,26 +42,46 @@ export function ExportSuccessModal({ isOpen, onClose }: Props) {
           <div class="w-20 h-20 bg-parchment-light border-[3px] border-ink-deep rounded-full shadow-[4px_4px_0_var(--color-ink-deep)] flex items-center justify-center mb-6">
             <span class="text-4xl drop-shadow-sm">🎉</span>
           </div>
-          
+
           <h2 class="text-3xl md:text-4xl font-black uppercase tracking-widest text-ink-deep mb-4 font-mono">
             Party Assembled!
           </h2>
-          
+
           <p class="text-ink-faded font-bold text-lg leading-relaxed mb-6">
-            Congratulations! You've successfully forged your orchestration package. Your browser should now be downloading a ZIP file containing the characters, rulebooks, and scripts for your agents.
+            Congratulations! You've successfully forged your orchestration
+            package. Your browser should now be downloading a ZIP file
+            containing the characters, rulebooks, and scripts for your agents.
           </p>
 
           <div class="bg-parchment p-6 rounded-sm border-[3px] border-ink-deep shadow-[inset_2px_2px_0_rgba(44,30,22,0.1)] text-left w-full mb-8 space-y-4">
-            <h3 class="font-black uppercase tracking-widest text-ink-deep font-mono text-sm border-b-[2px] border-ink-deep/20 pb-2">Next Steps</h3>
+            <h3 class="font-black uppercase tracking-widest text-ink-deep font-mono text-sm border-b-[2px] border-ink-deep/20 pb-2">
+              Next Steps
+            </h3>
             <ol class="list-decimal list-inside text-ink-faded font-bold space-y-2 text-sm">
-              <li>Extract the ZIP folder into a dedicated orchestration directory.</li>
-              <li>Read the included <code class="bg-white px-1.5 py-0.5 rounded-sm border-[2px] border-ink-deep text-xs font-mono">README.md</code> for specific startup commands.</li>
-              <li>Tweak the <code class="bg-white px-1.5 py-0.5 rounded-sm border-[2px] border-ink-deep text-xs font-mono">throne-room/</code> meta-prompts to further customize the overarching rules.</li>
+              <li>
+                Extract the ZIP folder into a dedicated orchestration directory.
+              </li>
+              <li>
+                Read the included{' '}
+                <code class="bg-white px-1.5 py-0.5 rounded-sm border-[2px] border-ink-deep text-xs font-mono">
+                  README.md
+                </code>{' '}
+                for specific startup commands.
+              </li>
+              <li>
+                Tweak the{' '}
+                <code class="bg-white px-1.5 py-0.5 rounded-sm border-[2px] border-ink-deep text-xs font-mono">
+                  throne-room/
+                </code>{' '}
+                meta-prompts to further customize the overarching rules.
+              </li>
             </ol>
           </div>
 
           <p class="text-ink-faded text-sm italic font-bold mb-8">
-            Have fun exploring the limits of agent orchestration! If you encounter issues, have feedback, or want to contribute, feel free to open a PR or issue on GitHub.
+            Have fun exploring the limits of agent orchestration! If you
+            encounter issues, have feedback, or want to contribute, feel free to
+            open a PR or issue on GitHub.
           </p>
 
           <button

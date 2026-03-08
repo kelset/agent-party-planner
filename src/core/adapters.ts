@@ -1,7 +1,10 @@
 import type { OrchestrationConfig } from './types';
 import { generateGMPrompt } from '../templates/gm';
 import { generatePartyMemberPrompt } from '../templates/member';
-import { generateGameCreatorPrompt, generateMetaAgentPrompt } from '../templates/throneRoom';
+import {
+  generateGameCreatorPrompt,
+  generateMetaAgentPrompt,
+} from '../templates/throneRoom';
 import { generateExportReadme } from '../templates/exportReadme';
 import {
   generateThroneRoomScript,
@@ -19,10 +22,17 @@ export interface PlatformAdapter {
   generate(config: OrchestrationConfig): ExportFile[];
 }
 
-function generateThroneRoomFiles(config: OrchestrationConfig, basePath: string): ExportFile[] {
+function generateThroneRoomFiles(
+  config: OrchestrationConfig,
+  basePath: string
+): ExportFile[] {
   const files: ExportFile[] = [];
-  const gameCreator = config.throneRoom.metaRoles.find(r => r.id === 'meta-creator');
-  const otherMetaRoles = config.throneRoom.metaRoles.filter(r => r.id !== 'meta-creator');
+  const gameCreator = config.throneRoom.metaRoles.find(
+    (r) => r.id === 'meta-creator'
+  );
+  const otherMetaRoles = config.throneRoom.metaRoles.filter(
+    (r) => r.id !== 'meta-creator'
+  );
 
   if (gameCreator) {
     files.push({
@@ -31,7 +41,7 @@ function generateThroneRoomFiles(config: OrchestrationConfig, basePath: string):
     });
   }
 
-  otherMetaRoles.forEach(role => {
+  otherMetaRoles.forEach((role) => {
     files.push({
       path: `${basePath}${role.id.replace('meta-', '')}.md`,
       content: generateMetaAgentPrompt(config, role),

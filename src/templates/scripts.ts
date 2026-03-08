@@ -2,7 +2,8 @@ export function generateThroneRoomScript(platform: string): string {
   let command: string;
   switch (platform) {
     case 'gemini':
-      command = 'gemini --permissions read,write --system-prompt throne_room/game-creator.md';
+      command =
+        'gemini --permissions read,write --system-prompt throne_room/game-creator.md';
       break;
     case 'claude':
       command =
