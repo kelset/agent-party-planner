@@ -397,6 +397,81 @@ import { LorenzoComment } from '../components/LorenzoComment';
               </div>
             </div>
           </section>
+
+          <section
+            class="bg-parchment-base p-6 rounded-sm border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 opacity-10 pointer-events-none"
+              style={{
+                backgroundImage:
+                  'linear-gradient(to right, #2c1e16 1px, transparent 1px), linear-gradient(to bottom, #2c1e16 1px, transparent 1px)',
+                backgroundSize: '16px 16px',
+              }}
+            >
+            </div>
+            <h3
+              class="text-xl font-black text-ink-deep mb-3 flex items-center gap-3 font-mono relative z-10"
+            >
+              <span
+                class="text-gold-600 drop-shadow-[1px_1px_0_var(--color-ink-deep)]"
+                >IV.</span
+              > The Agentic Mindset <span
+                class="text-sm font-bold text-ink-faded tracking-widest uppercase"
+                >(Best Practices)</span
+              >
+            </h3>
+            <p class="text-ink-faded font-bold mb-4 relative z-10">
+              The default presets are heavily inspired by Simon Willison's <em
+                >Agentic Engineering Patterns</em
+              >. The system enforces strict behavioral guidelines to prevent
+              "vibe coding" and AI hallucinations:
+            </p>
+            <ul
+              class="list-disc list-inside text-ink-faded font-bold mt-4 space-y-2 relative z-10"
+            >
+              <li>
+                <strong class="text-crimson">Red/Green TDD:</strong> The Warrior is
+                strictly instructed to write a failing test <em>first</em> before
+                implementing any code. The Warlock will reject pull requests without
+                tests.
+              </li>
+              <li>
+                <strong class="text-crimson">Context Minimization:</strong> The GM
+                isolates sub-agents, passing them <em>only</em> the specific chunk
+                of the plan they need to know, preventing prompt confusion.
+              </li>
+              <li>
+                <strong class="text-crimson">Aggressive Branching:</strong> Because
+                writing code is cheap, the Party is encouraged to spin up multiple
+                git branches to test different approaches simultaneously.
+              </li>
+            </ul>
+
+            <h4
+              class="text-sm font-black text-gold-600 mt-8 mb-2 uppercase tracking-widest font-mono relative z-10"
+            >
+              ⚠️ Experimental Gotchas
+            </h4>
+            <p class="text-ink-faded font-bold text-sm relative z-10">
+              To fully unlock the "true" parallel multi-agent potential of these
+              tools, you need to enable their experimental flags:
+              <br /><br />
+              - <strong>Gemini:</strong> Set <code
+                >"experimental": &#123; "enableAgents": true &#125;</code
+              > in your global settings to natively route to our <code
+                >.gemini/agents/</code
+              > files.<br />
+              - <strong>Codex:</strong> Ensure <code>multi_agent = true</code> is
+              toggled via <code>/experimental</code> so it reads our <code
+                >.codex/config.toml</code
+              >.<br />
+              - <strong>Claude:</strong> Simply run the quest with the <code
+                >--team</code
+              > flag to switch from hub-and-spoke subagents to a fully collaborative
+              Agent Team.
+            </p>
+          </section>
         </div>
       </article>
 
