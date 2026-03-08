@@ -17,7 +17,8 @@ Inspired by Dungeons & Dragons, this tool allows you to assemble a "Party" of sp
 - **The Tavern (UI):** A D&D-themed interface for party composition.
 - **The Forge (Logic):** Platform-agnostic template engine that generates optimized prompts.
 - **The Courier (Export):** Client-side ZIP generation for immediate use.
-- **Multi-Platform Support:** Tailored exports for Gemini (SKILL.md) and Claude (Agent Teams).
+- **The CLI (WIP):** A native wrapper (`npx throne-room`) to orchestrate agents directly from the terminal *(coming soon)*.
+- **Multi-Platform Support:** Tailored exports for Gemini (Experimental Subagents), Claude (Agent Teams), and OpenAI (Codex Multi-Agent).
 - **Privacy First:** Entirely client-side logic—no data leaves your browser.
 
 ## 🛠️ Tech Stack
@@ -26,6 +27,7 @@ Inspired by Dungeons & Dragons, this tool allows you to assemble a "Party" of sp
 - **Framework:** [Astro v5](https://astro.build)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com)
 - **Language:** TypeScript (Strict)
+- **CLI Shell:** Clack Prompts
 - **Linting:** ESLint 10 + Prettier
 
 ## 🤖 Agent Integration
@@ -41,16 +43,17 @@ bun install
 # Start the development server
 bun dev
 
+# Build the CLI (Local Test)
+bun run build:cli
+./dist/cli/index.js
+
 # Run tests
 bun test
-
-# Lint & Format
-bun run lint
-bun run format
 ```
 
 ## 📂 Project Structure
 
+- `src/cli/`: The interactive CLI wrapper source.
 - `src/core/`: Core orchestration logic and template merging.
 - `src/templates/`: Base prompts for the Throne Room, GM, and Classes.
 - `src/themes/`: Visual styling and theme-specific assets.
@@ -62,6 +65,7 @@ bun run format
 - [Architecture](./docs/ARCHITECTURE.md)
 - [Infrastructure](./docs/INFRASTRUCTURE.md)
 - [Development Plan](./docs/PLAN.md)
+- [Agentic Coding Improvements](./docs/AGENTIC_CODING_IMPROVEMENTS.md)
 
 ### Orchestration
 
@@ -69,6 +73,7 @@ bun run format
 - [The Throne Room](./docs/orchestration/THRONE_ROOM.md)
 - [Game Master Guide](./docs/orchestration/GAME_MASTER_GUIDE.md)
 - [Party Roles](./docs/orchestration/PARTY_ROLES.md)
+- [Supported Agents Catalog](./docs/cli/SUPPORTED_AGENTS_CATALOG.md)
 
 ---
 
