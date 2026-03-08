@@ -1,5 +1,13 @@
 #!/usr/bin/env node
-import { intro, outro, select, text, isCancel, spinner, note } from '@clack/prompts';
+import {
+  intro,
+  outro,
+  select,
+  text,
+  isCancel,
+  spinner,
+  note,
+} from '@clack/prompts';
 import pc from 'picocolors';
 import { execSync, spawn } from 'child_process';
 import fs from 'fs';
@@ -24,7 +32,9 @@ async function main() {
 
   // Simple arg parsing
   const args = process.argv.slice(2);
-  let platformArg = args.find((a) => a.startsWith('--platform='))?.split('=')[1] as Platform | 'other' | undefined;
+  let platformArg = args
+    .find((a) => a.startsWith('--platform='))
+    ?.split('=')[1] as Platform | 'other' | undefined;
   let customCommand = '';
 
   if (!platformArg) {
@@ -54,7 +64,7 @@ async function main() {
           value: 'other',
           label: `Other...`,
           hint: 'Provide a custom CLI command',
-        }
+        },
       ],
     });
 
@@ -62,7 +72,7 @@ async function main() {
       outro(pc.red('Orchestration cancelled.'));
       process.exit(0);
     }
-    
+
     platformArg = platformSelect as Platform | 'other';
   }
 
@@ -72,7 +82,7 @@ async function main() {
       placeholder: 'e.g. my-agent --prompt',
       validate(value) {
         if (value.length === 0) return 'Command is required!';
-      }
+      },
     });
 
     if (isCancel(customPrompt)) {
@@ -83,19 +93,20 @@ async function main() {
   }
 
   // Treat 'other' as 'markdown' for file generation purposes to get generic output
-  const platform = platformArg === 'other' ? 'markdown' : platformArg as Platform;
+  const platform =
+    platformArg === 'other' ? 'markdown' : (platformArg as Platform);
 
   const s = spinner();
   s.start('Forging orchestration files...');
 
   const orchestrationDir = path.join(process.cwd(), '.orchestration');
-  
+
   if (!fs.existsSync(orchestrationDir)) {
     fs.mkdirSync(orchestrationDir, { recursive: true });
   }
 
   const files = OrchestrationForge.forgePackage(defaultPartyPreset, platform);
-  
+
   for (const file of files) {
     const filePath = path.join(orchestrationDir, file.path);
     const dir = path.dirname(filePath);
@@ -118,7 +129,10 @@ async function main() {
 
   let systemPromptContent = '';
   try {
-    systemPromptContent = fs.readFileSync(path.join(process.cwd(), promptPath), 'utf-8');
+    systemPromptContent = fs.readFileSync(
+      path.join(process.cwd(), promptPath),
+      'utf-8'
+    );
   } catch (e) {
     // Fallback if not found, though it should have just been written
     systemPromptContent = 'You are the Game Creator in the Throne Room.';
@@ -132,7 +146,7 @@ async function main() {
     command = parts[0];
     commandArgs = [...parts.slice(1)];
     if (!customCommand.includes('.orchestration')) {
-        commandArgs.push(promptPath);
+      commandArgs.push(promptPath);
     }
   } else if (platform === 'claude') {
     command = 'claude';
@@ -145,14 +159,22 @@ async function main() {
   } else if (platform === 'openai') {
     command = checkCommand('codex') ? 'codex' : 'openai';
     // Assuming standard prompt passing for now
-    commandArgs = ['-p', initialPrompt]; 
+    commandArgs = ['-p', initialPrompt];
   } else {
-    outro(pc.red(`Platform ${platform} is not fully supported by the CLI wrapper yet.`));
+    outro(
+      pc.red(
+        `Platform ${platform} is not fully supported by the CLI wrapper yet.`
+      )
+    );
     process.exit(1);
   }
 
   if (!checkCommand(command)) {
-    outro(pc.red(`Error: '${command}' is not installed globally or not in your PATH.\nPlease install it first to continue.`));
+    outro(
+      pc.red(
+        `Error: '${command}' is not installed globally or not in your PATH.\nPlease install it first to continue.`
+      )
+    );
     process.exit(1);
   }
 
