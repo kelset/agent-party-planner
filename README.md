@@ -17,7 +17,7 @@ Inspired by Dungeons & Dragons, this tool allows you to assemble a "Party" of sp
 - **The Tavern (UI):** A D&D-themed interface for party composition.
 - **The Forge (Logic):** Platform-agnostic template engine that generates optimized prompts.
 - **The Courier (Export):** Client-side ZIP generation for immediate use.
-- **The CLI (WIP):** A native wrapper (`npx throne-room`) to orchestrate agents directly from the terminal *(coming soon)*.
+- **The CLI (WIP):** A native wrapper (`npx throne-room`) to orchestrate agents directly from the terminal _(coming soon)_.
 - **Multi-Platform Support:** Tailored exports for Gemini (Experimental Subagents), Claude (Agent Teams), and OpenAI (Codex Multi-Agent).
 - **Privacy First:** Entirely client-side logic—no data leaves your browser.
 

@@ -102,11 +102,26 @@ export class OpenAIAdapter implements PlatformAdapter {
       content: generateGMPrompt(config),
     });
 
+    let configToml = `[features]\nmulti_agent = true\n\n`;
+
     config.party.forEach((member) => {
+      const roleId = member.id.toLowerCase();
+
+      // Append to the orchestrator config
+      configToml += `[agents.${roleId}]\n`;
+      configToml += `description = "${member.agentClass} - ${member.classFantasy}"\n`;
+      configToml += `config_file = ".codex/agents/${roleId}.toml"\n\n`;
+
+      // Generate the specific agent config
       files.push({
-        path: `instructions/${member.agentClass.toLowerCase()}.txt`,
-        content: generatePartyMemberPrompt(member),
+        path: `.codex/agents/${roleId}.toml`,
+        content: `[agent]\nname = "${member.name}"\ndeveloper_instructions = """\n${generatePartyMemberPrompt(member)}\n"""\n`,
       });
+    });
+
+    files.push({
+      path: '.codex/config.toml',
+      content: configToml,
     });
 
     // Extra files
@@ -141,10 +156,36 @@ export class GeminiAdapter implements PlatformAdapter {
         config.party.map((p) => `- ${p.name}: ${p.classFantasy}`).join('\n'),
     });
 
+    // Generate native experimental subagents for the GM session
     config.party.forEach((member) => {
+      const slug = member.id.toLowerCase().replace(/[^a-z0-9]/g, '_');
+      const frontmatter = `---
+name: ${slug}
+description: ${member.agentClass} - ${member.classFantasy}
+tools: [run_shell_command, read_file, write_file, replace, grep_search, glob]
+---
+`;
       files.push({
-        path: `roles/${member.agentClass.toLowerCase()}_system_prompt.txt`,
-        content: generatePartyMemberPrompt(member),
+        path: `.gemini/agents/${slug}.md`,
+        content: frontmatter + generatePartyMemberPrompt(member),
+      });
+    });
+
+    // Inject Throne Room Meta Roles as subagents so the Game Creator can hire them!
+    const otherMetaRoles = config.throneRoom.metaRoles.filter(
+      (r) => r.id !== 'meta-creator'
+    );
+    otherMetaRoles.forEach((role) => {
+      const slug = role.id.toLowerCase().replace(/[^a-z0-9]/g, '_');
+      const frontmatter = `---
+name: ${slug}
+description: ${role.name} - ${role.role}
+tools: [run_shell_command, read_file, write_file, replace, grep_search, glob]
+---
+`;
+      files.push({
+        path: `.gemini/agents/${slug}.md`,
+        content: frontmatter + generateMetaAgentPrompt(config, role),
       });
     });
 
