@@ -11,9 +11,9 @@ export function LorenzoComment({
 }: LorenzoCommentProps) {
   return (
     <div class={`relative w-full max-w-3xl mx-auto ${className}`}>
-      <p class="text-ink-deep font-medium italic text-sm md:text-base leading-relaxed bg-parchment/50 p-4 border-2 border-dashed border-ink-deep/30 rounded-sm w-full text-center m-0">
+      <div class="text-ink-deep font-medium italic text-sm md:text-base leading-relaxed bg-parchment/50 p-4 border-2 border-dashed border-ink-deep/30 rounded-sm w-full text-center m-0">
         {children}
-      </p>
+      </div>
       <a
         href="https://kelset.dev"
         target="_blank"
