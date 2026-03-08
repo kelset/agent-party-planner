@@ -34,7 +34,8 @@ describe('OrchestrationForge', () => {
 
     const paths = files.map((f) => f.path);
     expect(paths).toContain('SKILL.md');
-    expect(paths).toContain('roles/ranger_system_prompt.txt');
+    expect(paths).toContain('.gemini/agents/ranger_1.md');
+    expect(paths).toContain('.gemini/agents/meta_bard.md');
     expect(paths).toContain('README.md');
     expect(paths).toContain('start-throne-room.sh');
   });
@@ -55,6 +56,8 @@ describe('OrchestrationForge', () => {
 
     const paths = files.map((f) => f.path);
     expect(paths).toContain('instructions/gm.txt');
+    expect(paths).toContain('.codex/config.toml');
+    expect(paths).toContain('.codex/agents/ranger-1.toml');
     expect(paths).toContain('README.md');
   });
 

@@ -35,16 +35,23 @@ Each AI CLI ecosystem approaches multi-agent orchestration slightly differently.
 
 Claude Code makes a distinct separation between **Subagents** (Hub-and-Spoke) and **Agent Teams** (Collaborative).
 
-- **Subagents (Default):** *(See: [Claude Subagents](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#subagents))* The main agent spawns short-lived, isolated subagents (often using smaller models like Haiku) for tasks like `explore` or `plan`. They cannot talk to each other and only report back to the main agent. This maps well to our standard **GM -> Party** model.
-- **Agent Teams (`claude --team`):** *(See: [Claude Agent Teams](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#agent-teams))* A collaborative model where one agent acts as a Team Lead, creating a shared task list. Teammates can claim tasks, communicate directly with each other, and share findings without routing through the lead. This is ideal for highly complex, parallelized features but consumes significantly more tokens.
+- **Subagents (Default):** _(See: [Claude Subagents](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#subagents))_ The main agent spawns short-lived, isolated subagents (often using smaller models like Haiku) for tasks like `explore` or `plan`. They cannot talk to each other and only report back to the main agent. This maps well to our standard **GM -> Party** model.
+- **Agent Teams (`claude --team`):** _(See: [Claude Agent Teams](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#agent-teams))_ A collaborative model where one agent acts as a Team Lead, creating a shared task list. Teammates can claim tasks, communicate directly with each other, and share findings without routing through the lead. This is ideal for highly complex, parallelized features but consumes significantly more tokens.
 
 ### Gemini CLI
 
-The Gemini CLI implements specialized agents via **Skills**.
+The Gemini CLI implements specialized agents via two distinct mechanisms: **Skills** and **Subagents (Experimental)**.
 
-- **Skills (`SKILL.md`):** *(See: [Gemini CLI Skills](https://geminicli.com/docs/core/skills))* A skill is a package that extends the agent's capabilities. It defines _what_ the skill does, _when_ to trigger it, and _how_ to execute it via a `SKILL.md` file.
-- **Execution:** When the Gemini agent recognizes a need, it automatically triggers `activate_skill(skill_name="...")`. The instructions inside the activated `SKILL.md` become "expert procedural guidance" that overrides general defaults. Our exported `SKILL.md` acts as the overarching rulebook that the main Gemini process follows.
+- **Skills (`SKILL.md`):** _(See: [Gemini CLI Skills](https://geminicli.com/docs/core/skills))_ A skill is a package that extends the agent's capabilities. It defines _what_ the skill does, _when_ to trigger it, and _how_ to execute it via a `SKILL.md` file. Our exported `SKILL.md` acts as the overarching rulebook that the main Gemini process follows.
+- **Subagents (Experimental):** _(See: [Gemini CLI Subagents](https://geminicli.com/docs/core/subagents/))_ A true multi-agent paradigm where specialized "expert" agents operate in separate context loops to save tokens.
+  - **Invocation:** The main agent automatically routes tasks to subagents by "hiring" them as tools.
+  - **Conventions:** Custom subagents are defined as Markdown files with YAML frontmatter in `.gemini/agents/*.md`. The frontmatter defines their role, tools, and model, while the body serves as their unique system prompt.
+  - **Settings:** Must be explicitly enabled via `"experimental": { "enableAgents": true }` in `settings.json`.
 
 ### OpenAI / Codex
 
-- Currently, standard CLI wrappers for OpenAI/Codex generally operate as single-agent loops. Sub-agent spawning usually requires custom logic built into the tool execution layer (e.g. [OpenAI Swarm](https://github.com/openai/swarm) or [AutoGen](https://microsoft.github.io/autogen/)), rather than being a native CLI flag. Our `start-quest.sh` wrapper handles this by injecting the orchestrator prompt to force the single model to act as the GM, which then conceptually simulates sub-agents by addressing them in its output.
+OpenAI Codex supports a native orchestrator paradigm via its **Multi-Agent (Experimental)** functionality.
+
+- **Multi-Agents:** _(See: [Codex Multi-Agents](https://developers.openai.com/codex/multi-agent))_ Codex acts as a central orchestrator, automatically spinning up sub-agents to handle independent parts of a task in parallel. Once all finish, Codex consolidates the findings.
+  - **Invocation:** Enabled via `/experimental` toggle in the CLI or by setting `multi_agent = true` in `~/.codex/config.toml`. Users can naturally prompt Codex to spawn agents, or use tools like `spawn_agents_on_csv` for massive parallelization.
+  - **Conventions:** Role configs are stored in `.codex/config.toml` (e.g., under `[agents.reviewer]`), which map to individual `reviewer.toml` files containing unique developer instructions and tool boundaries. Our framework could map the Throne Room Party directly into these `.toml` files.
