@@ -3,19 +3,19 @@ export function generateThroneRoomScript(platform: string): string {
   switch (platform) {
     case 'gemini':
       command =
-        'gemini --permissions read,write -i "Please read these rules carefully and adopt the persona of the Game Creator. Acknowledge when you are ready to begin:\n\n$(cat throne_room/game-creator.md)"';
+        'gemini --permissions read,write -i "Please read the files in the throne-room/ directory. Act as the Game Creator. Let\'s start scaffolding the quest folder."';
       break;
     case 'claude':
       command =
-        'claude -p "Please read these rules carefully and adopt the persona of the Game Creator. Acknowledge when you are ready to begin:\n\n$(cat throne_room/game-creator.md)"';
+        'claude -p "Please read the files in the throne-room/ directory. Act as the Game Creator. Let\'s start scaffolding the quest folder."';
       break;
     case 'openai':
-      // Fallback for OpenAI/Codex using standard string piping
       command =
-        'codex -p "Please read these rules carefully and adopt the persona of the Game Creator. Acknowledge when you are ready to begin:\n\n$(cat throne_room/game-creator.md)"';
+        'codex -p "Please read the files in the throne-room/ directory. Act as the Game Creator. Let\'s start scaffolding the quest folder."';
       break;
     default:
       command = `# Add your favorite agent CLI command here
+# Check PROMPTS.md for the recommended copy-paste prompt to use.
 # e.g., my-agent --prompt throne-room/game-creator.md`;
   }
 
@@ -30,11 +30,12 @@ ${command}
 export function generateQuestScript(platform: string): string {
   let command: string;
   let copyLogic = '';
+  let orchestratorFile: string;
 
   switch (platform) {
     case 'gemini':
-      command =
-        'gemini --permissions read,write -i "Please read these rules carefully and adopt the persona of the Game Master. Acknowledge when you are ready to begin coordinating the party:\n\n$(cat SKILL.md)"';
+      orchestratorFile = 'SKILL.md';
+      command = `gemini --permissions read,write -i "Please read the following files from the orchestration directory in this exact order: \\"$(dirname "$0")/${orchestratorFile}\\", \\"$(dirname "$0")/dynamics.md\\", and \\"$(dirname "$0")/quest-brief.md\\". Adopt the persona of the Game Master. Execute your startup procedure and acknowledge when you are ready."`;
       copyLogic = `
 # Gemini Experimental Subagents require the .gemini folder to be in the working directory
 echo "Syncing .gemini sub-agents to target codebase..."
@@ -45,12 +46,12 @@ fi
 `;
       break;
     case 'claude':
-      command =
-        'claude -p "Please read these rules carefully and adopt the persona of the Game Master. Acknowledge when you are ready to begin coordinating the party:\n\n$(cat orchestrator.md)"';
+      orchestratorFile = 'orchestrator.md';
+      command = `claude -p "Please read the following files from the orchestration directory in this exact order: \\"$(dirname "$0")/${orchestratorFile}\\", \\"$(dirname "$0")/dynamics.md\\", and \\"$(dirname "$0")/quest-brief.md\\". Adopt the persona of the Game Master. Execute your startup procedure and acknowledge when you are ready."`;
       break;
     case 'openai':
-      command =
-        'codex -p "Please read these rules carefully and adopt the persona of the Game Master. Acknowledge when you are ready to begin coordinating the party:\n\n$(cat orchestrator.md)"';
+      orchestratorFile = 'instructions/gm.txt';
+      command = `codex -p "Please read the following files from the orchestration directory in this exact order: \\"$(dirname "$0")/${orchestratorFile}\\", \\"$(dirname "$0")/dynamics.md\\", and \\"$(dirname "$0")/quest-brief.md\\". Adopt the persona of the Game Master. Execute your startup procedure and acknowledge when you are ready."`;
       copyLogic = `
 # Codex Multi-Agent requires the .codex config folder to be in the working directory
 echo "Syncing .codex sub-agents to target codebase..."
@@ -62,7 +63,8 @@ fi
       break;
     default:
       command = `# Add your favorite agent CLI command here
-# e.g., my-agent --prompt gm-guide.md`;
+# Check PROMPTS.md for the recommended copy-paste prompt to use.
+# Make sure your agent reads gm-guide.md, dynamics.md, and quest-brief.md.`;
   }
 
   return `#!/bin/bash

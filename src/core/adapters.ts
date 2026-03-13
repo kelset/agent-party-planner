@@ -10,6 +10,8 @@ import {
   generateThroneRoomScript,
   generateQuestScript,
 } from '../templates/scripts';
+import { generateDynamicsPrompt } from '../templates/dynamics';
+import { generatePromptsFile } from '../templates/prompts';
 
 export type Platform = 'markdown' | 'gemini' | 'claude' | 'openai' | 'other';
 
@@ -64,6 +66,12 @@ export class MarkdownAdapter implements PlatformAdapter {
       content: generateGMPrompt(config),
     });
 
+    // Party Dynamics
+    files.push({
+      path: 'dynamics.md',
+      content: generateDynamicsPrompt(),
+    });
+
     // Party Members
     config.party.forEach((member) => {
       files.push({
@@ -76,6 +84,10 @@ export class MarkdownAdapter implements PlatformAdapter {
     files.push({
       path: 'README.md',
       content: generateExportReadme(config, 'Markdown'),
+    });
+    files.push({
+      path: 'PROMPTS.md',
+      content: generatePromptsFile(config),
     });
     files.push({
       path: 'start-throne-room.sh',
@@ -100,6 +112,11 @@ export class OpenAIAdapter implements PlatformAdapter {
     files.push({
       path: 'instructions/gm.txt',
       content: generateGMPrompt(config),
+    });
+
+    files.push({
+      path: 'dynamics.md',
+      content: generateDynamicsPrompt(),
     });
 
     let configToml = `[features]\nmulti_agent = true\n\n`;
@@ -130,6 +147,10 @@ export class OpenAIAdapter implements PlatformAdapter {
       content: generateExportReadme(config, 'OpenAI'),
     });
     files.push({
+      path: 'PROMPTS.md',
+      content: generatePromptsFile(config),
+    });
+    files.push({
       path: 'start-throne-room.sh',
       content: generateThroneRoomScript('openai'),
     });
@@ -154,6 +175,11 @@ export class GeminiAdapter implements PlatformAdapter {
         generateGMPrompt(config) +
         '\n\n## Sub-Agents (Party)\n' +
         config.party.map((p) => `- ${p.name}: ${p.classFantasy}`).join('\n'),
+    });
+
+    files.push({
+      path: 'dynamics.md',
+      content: generateDynamicsPrompt(),
     });
 
     // Generate native experimental subagents for the GM session
@@ -195,6 +221,10 @@ tools: [run_shell_command, read_file, write_file, replace, grep_search, glob]
       content: generateExportReadme(config, 'Gemini'),
     });
     files.push({
+      path: 'PROMPTS.md',
+      content: generatePromptsFile(config),
+    });
+    files.push({
       path: 'start-throne-room.sh',
       content: generateThroneRoomScript('gemini'),
     });
@@ -218,6 +248,11 @@ export class ClaudeAdapter implements PlatformAdapter {
       content: generateGMPrompt(config),
     });
 
+    files.push({
+      path: 'dynamics.md',
+      content: generateDynamicsPrompt(),
+    });
+
     config.party.forEach((member) => {
       files.push({
         path: `agents/${member.agentClass.toLowerCase()}.md`,
@@ -229,6 +264,10 @@ export class ClaudeAdapter implements PlatformAdapter {
     files.push({
       path: 'README.md',
       content: generateExportReadme(config, 'Claude'),
+    });
+    files.push({
+      path: 'PROMPTS.md',
+      content: generatePromptsFile(config),
     });
     files.push({
       path: 'start-throne-room.sh',
@@ -255,6 +294,11 @@ export class OtherAdapter implements PlatformAdapter {
       content: generateGMPrompt(config),
     });
 
+    files.push({
+      path: 'dynamics.md',
+      content: generateDynamicsPrompt(),
+    });
+
     config.party.forEach((member) => {
       files.push({
         path: `party/${member.agentClass.toLowerCase()}.md`,
@@ -266,6 +310,10 @@ export class OtherAdapter implements PlatformAdapter {
     files.push({
       path: 'README.md',
       content: generateExportReadme(config, 'Other'),
+    });
+    files.push({
+      path: 'PROMPTS.md',
+      content: generatePromptsFile(config),
     });
     files.push({
       path: 'start-throne-room.sh',

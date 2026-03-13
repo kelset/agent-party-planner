@@ -9,8 +9,8 @@ describe('OrchestrationForge', () => {
       'markdown'
     );
 
-    // Should have 3 Throne Room meta agents, 1 GM Guide, 5 party members, 1 README, and 2 scripts
-    expect(files.length).toBe(3 + 1 + 5 + 1 + 2);
+    // Should have 3 Throne Room meta agents, 1 GM Guide, 1 Dynamics, 5 party members, 1 README, 1 PROMPTS, and 2 scripts
+    expect(files.length).toBe(3 + 1 + 1 + 5 + 1 + 1 + 2);
 
     const paths = files.map((f) => f.path);
     expect(paths).toContain('throne-room/game-creator.md');
