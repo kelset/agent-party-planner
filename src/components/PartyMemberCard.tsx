@@ -64,7 +64,7 @@ export function PartyMemberCard({
         {/* Top Right Edit Button (The Triple Dot) */}
         <button
           onClick={() => onEdit(member.id)}
-          class="absolute -top-4 -right-4 w-10 h-10 rounded-full border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center font-black text-xl z-40 bg-parchment-base text-ink-deep hover:bg-parchment-light hover:scale-110 active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)] transition-all opacity-0 group-hover:opacity-100"
+          class="absolute -top-4 -right-4 w-10 h-10 rounded-full border-[3px] border-ink-deep shadow-[2px_2px_0_var(--color-ink-deep)] flex items-center justify-center font-black text-xl z-40 bg-parchment-base text-ink-deep hover:bg-parchment-light hover:scale-110 active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)] transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
           aria-label={`Edit ${member.name}`}
         >
           <svg
@@ -176,7 +176,7 @@ export function PartyMemberCard({
                       {r.name}
                     </span>
                     <button
-                      class="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-sm bg-parchment-light border-2 border-ink-deep text-ink-deep hover:text-white hover:bg-crimson flex items-center justify-center opacity-0 group-hover/pill:opacity-100 transition-all text-xs z-10 shadow-[2px_2px_0_var(--color-ink-deep)]"
+                      class="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-sm bg-parchment-light border-2 border-ink-deep text-ink-deep hover:text-white hover:bg-crimson flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover/pill:opacity-100 transition-all text-xs z-10 shadow-[2px_2px_0_var(--color-ink-deep)]"
                       aria-label={`Remove ${r.name}`}
                     >
                       <span class="-mt-0.5 font-black leading-none text-sm">

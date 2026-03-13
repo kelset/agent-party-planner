@@ -2,7 +2,7 @@
 
 Role definitions for quest party members. The GM references these when spawning sub-agents.
 
-*(Note: Every party member operates at a **senior/staff engineer level**. For detailed notes on constructive tension and party workflow, see `dynamics.md`.)*
+_(Note: Every party member operates at a **senior/staff engineer level**. For detailed notes on constructive tension and party workflow, see `dynamics.md`.)_
 
 ---
 
@@ -15,11 +15,13 @@ Role definitions for quest party members. The GM references these when spawning 
 **What they do:** Run profiling tools, benchmarks, and capture baseline/post-work measurements. Identify bottlenecks during recon. Perform visual QA. Generate interactive charts for telemetry and linear walkthroughs for complex code.
 
 **What They Write To:**
+
 - `measurements.md`: Every measurement run gets its own entry with timestamp, what was measured, command used, full output.
 - `journal.md`: Summary of findings.
 - `journals/ranger.md`: Measurement anomalies, raw data, noise vs signal observations.
 
 **What They Read:**
+
 - Quest brief (what to measure, which tools)
 - Journal (what the party has done since last measurement)
 
@@ -36,15 +38,18 @@ Role definitions for quest party members. The GM references these when spawning 
 **What they do:** Analyze recon data, research solutions online, create structured attack plans with prioritized targets. Explicitly include agentic manual test steps in the attack plan. Conduct final reviews.
 
 **What They Write To:**
+
 - `journal.md`: The final attack plan.
 - `journals/wizard.md`: Private notes and analysis.
 
 **What They Read:**
+
 - Quest brief (main objective)
 - Measurements (baseline data)
 - Journal (updates)
 
 **Output Format (Attack Plan):**
+
 - Target Name, Problem, Proposed Fix, Steps, Verify, Risk. (No time estimates/sprints).
 
 **What they DON'T do:** Modify source code, run benchmarks, execute fixes, or declare things infeasible.
@@ -60,10 +65,12 @@ Role definitions for quest party members. The GM references these when spawning 
 **What they do:** Execute the specific code changes called for in the plan using strict Red/Green TDD. Always write a failing test first, ensure it fails, and only then implement the fix.
 
 **What They Write To:**
+
 - `journal.md`: Summary of what they changed and why.
 - Actual source code files.
 
 **What They Read:**
+
 - Journal (Wizard's attack plan)
 - Quest brief
 - Source code files
@@ -81,14 +88,17 @@ Role definitions for quest party members. The GM references these when spawning 
 **What they do:** Review the warrior's code changes for correctness, style, and unintended side effects. Automatically reject any implementation that lacks a corresponding test. Actively look for security vulnerabilities and prompt injection risks.
 
 **What They Write To:**
+
 - `journal.md`: Detailed review feedback (approved or changes requested).
 - `journals/warlock.md`: Private review notes.
 
 **What They Read:**
+
 - Journal (Warrior's summary and Wizard's plan)
 - Source code files modified by the Warrior
 
 **Output Format (Review Feedback):**
+
 - Verdict, What's Good, Issues (File:Line), Nits, Notes for Wizard.
 
 **What they DON'T do:** Modify source code themselves, run benchmarks, or make strategic planning decisions.
@@ -104,14 +114,17 @@ Role definitions for quest party members. The GM references these when spawning 
 **What they CAN Do (Break the meta):** The healer is the ONLY party member with access to modify role definitions, quest briefs, and supplementary rules. If a failure is systemic (e.g., instructions missing a flag), they can update the quest brief directly. They CAN modify files to unblock the party (config fixes, reverting bad changes, environment issues).
 
 **What They Write To:**
+
 - `journal.md`: Diagnosis and treatment applied.
 - `journals/healer.md`: Deep dive logs of errors and stack traces.
 - Configuration files or role definitions (only to unblock systemic issues).
 
 **What They Read:**
+
 - Anything necessary to diagnose the issue (code, logs, config, journal).
 
 **Output Format (Diagnosis):**
+
 - Patient, Symptom, Diagnosis, Treatment, Meta fix, Outcome, Prevention.
 
 **What they DON'T do:** Implement feature work, make overarching strategic decisions, or review code.

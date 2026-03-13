@@ -376,7 +376,7 @@ export function MemberEditor({
             >
               {isNew ? 'Confirm Recruitment' : 'Apply Changes'}
             </button>
-            <div class="flex gap-3">
+            <div class="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={isNew ? handleDiscard : handleRemove}
                 class="flex-1 py-3 bg-parchment hover:bg-parchment-light text-crimson border-[3px] border-ink-deep font-black uppercase tracking-widest text-xs rounded-sm shadow-[2px_2px_0_var(--color-ink-deep)] transition-all active:translate-y-[2px] active:translate-x-[2px] active:shadow-[0_0_0_var(--color-ink-deep)] cursor-pointer"
