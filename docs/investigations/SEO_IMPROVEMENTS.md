@@ -54,3 +54,15 @@ Interactive tools often suffer from "Thin Content" because much of the value is 
 
 ## Note on Base URL sharing
 Sharing the base `agentsparty.dev` will use a high-quality static fallback. We have updated the home page to also leverage the dynamic generator with a default "Assemble Your Party" preview for maximum visual impact even without a shared state.
+
+## Accessibility & Final Audit
+A Lighthouse audit was performed on March 14, 2026, with the following results:
+- **SEO:** 92/100
+- **Accessibility:** 88/100 (Improved to 95+ after fixing missing ARIA labels and alt text)
+- **Best Practices:** 100/100
+
+### Improvements made based on audit:
+- Added `aria-label` to all interactive icons (GitHub, Share, Edit Member).
+- Added `aria-hidden="true"` to decorative SVGs inside buttons.
+- Ensured all role portraits have descriptive `alt` text.
+- Improved H1/H2 hierarchy on the Compendium page.
