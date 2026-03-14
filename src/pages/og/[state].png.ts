@@ -4,10 +4,20 @@ import { html } from 'satori-html';
 import { Resvg } from '@resvg/resvg-js';
 import LZString from 'lz-string';
 import fs from 'node:fs';
+import path from 'node:path';
+import { defaultPartyPreset } from '../../core/presets/defaultParty';
 import type { OrchestrationConfig } from '../../core/types';
 
-// Load the font (fallback to Monaco on macOS)
-const fontData = fs.readFileSync('/System/Library/Fonts/Monaco.ttf');
+// Use path.join to correctly resolve the font path in different environments
+const fontPath = path.join(process.cwd(), 'src/assets/fonts/VT323-Regular.ttf');
+const fontData = fs.readFileSync(fontPath);
+
+export async function getStaticPaths() {
+  const defaultState = LZString.compressToEncodedURIComponent(JSON.stringify(defaultPartyPreset));
+  return [
+    { params: { state: defaultState } },
+  ];
+}
 
 export const GET: APIRoute = async ({ params }) => {
   const { state } = params;
@@ -37,7 +47,7 @@ export const GET: APIRoute = async ({ params }) => {
   };
 
   const markup = html`
-    <div style="height: 630px; width: 1200px; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0a0908; padding: 40px; font-family: 'Monaco';">
+    <div style="height: 630px; width: 1200px; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0a0908; padding: 40px; font-family: 'VT323';">
       <!-- Outer Decorative Border -->
       <div style="display: flex; flex-direction: column; width: 100%; height: 100%; background-color: ${colors.parchment}; border: 8px solid ${colors.border}; position: relative; padding: 40px; box-shadow: 20px 20px 0px #000;">
         
@@ -46,41 +56,41 @@ export const GET: APIRoute = async ({ params }) => {
 
         <!-- Header Banner -->
         <div style="display: flex; background-color: ${colors.crimson}; border: 4px solid ${colors.border}; padding: 15px 40px; align-self: center; margin-bottom: 40px; box-shadow: 8px 8px 0px ${colors.border};">
-          <span style="color: white; font-size: 48px; font-weight: 900; text-transform: uppercase; letter-spacing: 4px;">Quest Party Assembled</span>
+          <span style="color: white; font-size: 64px; font-weight: 900; text-transform: uppercase; letter-spacing: 4px;">Quest Party Assembled</span>
         </div>
 
         <!-- Quest Name -->
         <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 60px;">
-          <span style="color: ${colors.ink}; font-size: 32px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; opacity: 0.7;">Quest Name:</span>
-          <span style="color: ${colors.ink}; font-size: 56px; font-weight: 900; border-bottom: 4px solid ${colors.gold}; padding-bottom: 10px; text-align: center;">${questName}</span>
+          <span style="color: ${colors.ink}; font-size: 40px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; opacity: 0.7;">Quest Name:</span>
+          <span style="color: ${colors.ink}; font-size: 80px; font-weight: 900; border-bottom: 4px solid ${colors.gold}; padding-bottom: 10px; text-align: center;">${questName}</span>
         </div>
 
         <!-- Party Grid -->
         <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; width: 100%;">
           ${partyMembers.slice(0, 6).map((m) => `
             <div style="display: flex; flex-direction: column; align-items: center; background-color: #fff; border: 3px solid ${colors.border}; padding: 15px; width: 160px; box-shadow: 4px 4px 0px ${colors.border};">
-              <span style="font-size: 48px; margin-bottom: 10px;">
+              <span style="font-size: 60px; margin-bottom: 5px;">
                 ${m.agentClass === 'Warrior' ? '⚔️' : 
                   m.agentClass === 'Wizard' ? '🧙‍♂️' : 
                   m.agentClass === 'Ranger' ? '🏹' : 
                   m.agentClass === 'Warlock' ? '🧛‍♂️' : 
                   m.agentClass === 'Healer' ? '🧑‍⚕️' : '👤'}
               </span>
-              <span style="color: ${colors.ink}; font-size: 18px; font-weight: 900; text-transform: uppercase; text-align: center;">${m.agentClass}</span>
+              <span style="color: ${colors.ink}; font-size: 28px; font-weight: 900; text-transform: uppercase; text-align: center;">${m.agentClass}</span>
             </div>
           `).join('')}
           
           ${partyMembers.length > 6 ? `
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #eee; border: 3px dashed ${colors.border}; padding: 15px; width: 160px;">
-              <span style="color: ${colors.ink}; font-size: 24px; font-weight: 900;">+${partyMembers.length - 6} MORE</span>
+              <span style="color: ${colors.ink}; font-size: 32px; font-weight: 900;">+${partyMembers.length - 6} MORE</span>
             </div>
           ` : ''}
         </div>
 
         <!-- Footer -->
-        <div style="position: absolute; bottom: 20px; left: 40px; right: 40px; display: flex; justify-content: space-between; border-top: 2px solid rgba(44,30,22,0.2); pt: 10px;">
-          <span style="color: ${colors.ink}; font-size: 16px; font-weight: 900; text-transform: uppercase;">agentsparty.dev</span>
-          <span style="color: ${colors.ink}; font-size: 16px; font-weight: 900; text-transform: uppercase;">A Retro-Brutalist Orchestrator</span>
+        <div style="position: absolute; bottom: 20px; left: 40px; right: 40px; display: flex; justify-content: space-between; border-top: 2px solid rgba(44,30,22,0.2); padding-top: 10px;">
+          <span style="color: ${colors.ink}; font-size: 24px; font-weight: 900; text-transform: uppercase;">agentsparty.dev</span>
+          <span style="color: ${colors.ink}; font-size: 24px; font-weight: 900; text-transform: uppercase;">A Retro-Brutalist Orchestrator</span>
         </div>
 
       </div>
@@ -92,7 +102,7 @@ export const GET: APIRoute = async ({ params }) => {
     height: 630,
     fonts: [
       {
-        name: 'Monaco',
+        name: 'VT323',
         data: fontData,
         weight: 400,
         style: 'normal',
