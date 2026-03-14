@@ -1,9 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { TavernUI } from '../components/TavernUI';
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Agents Party",
+  "url": "https://agentsparty.dev",
+  "description": "An interactive web-based tool to visually configure and export Agent Orchestration systems.",
+  "applicationCategory": "Developer Tool",
+  "operatingSystem": "All",
+  "author": {
+    "@type": "Person",
+    "name": "kelset"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
-<Layout title="Agents Party | Assemble Your Party">
+<Layout 
+  title="Agents Party | Assemble Your Party"
+  description="Build and export your Agent Orchestration party. D&D-themed UI for configuring Gemini, Claude, and OpenAI agent teams."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="relative min-h-screen overflow-hidden text-ink-deep">
     <!-- Decorative Background Element -->
     <div
@@ -90,6 +112,48 @@ import { TavernUI } from '../components/TavernUI';
 
       <!-- Interactive Party Builder -->
       <TavernUI client:load />
+
+      <!-- SEO / Information Section -->
+      <section class="mt-24 max-w-4xl mx-auto space-y-16">
+        <div class="bg-parchment-base border-[3px] border-ink-deep p-8 shadow-[6px_6px_0_var(--color-ink-deep)] rounded-sm">
+          <h2 class="font-black text-2xl uppercase tracking-widest text-ink-deep mb-6 font-mono border-b-[3px] border-ink-deep pb-2 inline-block">How It Works</h2>
+          <div class="grid md:grid-cols-3 gap-8 text-sm">
+            <div class="space-y-3">
+              <h3 class="font-black uppercase tracking-wider text-crimson">1. Assemble</h3>
+              <p class="text-ink-faded leading-relaxed">Choose your party members from classic RPG classes like Warrior, Wizard, and Ranger. Each has a unique role in your AI orchestration.</p>
+            </div>
+            <div class="space-y-3">
+              <h3 class="font-black uppercase tracking-wider text-crimson">2. Configure</h3>
+              <p class="text-ink-faded leading-relaxed">Customize their personalities, responsibilities, and relationships. Define exactly how your agents should interact and collaborate.</p>
+            </div>
+            <div class="space-y-3">
+              <h3 class="font-black uppercase tracking-wider text-crimson">3. Export</h3>
+              <p class="text-ink-faded leading-relaxed">Select your target platform (Gemini, Claude, or OpenAI) and export a ready-to-use package with all the necessary prompts and CLI scripts.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-parchment-base border-[3px] border-ink-deep p-8 shadow-[6px_6px_0_var(--color-ink-deep)] rounded-sm">
+            <h2 class="font-black text-xl uppercase tracking-widest text-ink-deep mb-4 font-mono">Why Agents Party?</h2>
+            <p class="text-sm text-ink-faded leading-relaxed mb-4">
+              Building complex multi-agent systems is hard. Agents Party simplifies the process by providing a visual, opinionated framework based on proven agentic engineering patterns.
+            </p>
+            <ul class="text-sm text-ink-faded space-y-2 list-none">
+              <li class="flex items-center gap-2"><span class="text-crimson">✦</span> Platform Agnostic</li>
+              <li class="flex items-center gap-2"><span class="text-crimson">✦</span> Local-First / Privacy-Focused</li>
+              <li class="flex items-center gap-2"><span class="text-crimson">✦</span> D&D Inspired Workflow</li>
+            </ul>
+          </div>
+
+          <div class="bg-parchment-base border-[3px] border-ink-deep p-8 shadow-[6px_6px_0_var(--color-ink-deep)] rounded-sm">
+            <h2 class="font-black text-xl uppercase tracking-widest text-ink-deep mb-4 font-mono">Technical Core</h2>
+            <p class="text-sm text-ink-faded leading-relaxed">
+              Under the hood, we use a sophisticated template engine ("The Forge") to generate optimized system prompts. Our orchestration model follows a hierarchical structure: Throne Room (Meta) → GM Session (Coordinator) → Party (Execution).
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
 
     <footer
