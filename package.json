@@ -19,12 +19,15 @@
     "@astrojs/preact": "^4.1.3",
     "@astrojs/sitemap": "^3.7.1",
     "@clack/prompts": "^1.1.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.18.0",
     "jszip": "^3.10.1",
     "lz-string": "^1.5.0",
     "picocolors": "^1.1.1",
     "preact": "^10.28.4",
+    "satori": "^0.25.0",
+    "satori-html": "^0.3.2",
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {

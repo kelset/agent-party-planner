@@ -1,6 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { TavernUI } from '../components/TavernUI';
+import LZString from 'lz-string';
+import { defaultPartyPreset } from '../core/presets/defaultParty';
+
+const defaultOgState = LZString.compressToEncodedURIComponent(JSON.stringify(defaultPartyPreset));
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -24,6 +29,7 @@ const schema = {
 <Layout 
   title="Agents Party | Assemble Your Party"
   description="Build and export your Agent Orchestration party. D&D-themed UI for configuring Gemini, Claude, and OpenAI agent teams."
+  ogState={defaultOgState}
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="relative min-h-screen overflow-hidden text-ink-deep">

@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   canonicalURL?: URL;
+  ogState?: string;
 }
 
 const {
@@ -13,7 +14,14 @@ const {
   description = "An interactive web-based tool to visually configure and export Agent Orchestration systems.",
   ogImage = "/images/logo.png",
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  ogState,
 } = Astro.props;
+
+// Logic to derive dynamic OG image if state is provided or in URL
+const partyParam = Astro.url.searchParams.get('party') || ogState;
+const finalOgImage = partyParam 
+  ? new URL(`/og/${partyParam}.png`, Astro.site) 
+  : new URL(ogImage, Astro.url);
 ---
 
 <!doctype html>
@@ -37,14 +45,14 @@ const {
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(ogImage, Astro.url)} />
+    <meta property="og:image" content={finalOgImage} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(ogImage, Astro.url)} />
+    <meta property="twitter:image" content={finalOgImage} />
   </head>
   <body class="bg-slate-950 text-slate-50 min-h-screen">
     <slot />

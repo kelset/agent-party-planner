@@ -48,6 +48,9 @@ Interactive tools often suffer from "Thin Content" because much of the value is 
 - [x] Add `FAQ` schema to the Compendium.
 
 ### Advanced (Future)
-- [ ] Dynamic OG image generation: Since the tool allows for unique party compositions, generating a preview of the party for social sharing would be high impact.
+- [x] Dynamic OG image generation: Implemented via Satori and Resvg. It automatically generates a "Party Card" preview when a `?party=` link is shared.
 - [ ] AI-crawling optimization: Add concise "Direct Answer" snippets (1-2 sentences) at the start of key sections to help AI models cite the tool.
 - [x] LCP Optimization: Verified that the Hero Banner is CSS-based, ensuring fast load times.
+
+## Note on Base URL sharing
+Sharing the base `agentsparty.dev` will use a high-quality static fallback. We have updated the home page to also leverage the dynamic generator with a default "Assemble Your Party" preview for maximum visual impact even without a shared state.
