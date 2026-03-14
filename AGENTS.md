@@ -56,4 +56,6 @@ Always consult these resources for technical decisions and API usage:
 
 8. **Types:** Maintain strict TypeScript typing. Avoid `any`.
 
-9. **Visual Validation:** Leverage the [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp/) to view the locally running site (e.g., via `bun dev`). Use it to verify UI changes, validate layouts, and ensure your code modifications behave correctly in the browser.
+9. **Validation & Auditing (MCPs):** We have two Model Context Protocol (MCP) servers configured for this project. Leverage them proactively when useful:
+   - **Chrome DevTools MCP:** Use this to view the locally running site (e.g., via `bun dev`). It is essential for visual validation, verifying UI changes, and running comprehensive audits for **SEO, Accessibility (a11y), and Performance** (e.g., Lighthouse, Core Web Vitals).
+   - **Netlify MCP:** Use this to check on deployment statuses, build logs, and project configurations directly from the CLI without needing to open the web dashboard.
