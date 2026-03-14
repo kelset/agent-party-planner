@@ -13,9 +13,8 @@ const fontPath = path.join(process.cwd(), 'src/assets/fonts/VT323-Regular.ttf');
 const fontData = fs.readFileSync(fontPath);
 
 export async function getStaticPaths() {
-  const defaultState = LZString.compressToEncodedURIComponent(JSON.stringify(defaultPartyPreset));
   return [
-    { params: { state: defaultState } },
+    { params: { state: 'default' } },
   ];
 }
 
@@ -23,7 +22,9 @@ export const GET: APIRoute = async ({ params }) => {
   const { state } = params;
   let config: OrchestrationConfig | null = null;
 
-  if (state) {
+  if (state === 'default') {
+    config = defaultPartyPreset;
+  } else if (state) {
     try {
       const decoded = LZString.decompressFromEncodedURIComponent(state);
       if (decoded) {
