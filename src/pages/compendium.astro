@@ -1,12 +1,59 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { LorenzoComment } from '../components/LorenzoComment';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Agents Party?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Agents Party is an interactive web-based tool to visually configure and export Agent Orchestration systems. It uses a D&D-inspired theme to help you assemble a 'Party' of specialized AI agents for platforms like Gemini and Claude."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the 3-tier architecture work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The framework follows a hierarchical structure: The Throne Room (Meta-Level) for strategy, The GM Session (Coordinator) for project management, and The Party (Sub-Agents) for execution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What AI platforms are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Agents Party currently supports tailored exports for Google Gemini (Experimental Subagents), Anthropic Claude (Agent Teams), and OpenAI (Codex Multi-Agent)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data private?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Entirely client-side logic ensures no data leaves your browser. Your party configurations and templates are generated locally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I enable experimental features for Gemini or Claude?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For Gemini, enable 'enableAgents' in your settings. For Claude, run your quest with the '--team' flag to switch to a fully collaborative Agent Team model."
+      }
+    }
+  ]
+};
 ---
 
 <Layout 
   title="Agents Party | The Compendium"
   description="Master the art of agent orchestration. Explore the roles, rules, and hierarchical levels of the Agents Party framework."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <main class="relative min-h-screen overflow-hidden text-ink-deep">
     <!-- Decorative Background Element -->
     <div
@@ -58,11 +105,12 @@ import { LorenzoComment } from '../components/LorenzoComment';
       <article
         class="prose prose-invert max-w-none prose-h3:text-ink-deep prose-p:text-ink-faded prose-strong:text-ink-deep"
       >
-        <h1
+        <h1 class="sr-only">Agents Party Compendium: Agent Orchestration Guide</h1>
+        <h2
           class="text-4xl md:text-5xl font-black text-parchment-light mb-8 tracking-widest uppercase drop-shadow-[4px_4px_0_var(--color-ink-deep)] font-mono"
         >
           The Compendium
-        </h1>
+        </h2>
 
         <p
           class="text-xl text-ink-deep font-bold mb-12 leading-relaxed bg-parchment p-6 border-[3px] border-ink-deep shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm relative text-center"

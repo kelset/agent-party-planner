@@ -45,8 +45,9 @@ Interactive tools often suffer from "Thin Content" because much of the value is 
 ### Content Actions
 - [x] Add a "How It Works" section to `index.astro`.
 - [x] Add `WebApplication` schema to the home page.
-- [ ] Add `FAQ` schema to a new section or the compendium.
+- [x] Add `FAQ` schema to the Compendium.
 
 ### Advanced (Future)
-- [ ] Dynamic OG image generation using Satori or similar.
-- [ ] AI-crawling optimization (Direct Answer snippets).
+- [ ] Dynamic OG image generation: Since the tool allows for unique party compositions, generating a preview of the party for social sharing would be high impact.
+- [ ] AI-crawling optimization: Add concise "Direct Answer" snippets (1-2 sentences) at the start of key sections to help AI models cite the tool.
+- [x] LCP Optimization: Verified that the Hero Banner is CSS-based, ensuring fast load times.
