@@ -49,7 +49,7 @@ Interactive tools often suffer from "Thin Content" because much of the value is 
 
 ### Advanced (Future)
 - [x] Dynamic OG image generation: Implemented via Satori and Resvg. It automatically generates a "Party Card" preview when a `?party=` link is shared.
-- [ ] AI-crawling optimization: Add concise "Direct Answer" snippets (1-2 sentences) at the start of key sections to help AI models cite the tool.
+- [x] AI-crawling optimization: Added concise "Direct Answer" snippets (1-2 sentences) at the start of key sections to help AI models cite the tool.
 - [x] LCP Optimization: Verified that the Hero Banner is CSS-based, ensuring fast load times.
 
 ## Note on Base URL sharing

@@ -321,6 +321,13 @@ export function TavernUI() {
       <div class="mb-8 flex flex-col items-center text-center gap-6 w-full">
         <div class="w-full flex flex-col items-center">
           <HeroBanner />
+          {/* AI Direct Answer Snippet for Crawlers */}
+          <p class="sr-only">
+            Agents Party is an interactive web-based tool for configuring and exporting 
+            Agent Orchestration packages. It allows developers to visually assemble 
+            specialized AI agent teams (Parties) for platforms like Gemini, Claude, 
+            and OpenAI using a D&D-inspired hierarchical framework.
+          </p>
           <LorenzoComment>
             I had an idea for an Agent Orchestrator. I could have just made a
             GitHub Gist, but <br class="hidden md:block" /> instead I built a
