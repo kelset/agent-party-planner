@@ -48,7 +48,8 @@ Interactive tools often suffer from "Thin Content" because much of the value is 
 - [x] Add `FAQ` schema to the Compendium.
 
 ### Advanced (Future)
-- [x] Dynamic OG image generation: Implemented via Satori and Resvg. It automatically generates a "Party Card" preview when a `?party=` link is shared.
+- [x] Dynamic OG image generation: Implemented via Satori and Resvg. 
+  - *Current Limitation:* In Static mode, unique images for custom `?party=` shares are not generated on-the-fly. The default party image is used as a high-quality fallback. True dynamic generation for all shares requires a move to SSR.
 - [x] AI-crawling optimization: Added concise "Direct Answer" snippets (1-2 sentences) at the start of key sections to help AI models cite the tool.
 - [x] LCP Optimization: Verified that the Hero Banner is CSS-based, ensuring fast load times.
 

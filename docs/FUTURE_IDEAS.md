@@ -9,6 +9,7 @@ This document tracks ideas, features, and technical improvements that have been 
 
 ## Tech & Ecosystem
 
+- **SSR for Dynamic OG Images:** Currently, OG images are pre-rendered at build time for the default party. To support unique, on-the-fly generated OG images for every custom shared URL, the project should be migrated to SSR (Server-Side Rendering) mode.
 - **Expand Platform Targets:** Add more explicit platform adapters for other AI ecosystems (e.g., Copilot, Codex, etc.) with specific multi-agent orchestration quirks.
 
 ## Deprioritized / Scrapped
