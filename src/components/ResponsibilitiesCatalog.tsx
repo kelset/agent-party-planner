@@ -90,10 +90,15 @@ export function ResponsibilitiesCatalog({
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
               <div class="md:col-span-1">
-                <label class="block text-[10px] font-black uppercase tracking-widest text-ink-faded mb-2">
+                <label 
+                  for="duty-name"
+                  class="block text-[10px] font-black uppercase tracking-widest text-ink-faded mb-2"
+                >
                   Duty Name
                 </label>
                 <input
+                  id="duty-name"
+                  name="duty-name"
                   type="text"
                   placeholder="e.g. Code Archeology"
                   value={newDuty.name}
@@ -109,10 +114,15 @@ export function ResponsibilitiesCatalog({
                 />
               </div>
               <div class="md:col-span-1">
-                <label class="block text-[10px] font-black uppercase tracking-widest text-ink-faded mb-2">
+                <label 
+                  for="duty-description"
+                  class="block text-[10px] font-black uppercase tracking-widest text-ink-faded mb-2"
+                >
                   Description
                 </label>
                 <input
+                  id="duty-description"
+                  name="duty-description"
                   type="text"
                   placeholder="e.g. Scans legacy logs for patterns"
                   value={newDuty.description}

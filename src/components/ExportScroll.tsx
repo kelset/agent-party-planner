@@ -66,11 +66,16 @@ export function ExportScroll({
           <div class="flex flex-col items-center gap-8 relative z-10 px-2">
             {/* Step 1: Model Picker */}
             <div class="w-full max-w-sm flex flex-col items-center text-center bg-parchment-aged border-[3px] border-ink-deep p-5 shadow-[6px_6px_0_var(--color-ink-deep)] transition-transform hover:-translate-y-1">
-              <span class="text-xs font-black text-ink-deep uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-ink-deep/20">
+              <label 
+                for="platform-selector"
+                class="text-xs font-black text-ink-deep uppercase tracking-widest mb-3 pb-2 w-full border-b-[3px] border-ink-deep/20 cursor-pointer"
+              >
                 I. Select Your Realm
-              </span>
+              </label>
               <div class="relative w-full mt-2">
                 <select
+                  id="platform-selector"
+                  name="platform"
                   value={platform}
                   onInput={(e) =>
                     setPlatform(

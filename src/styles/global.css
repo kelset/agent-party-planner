@@ -15,8 +15,8 @@
 
   /* The Ink / Structure */
   --color-ink-deep: #2c1e16;
-  --color-ink-faded: #4a3424;
-  --color-ink-light: #5c4033;
+  --color-ink-faded: #3a2822;
+  --color-ink-light: #4a3424;
 
   /* Accent Colors */
   --color-gold-400: #fbbf24;
@@ -94,6 +94,19 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: scroll !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
   }
 }
 
