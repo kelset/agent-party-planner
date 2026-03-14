@@ -66,3 +66,10 @@ A Lighthouse audit was performed on March 14, 2026, with the following results:
 - Added `aria-hidden="true"` to decorative SVGs inside buttons.
 - Ensured all role portraits have descriptive `alt` text.
 - Improved H1/H2 hierarchy on the Compendium page.
+
+## Performance Optimizations
+A performance audit was performed on March 14, 2026. While the baseline was already high due to Astro's architecture, the following surgical improvements were made to ensure a "perfect" user experience:
+- **Image Optimization:** Replaced standard `<img>` tags with Astro's `<Image />` component for all static logos, enabling automatic WebP conversion and resizing.
+- **Layout Shift Prevention:** Added explicit `width` and `height` attributes to all dynamic role icons and avatars to eliminate Cumulative Layout Shift (CLS).
+- **LCP Prioritization:** Added `fetchpriority="high"` and `loading="eager"` to the navigation logo to improve Largest Contentful Paint (LCP).
+- **Metadata Discovery:** Reorganized the `<head>` in `Layout.astro` to prioritize sitemaps and canonical links, and added an explicit link to the sitemap index.

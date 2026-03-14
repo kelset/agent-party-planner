@@ -24,6 +24,9 @@ export function LorenzoComment({
         <img
           src="/images/lorenzo-avatar.png"
           alt="Lorenzo"
+          width={56}
+          height={56}
+          loading="lazy"
           class="w-full h-full object-contain mix-blend-multiply opacity-90"
           style={{ imageRendering: 'pixelated' }}
         />

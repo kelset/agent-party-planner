@@ -93,6 +93,9 @@ export function PartyMemberCard({
             <img
               src={`/images/roles/${member.agentClass.toLowerCase()}.png`}
               alt={member.agentClass}
+              width={176}
+              height={176}
+              loading="lazy"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}

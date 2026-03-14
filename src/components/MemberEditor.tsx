@@ -173,6 +173,9 @@ export function MemberEditor({
                 <img
                   src={`/images/roles/${editedMember.agentClass.toLowerCase()}.png`}
                   alt={editedMember.agentClass}
+                  width={134}
+                  height={134}
+                  loading="lazy"
                   class="w-full h-full object-cover transition-transform duration-300"
                   style={{ imageRendering: 'pixelated' }}
                 />

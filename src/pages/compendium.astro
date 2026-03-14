@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { LorenzoComment } from '../components/LorenzoComment';
+import { Image } from 'astro:assets';
+import logoSm from '../../public/images/logo-sm.png';
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -67,9 +69,13 @@ const faqSchema = {
         class="flex justify-between items-center mb-16 bg-parchment-base border-[3px] border-ink-deep p-4 shadow-[4px_4px_0_var(--color-ink-deep)] rounded-sm"
       >
         <a href="/" class="flex items-center gap-3 group">
-          <img
-            src="/images/logo-sm.png"
+          <Image
+            src={logoSm}
             alt="Agents Party"
+            width={40}
+            height={40}
+            loading="eager"
+            fetchpriority="high"
             class="w-10 h-10 group-hover:-translate-y-0.5 group-hover:scale-105 transition-all object-contain rendering-pixelated"
             style="image-rendering: pixelated;"
           />
